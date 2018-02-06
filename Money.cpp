@@ -59,7 +59,7 @@ Money Money::operator+(const Money & money) const{
     tmp.amount = this->amount + money.amount;
   }
   else{
-    MyString e("Currencies does not match.");
+    MyString e("Can't add. Currencies does not match.");
     throw e;
   }
   return(tmp);
@@ -80,7 +80,7 @@ Money Money::operator-(const Money & money) const{
     tmp.amount = this->amount - money.amount;
   }
   else{
-    MyString e("Currencies does not match.");
+    MyString e("Can't subtract. Currencies does not match.");
     throw e;
   }
   return(tmp);
@@ -95,75 +95,141 @@ Money Money::operator-(const double amount) const{
   tmp.amount = this->amount - amount;
   return(tmp);
 }
-Money & Money::operator+=(const Money & money){
-  // Money tmp(*this);
+Money Money::operator*(const Money & money) const{
+  Money tmp(*this);
   if(this->currency == money.currency){
-    // tmp.amount = this->amount + money.amount;
+    tmp.amount = this->amount * money.amount;
+  }
+  else{
+    MyString e("Can't multiply. Currencies does not match.");
+    throw e;
+  }
+  return(tmp);
+}
+Money Money::operator*(const int amount) const{
+  Money tmp(*this);
+  tmp.amount = this->amount * amount*1.0;
+  return(tmp);
+}
+Money Money::operator*(const double amount) const{
+  Money tmp(*this);
+  tmp.amount = this->amount * amount;
+  return(tmp);
+}
+
+Money Money::operator/(const Money & money) const{
+  Money tmp(*this);
+  if(this->currency == money.currency){
+    tmp.amount = this->amount / money.amount;
+  }
+  else{
+    MyString e("Can't divide. Currencies does not match.");
+    throw e;
+  }
+  return(tmp);
+}
+Money Money::operator/(const int amount) const{
+  Money tmp(*this);
+  tmp.amount = this->amount/(amount*1.0);
+  return(tmp);
+}
+Money Money::operator/(const double amount) const{
+  Money tmp(*this);
+  tmp.amount = this->amount/amount;
+  return(tmp);
+}
+
+Money & Money::operator+=(const Money & money){
+  if(this->currency == money.currency){
     this->amount = this->amount + money.amount;
   }
   else{
-    MyString e("Currencies does not match.");
+    MyString e("Can't add. Currencies does not match.");
     throw e;
   }
-  // return(tmp);
   return(*this);
 }
 Money & Money::operator+=(const int amount){
-  // Money tmp(*this);
-  // tmp.amount = this->amount + amount;
-  // return(tmp);
   this->amount = this->amount + amount;
   return(*this);
 }
 Money & Money::operator+=(const double amount){
-  // Money tmp(*this);
-  // tmp.amount = this->amount + amount;
-  // return(tmp);
   this->amount = this->amount + amount;
   return(*this);
 }
 Money & Money::operator-=(const Money & money){
-  // Money tmp(*this);
   if(this->currency == money.currency){
-    // tmp.amount = this->amount + money.amount;
     this->amount = this->amount - money.amount;
   }
   else{
-    MyString e("Currencies does not match.");
+    MyString e("Can't subtract. Currencies does not match.");
     throw e;
   }
-  // return(tmp);
   return(*this);
 }
 Money & Money::operator-=(const int amount){
-  // Money tmp(*this);
-  // tmp.amount = this->amount - amount;
-  // return(tmp);
   this->amount = this->amount - amount;
   return(*this);
 }
 Money & Money::operator-=(const double amount){
-  // Money tmp(*this);
-  // tmp.amount = this->amount - amount;
-  // return(tmp);
   this->amount = this->amount - amount;
   return(*this);
 }
-Money & Money::operator ++(){
+
+
+Money Money::operator*=(const Money & money){
+  if(this->currency == money.currency){
+    this->amount = this->amount * money.amount;
+  }
+  else{
+    MyString e("Can't multiply. Currencies does not match.");
+    throw e;
+  }
+  return(*this);
+}
+Money Money::operator*=(const int amount){
+  this->amount = this->amount * amount;
+  return(*this);
+}
+Money Money::operator*=(const double amount){
+  this->amount = this->amount * amount;
+  return(*this);
+}
+
+Money Money::operator/=(const Money & money){
+  if(this->currency == money.currency){
+    this->amount = this->amount / money.amount;
+  }
+  else{
+    MyString e("Can't divide. Currencies does not match.");
+    throw e;
+  }
+  return(*this);
+}
+Money Money::operator/=(const int amount){
+  this->amount = this->amount / amount;
+  return(*this);
+}
+Money Money::operator/=(const double amount){
+  this->amount = this->amount / amount;
+  return(*this);
+}
+
+Money & Money::operator++(){
   this->amount += 1.0;
   return(*this);
 }
-Money Money::operator ++(int amount){
+Money Money::operator++(int amount){
   Money tmp(*this);
   operator++();
   return(tmp);
 }
 
-Money & Money::operator --(){
+Money & Money::operator--(){
   this->amount -= 1.0;
   return(*this);
 }
-Money Money::operator --(int amount){
+Money Money::operator--(int amount){
   Money tmp(*this);
   operator--();
   return(tmp);

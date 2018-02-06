@@ -42,6 +42,14 @@ public:
   Money operator-(const int) const;
   Money operator-(const double) const;
 
+  Money operator*(const Money & money) const;
+  Money operator*(const int) const;
+  Money operator*(const double) const;
+
+  Money operator/(const Money & money) const;
+  Money operator/(const int) const;
+  Money operator/(const double) const;
+
   Money & operator+=(const Money & money);
   Money & operator+=(const int);
   Money & operator+=(const double);
@@ -49,6 +57,14 @@ public:
   Money & operator-=(const Money & money);
   Money & operator-=(const int);
   Money & operator-=(const double);
+
+  Money operator*=(const Money & money);
+  Money operator*=(const int);
+  Money operator*=(const double);
+
+  Money operator/=(const Money & money);
+  Money operator/=(const int);
+  Money operator/=(const double);
 
   Money & operator ++();
   Money operator ++(int);
