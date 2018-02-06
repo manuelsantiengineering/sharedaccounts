@@ -168,80 +168,80 @@ Money Money::operator --(int amount){
   operator--();
   return(tmp);
 }
-bool operator==(const double amount) const{
+bool  Money::operator==(const double amount) const{
   return(this->amount == amount);
 }
-bool operator==(const int amount) const{
+bool  Money::operator==(const int amount) const{
   return(this->amount == amount*1.0);
 }
-bool operator==(const Money & money) const{
+bool  Money::operator==(const Money & money) const{
   return(this->amount == money.amount && this->currency == money.currency);
 }
-friend bool operator==(const Money & moneyA, const Money & moneyB){
+bool operator==(const Money & moneyA, const Money & moneyB){
   return(moneyA.amount == moneyB.amount && moneyA.currency == moneyB.currency);
 }
 
-// bool operator!=(const double amount) const{
-//   return(this->amount != amount);
-// }
-// bool operator!=(const int amount) const{
-//   return(this->amount != amount*1.0);
-// }
-// bool operator!=(const Money & money) const{
-//   return(this->amount != money.amount && this->currency != money.currency);
-// }
-// friend bool operator!=(const Money & moneyA, const Money & moneyB){
-//   return(moneyA.amount != moneyB.amount && moneyA.currency != moneyB.currency);
-// }
-//
-// bool operator>(const double amount) const{
-//   return(this->amount > amount);
-// }
-// bool operator>(const int amount) const{
-//   return(this->amount > amount*1.0);
-// }
-// bool operator>(const Money & money) const{
-//   return(this->amount > money.amount && this->currency > money.currency);
-// }
-// friend bool operator>(const Money & moneyA, const Money & moneyB){
-//   return(moneyA.amount > moneyB.amount && moneyA.currency > moneyB.currency);
-// }
-//
-// bool operator>=(const double amount) const{
-//   return(this->amount >= amount);
-// }
-// bool operator>=(const int amount) const{
-//   return(this->amount >= amount*1.0);
-// }
-// bool operator>=(const Money & money) const{
-//   return(this->amount >= money.amount && this->currency >= money.currency);
-// }
-// friend bool operator>=(const Money & moneyA, const Money & moneyB){
-//   return(moneyA.amount >= moneyB.amount && moneyA.currency >= moneyB.currency);
-// }
-//
-// bool operator<(const double amount) const{
-//   return(this->amount < amount);
-// }
-// bool operator<(const int amount) const{
-//   return(this->amount < amount*1.0);
-// }
-// bool operator<(const Money & money) const{
-//   return(this->amount < money.amount && this->currency < money.currency);
-// }
-// friend bool operator<(const Money & moneyA, const Money & moneyB){
-//   return(moneyA.amount < moneyB.amount && moneyA.currency < moneyB.currency);
-// }
-//
-// bool operator<=(const double amount) const{
-//   return(this->amount <= amount);
-// }
-// bool operator<=(const int amount) const{
-//   return(this->amount <= amount*1.0);
-// }
-// bool operator<=(const Money & money) const{
-//   return(this->amount <= money.amount && this->currency <= money.currency);
-// }
-// friend bool operator<=(const Money & moneyA, const Money & moneyB){
-//   return(moneyA.amount <= moneyB.amount && moneyA.currency <= moneyB.currency);
-// }
+bool Money::operator!=(const double amount) const{
+  return(this->amount != amount);
+}
+bool Money::operator!=(const int amount) const{
+  return(this->amount != amount*1.0);
+}
+bool Money::operator!=(const Money & money) const{
+  return(this->amount != money.amount && this->currency != money.currency);
+}
+bool operator!=(const Money & moneyA, const Money & moneyB){
+  return(moneyA.amount != moneyB.amount && moneyA.currency != moneyB.currency);
+}
+
+bool Money::operator>(const double amount) const{
+  return(this->amount > amount);
+}
+bool Money::operator>(const int amount) const{
+  return(this->amount > amount*1.0);
+}
+bool Money::operator>(const Money & money) const{
+  return(this->amount > money.amount);
+}
+bool operator>(const Money & moneyA, const Money & moneyB){
+  return(moneyA.amount > moneyB.amount);
+}
+
+bool Money::operator>=(const double amount) const{
+  return(this->amount >= amount);
+}
+bool Money::operator>=(const int amount) const{
+  return(this->amount >= amount*1.0);
+}
+bool Money::operator>=(const Money & money) const{
+  return(this->amount >= money.amount);
+}
+bool operator>=(const Money & moneyA, const Money & moneyB){
+  return(moneyA.amount >= moneyB.amount);
+}
+
+bool Money::operator<(const double amount) const{
+  return(this->amount < amount);
+}
+bool Money::operator<(const int amount) const{
+  return(this->amount < amount*1.0);
+}
+bool Money::operator<(const Money & money) const{
+  return(this->amount < money.amount);
+}
+bool operator<(const Money & moneyA, const Money & moneyB){
+  return(moneyA.amount < moneyB.amount);
+}
+
+bool Money::operator<=(const double amount) const{
+  return(this->amount <= amount);
+}
+bool Money::operator<=(const int amount) const{
+  return(this->amount <= amount*1.0);
+}
+bool Money::operator<=(const Money & money) const{
+  return(this->amount <= money.amount);
+}
+bool operator<=(const Money & moneyA, const Money & moneyB){
+  return(moneyA.amount <= moneyB.amount);
+}
