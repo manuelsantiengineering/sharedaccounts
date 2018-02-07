@@ -1,22 +1,16 @@
 #include "Money.h"
 
-// Money::Money(): currency = "USD", amount = 0.00 {}
-Money::Money(){
-  this->currency = "USD";
-  this->amount = 0.00;
-}
-Money::Money(double amount){
-  this->currency = "USD";
-  this->amount = amount;
-}
+Money::Money() : currency("USD"), amount(0.00) {}
+
+Money::Money(double amount) : currency("USD"), amount(amount) {}
+
 Money::Money(int amount){
   this->currency = "USD";
   this->amount = amount*1.0;
 }
-Money::Money(MyString currency, double amount){
-  this->currency = currency;
-  this->amount = amount;
-}
+
+Money::Money(MyString currency, double amount) : currency(currency), amount(amount) {}
+
 Money::Money(MyString currency, int amount){
   this->currency = currency;
   this->amount = amount*1.0;
@@ -244,6 +238,7 @@ bool  Money::operator==(const Money & money) const{
   return(this->amount == money.amount && this->currency == money.currency);
 }
 bool operator==(const Money & moneyA, const Money & moneyB){
+  // cout << "HOLA" << endl;
   return(moneyA.amount == moneyB.amount && moneyA.currency == moneyB.currency);
 }
 
@@ -254,10 +249,10 @@ bool Money::operator!=(const int amount) const{
   return(this->amount != amount*1.0);
 }
 bool Money::operator!=(const Money & money) const{
-  return(this->amount != money.amount && this->currency != money.currency);
+  return(this->amount != money.amount || this->currency != money.currency);
 }
 bool operator!=(const Money & moneyA, const Money & moneyB){
-  return(moneyA.amount != moneyB.amount && moneyA.currency != moneyB.currency);
+  return(moneyA.amount != moneyB.amount || moneyA.currency != moneyB.currency);
 }
 
 bool Money::operator>(const double amount) const{

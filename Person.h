@@ -7,6 +7,7 @@
 #include "MyString.h"
 
 using namespace std;
+const int MAX_AGE = 110;
 
 class Person
 {
@@ -26,6 +27,14 @@ public:
   MyString const getLastName();
   void setAge(int age);
   int const getAge();
+
+  void operator=(const Person &person);
+
+  bool operator==(const Person & person) const;
+  friend bool operator==(const Person & personA, const Person & personB);
+
+  bool operator!=(const Person & person) const;
+  friend bool operator!=(const Person & personA, const Person & personB);
 
 };
 
