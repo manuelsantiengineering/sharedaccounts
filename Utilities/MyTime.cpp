@@ -81,7 +81,7 @@ void MyTime::showTime() const{
 }
 MyString MyTime::timeToString() const{
     MyString temporal ="";
-    
+
     if(this->hours < 10){
         temporal = temporal + "0" + MyString(this->hours) + ":";
     }else{
@@ -111,7 +111,7 @@ void MyTime::askAMPM(){
         cout << "Is it AM or PM: ";
         cin >> AMPM;
         AMPM = AMPM.toUppercase();
-        
+
         if(AMPM == "PM"){
             this->isAM = false;
         }else if(AMPM != "PM" && AMPM != "AM"){
@@ -160,7 +160,7 @@ bool MyTime::operator != (const MyTime & timeInstance) const{
 }
 bool MyTime::operator > (const MyTime & timeInstance) const{
     bool greater = false;
-    
+
     if((this->isAM == false) && timeInstance.isAM == true){
         greater = true;
     }else if((this->isAM == timeInstance.isAM)  && (this->hours > timeInstance.hours)){
@@ -170,7 +170,7 @@ bool MyTime::operator > (const MyTime & timeInstance) const{
     }else if((this->isAM == timeInstance.isAM)  && (this->hours == timeInstance.hours) && (this->minutes == timeInstance.minutes) && (this->seconds == timeInstance.seconds)){
         greater = true;
     }
-    
+
     return(greater);
 }
 bool MyTime::operator < (const MyTime & timeInstance) const{
@@ -184,4 +184,3 @@ istream & operator>>(istream & in, MyTime & timeInstance){
     timeInstance.askTime();
     return(in);
 }
-

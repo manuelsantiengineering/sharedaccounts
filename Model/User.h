@@ -2,24 +2,20 @@
 #ifndef USER_H
 #define USER_H
 
-#include "Person.h"
+#include "../Person.h"
+#include "../MyString.h"
 
 using namespace std;
 
 class User
 {
 private:
-  string name;
-  string lastName;
-  int age;
+  MyString test;
 
 public:
-  User(){}
-  User(string name, string lastName, int age){}
-  ~User(){}
-
-
-
+  User();
+  User(MyString test);
+  ~User();
 };
 
 #endif
