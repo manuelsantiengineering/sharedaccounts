@@ -23,10 +23,10 @@ LFLAGS = -L./Model -L./
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
 #   option, something like (this will link in libmylib.so and libm.so:
-#LIBS = -l./Model -lm
+LIBS = -l./Model -lm
 #LIBS =
 # define the C source files
-SRCS = main.cpp Money.cpp MyString.cpp Person.cpp #User.cpp
+SRCS = main.cpp Money.cpp MyString.cpp Person.cpp ./Model/User.cpp
 
 # define the C object files
 #

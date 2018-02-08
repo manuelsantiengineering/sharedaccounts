@@ -10,8 +10,8 @@
 
 #include "Money.h"
 #include "MyString.h"
-#include "Person.h"
-// #include "./Model/User.h"
+// #include "User.h"
+#include "./Model/User.h"
 
 using namespace std;
 
@@ -34,13 +34,13 @@ int main(int argc, const char * argv[]) {
 }
 
 void testPerson(){
-    cout << "Testing Person object" << endl;
-  Person person1;
-  Person person2;
+  cout << "Testing Person object" << endl;
+  User person1;
+  User person2;
   person2.setName("Persona2");
   person2.setLastName("Dos");
   person2.setAge(22);
-  Person person3("Persona3","Tres",35);
+  User person3("Persona3","Tres",35);
 
   cout << "\t Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
   person1 = person2;

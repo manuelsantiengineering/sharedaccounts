@@ -7,15 +7,27 @@
 
 using namespace std;
 
-class User
+class User : public Person
 {
 private:
-  MyString test;
+  MyString userId;
 
 public:
   User();
-  User(MyString test);
+  User(MyString);
+  User(MyString, MyString, int);
+  User(MyString, MyString, int, MyString);
   ~User();
+
+  void operator=(const User &user);
+
+  bool operator==(const User & user) const;
+  friend bool operator==(const User & userA, const User & userB);
+
+  bool operator!=(const User & user) const;
+  friend bool operator!=(const User & userA, const User & userB);
+
+
 };
 
 #endif

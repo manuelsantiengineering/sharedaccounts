@@ -11,7 +11,7 @@ const int MAX_AGE = 110;
 
 class Person
 {
-private:
+protected:
   MyString name;
   MyString lastName;
   int age;
