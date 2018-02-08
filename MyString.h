@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Manuel. All rights reserved.
 //
 
-#ifndef __Lab03_CatalogoLibros__MyString__
-#define __Lab03_CatalogoLibros__MyString__
+#ifndef __MyString__
+#define __MyString__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,11 +19,11 @@
 // #include "./Utilities/MyTime.h"
 
 using namespace std;
-const int stringMax = 200;
+const int STRING_MAX = 200;
 
 class MyString{
 private:
-    char str[stringMax + 1];
+    char str[STRING_MAX + 1];
 
 public:
     MyString(const char *str = ""); //Constructor with a blank default argument

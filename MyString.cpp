@@ -51,7 +51,7 @@ MyString MyString::operator+(const char *str) const{
 }
 MyString MyString::operator+(char ch) const{
     MyString r(*this); //Calls the copy constructor
-    if((this->len() +1) <= stringMax){
+    if((this->len() +1) <= STRING_MAX){
     //strcat(r.str, str);
         (r.str)[this->len()] = ch;
         (r.str)[this->len()+1] = '\0';
@@ -337,5 +337,5 @@ int MyString::cambiaInt() const{
 }
 //Function for the Class
 static int MaxLen(){
-    return(stringMax);
+    return(STRING_MAX);
 }
