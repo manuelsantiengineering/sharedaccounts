@@ -8,9 +8,8 @@
  #include <string.h>
  #include <cstring>
 
-#include "Money.h"
-#include "MyString.h"
-// #include "User.h"
+#include "./Model/Money.h"
+#include "./Utilities/MyString.h"
 #include "./Model/User.h"
 
 using namespace std;
@@ -42,20 +41,21 @@ void testPerson(){
   person2.setAge(22);
   User person3("Persona3","Tres",35);
 
-  cout << "\t Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
+  cout << "\t [Default Constructor] Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
   person1 = person2;
-  cout << "\t Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
-  cout << "\t Name: " << person3.getName() << " , Last Name: " << person3.getLastName() << " Age: " << person3.getAge() << endl;
+  cout << "\t [Overload =] Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
+  cout << "\t [Overload Constructor] Name: " << person3.getName() << " , Last Name: " << person3.getLastName() << " Age: " << person3.getAge() << endl;
+  User person4(person2);
+  cout << "\t [Copy Constructor] Name: " << person4.getName() << " , Last Name: " << person4.getLastName() << " Age: " << person4.getAge() << endl;
+
+  if(person1 == person2){ cout << "\t [ == ]" << person1.getName() << " == " << person2.getName()  << " Same" << endl; }
 
 
-  if(person1 == person2){ cout << "\t" << person1.getName() << " == " << person2.getName()  << " Same" << endl; }
-
-
-  if(person3 == person2){ cout << "\t" << person3.getName() << " == " << person2.getName()  << " Same" << endl; }
+  if(person3 == person2){ cout << "\t [ == ]" << person3.getName() << " == " << person2.getName()  << " Same" << endl; }
   else{ cout << "\t Not the Same" << endl; }
 
 
-  if(person3 != person2){ cout << "\t" << person3.getName() << " != " << person2.getName()  << " Not the Same" << endl; }
+  if(person3 != person2){ cout << "\t [ != ] " << person3.getName() << " != " << person2.getName()  << " Not the Same" << endl; }
   else{ cout << "\t Same" << endl; }
 }
 
@@ -94,14 +94,14 @@ void testMoney(){
   cash++;
   cout << "\t ++ Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
 
-  cout << "\t" << pesetas.getAmount() << " == " << pesetas.getAmount();
+  cout << "\t " << pesetas.getAmount() << " == " << pesetas.getAmount();
   if(pesetas == pesetas){ cout << " Same" << endl; }
 
-  cout << "\t" << cash.getAmount() << " == " << pesetas.getAmount();
+  cout << "\t " << cash.getAmount() << " == " << pesetas.getAmount();
   if(cash == pesetas){ cout << " Same" << endl; }
   else{ cout << " Not the Same" << endl; }
 
-  cout << "\t" << cash.getAmount() << " != " << pesos.getAmount();
+  cout << "\t " << cash.getAmount() << " != " << pesos.getAmount();
   if(cash != pesos){  cout << " Not the Same" << endl; }
   else{ cout << " Same" << endl; }
 

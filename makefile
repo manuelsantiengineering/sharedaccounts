@@ -26,7 +26,10 @@ LFLAGS = -L./Model -L./
 LIBS = -l./Model -lm
 #LIBS =
 # define the C source files
-SRCS = main.cpp Money.cpp MyString.cpp Person.cpp ./Model/User.cpp
+DIR_MODEL = ./Model/
+DIR_UTILITIES = ./Utilities/
+
+SRCS = main.cpp  $(DIR_UTILITIES)MyString.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp
 
 # define the C object files
 #

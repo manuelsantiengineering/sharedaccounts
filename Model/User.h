@@ -2,8 +2,8 @@
 #ifndef USER_H
 #define USER_H
 
-#include "../Person.h"
-#include "../MyString.h"
+#include "./Person.h"
+// #include "../MyString.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ public:
   User(MyString);
   User(MyString, MyString, int);
   User(MyString, MyString, int, MyString);
+  User(const User &user);
   ~User();
 
   void operator=(const User &user);
