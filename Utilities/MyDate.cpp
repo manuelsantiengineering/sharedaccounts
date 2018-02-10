@@ -8,10 +8,17 @@
 
 #include "MyDate.h"
 
+const MyString MONTHS[13] = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"};
+
 MyDate::MyDate(int day, int month, int year){
+  if( dateIsCorrect(day, month, year) ){
     this->day = day;
     this->month = month;
     this->year = year;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
 }
 MyDate::MyDate(const MyDate & dateInstance){
     this->day = dateInstance.day;
@@ -26,51 +33,16 @@ MyDate & MyDate::operator=(const MyDate & dateInstance){
     this->year = dateInstance.year;
     return(*this);
 }
-void MyDate::askMonth(){
-    do{
-        cout << "Enter the month: ";
-        cin >> this->month;
-        if(this->month < 1 || this->month > 12){
-            cout << "Invalid month value." << endl;
-        }
-    }while(this->month < 1 || this->month > 12);
-}
-void MyDate::askDay(){
-    int maxDays = 0;
-    
-    do{
-        if(this->month == 1 || this->month == 3 || this->month == 5 || this->month == 7 || this->month == 8 || this->month == 10 || this->month == 12){
-            maxDays = 31;
-        }else if(this->month !=2){
-            maxDays = 30;
-        }else if(this->month == 2 && this->isLeapYear()){
-            maxDays = 29;
-        }else{
-            maxDays = 28;
-        }
-        cout << "Enter the day: ";
-        cin >> this->day;
-    }while(this->day < 1 || this->day > maxDays);
-}
-void MyDate::askYear(){
-    do{
-        cout << "Enter the year: ";
-        cin >> this->year;
-        if(this->year < 1900){
-            cout << "Invalid year value." << endl;
-        }
-    }while(this->year < 1900);
-    
-}
-void MyDate::askDate(){
-    this->askMonth();
-    this->askDay();
-    this->askYear();
-}
+
 void MyDate::setDate(int d, int m, int y){
-    this->day = d;
-    this->month = m;
-    this->year = y;
+  if( dateIsCorrect(d, m, y) ){
+      this->day = d;
+      this->month = m;
+      this->year = y;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
 }
 
 int MyDate::getDay() const{
@@ -94,13 +66,42 @@ void MyDate::showYear() const{
 void MyDate::showDate() const{
     cout << this->month << "/" << this->day << "/" << this->year;
 }
-MyString MyDate::dateToString() const{
-    MyString temporal="";
-    temporal = temporal + MyString(this->month) + "/" + MyString(this->day) + "/"+ MyString(this->year);
+MyString MyDate::dateToMyString() const{
+    MyString temporal;
+    temporal = temporal + MONTHS[(this->month)] + "/" + MyString(this->day) + "/"+ MyString(this->year);
     return (temporal);
 }
 
+bool MyDate::dateIsCorrect(const int d, const int m, const int y) const{
+    bool isCorrect = true;
+    bool isLeapYear = this->isLeapYear();
+    /*
+      1) On leap years, February can have up to 29 days and 28 in non-leap years.
+      2) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
+      3) All the odd months before August, and all the even months after July have up to 31 days.
+      4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
+    */
+
+    if( (m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
+        ( m < 1 || m > 12 || d < 1 || y < 1908) ||
+        ( d > 31 && ( (m%2 != 0 && m < 8) || (m%2 == 0 && m > 7) ) ) ||
+        ( d > 30 && ( (m%2 == 0 && m < 8) || (m%2 != 0 && m > 7) ) )
+      ){
+      isCorrect = false;
+    }
+
+    return(isCorrect);
+}
+
 bool MyDate::isLeapYear() const{
+  /*
+    To determine whether a year is a leap year, follow these steps:
+      1) If the year is evenly divisible by 4, go to step 2. Otherwise, go to step 5.
+      2) If the year is evenly divisible by 100, go to step 3. Otherwise, go to step 4.
+      3) If the year is evenly divisible by 400, go to step 4. Otherwise, go to step 5.
+      4) The year is a leap year (it has 366 days).
+      5) The year is not a leap year (it has 365 days).
+  */
     return((this->year%400 == 0) || (this->year%100 != 0 && this->year%4 == 0));
 }
 
@@ -119,8 +120,4 @@ bool MyDate::operator <(const MyDate & dateInstance) const{
 ostream & operator<<(ostream & out, const MyDate dateInstance){
     dateInstance.showDate();
     return(out);
-}
-istream & operator>>(istream & in, MyDate dateInstance){
-    dateInstance.askDate();
-    return(in);
 }

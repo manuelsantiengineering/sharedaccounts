@@ -15,9 +15,7 @@ void User::setUserId(MyString userId){  this->userId = userId;  }
 
 MyString User::getUserId(){ return(this->userId); }
 
-bool User::isUserId(Mystring userId){
-  return(this->userId == userId);
-}
+bool User::isUserId(MyString userId){ return(this->userId == userId); }
 
 void User::operator=(const User &user){
   this->Person::operator=(user);
@@ -30,6 +28,4 @@ bool User::operator==(const User & user) const{
   return(this->userId == user.userId && personA == personB);
 }
 
-bool User::operator!=(const User & user) const{
-  return(!(*this == user));
-}
+bool User::operator!=(const User & user) const{ return( !(*this == user) ); }

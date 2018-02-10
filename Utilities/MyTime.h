@@ -1,6 +1,5 @@
 //
-//  MyTime.h
-//  Lab03_CatalogoLibros
+//  MyTime.*
 //
 //  Created by Manuel E Santiago on 1/20/15.
 //  Copyright (c) 2015 Manuel. All rights reserved.

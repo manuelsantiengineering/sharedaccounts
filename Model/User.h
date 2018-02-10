@@ -27,7 +27,7 @@ public:
 
   void setUserId(MyString);
   MyString getUserId();
-  bool isUserId(Mystring);
+  bool isUserId(MyString);
 
   void operator=(const User &user);
 
