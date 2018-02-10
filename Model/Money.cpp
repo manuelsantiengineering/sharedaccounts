@@ -16,7 +16,8 @@ Money::Money(MyString currency, int amount){
   this->amount = amount*1.0;
 }
 Money::Money(const Money & money){
-  (*this) = money;
+  this->currency = money.currency;
+  this->amount = money.amount;
 }
 Money::~Money(){}
 

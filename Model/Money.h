@@ -1,3 +1,10 @@
+//
+//  Money.*
+//
+//  Created by Manuel E Santiago on 2/1/2018.
+//  Copyright (c) 2018 Manuel. All rights reserved.
+//
+
 #ifndef MONEY_H
 #define MONEY_H
 
@@ -99,7 +106,6 @@ public:
   bool operator<=(const int amount) const;
   bool operator<=(const Money & money) const;
   friend bool operator<=(const Money & moneyA, const Money & moneyB);
-
 
 };
 

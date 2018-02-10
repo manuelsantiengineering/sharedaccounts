@@ -1,3 +1,9 @@
+//
+//  Person.*
+//
+//  Created by Manuel E Santiago on 2/1/2018.
+//  Copyright (c) 2018 Manuel. All rights reserved.
+//
 
 #ifndef PERSON_H
 #define PERSON_H

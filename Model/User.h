@@ -1,9 +1,14 @@
+//
+//  User.*
+//
+//  Created by Manuel E Santiago on 2/1/2018.
+//  Copyright (c) 2018 Manuel. All rights reserved.
+//
 
 #ifndef USER_H
 #define USER_H
 
 #include "./Person.h"
-// #include "../MyString.h"
 
 using namespace std;
 
@@ -20,11 +25,14 @@ public:
   User(const User &user);
   ~User();
 
+  void setUserId(MyString);
+  MyString getUserId();
+  bool isUserId(Mystring);
+
   void operator=(const User &user);
 
   bool operator==(const User & user) const;
   bool operator!=(const User & user) const;
-
 
 };
 

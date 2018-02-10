@@ -8,8 +8,8 @@ Person::Person(MyString name, MyString lastName, int age) : name(name), lastName
   }
   else{
     this->age = 18;
-    // MyString e("Value exceeds the maximum age.");
-    // throw e;
+    MyString e("Value exceeds the maximum age.");
+    throw e;
   }
 }
 Person::~Person(){}

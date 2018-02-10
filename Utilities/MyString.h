@@ -1,6 +1,5 @@
 //
-//  MyString.h
-//  Lab03_CatalogoLibros
+//  MyString.*
 //
 //  Created by Manuel E Santiago on 1/15/15.
 //  Copyright (c) 2015 Manuel. All rights reserved.
@@ -98,4 +97,4 @@ public:
     static int MaxLen();
 };
 
-#endif /* defined(__Lab03_CatalogoLibros__MyString__) */
+#endif /* defined(__MyString__) */

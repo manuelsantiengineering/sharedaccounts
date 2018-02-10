@@ -1,11 +1,3 @@
-//
-//  MyString.cpp
-//  Lab03_CatalogoLibros
-//
-//  Created by Manuel E Santiago on 1/15/15.
-//  Copyright (c) 2015 Manuel. All rights reserved.
-//
-
 #include "MyString.h"
 
 MyString::MyString(const char *str){
