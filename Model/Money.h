@@ -8,12 +8,10 @@
 #ifndef MONEY_H
 #define MONEY_H
 
-#include <iostream>
 #include <exception>
 
 #include "../Utilities/MyString.h"
 
-using namespace std;
 
 class Money
 {

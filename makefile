@@ -29,9 +29,10 @@ LIBS = -l./Model -lm
 DIR_MODEL = ./Model/
 DIR_UTILITIES = ./Utilities/
 DIR_CONTROLLER = ./Controller/
+DIR_TEST = ./Test/
 
 
-SRCS = main.cpp  $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp
+SRCS = main.cpp  $(DIR_TEST)Expected.cpp $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp
 
 # define the C object files
 #
