@@ -237,10 +237,6 @@ bool  Money::operator==(const int amount) const{
 bool  Money::operator==(const Money & money) const{
   return(this->amount == money.amount && this->currency == money.currency);
 }
-bool operator==(const Money & moneyA, const Money & moneyB){
-  // cout << "HOLA" << endl;
-  return(moneyA.amount == moneyB.amount && moneyA.currency == moneyB.currency);
-}
 
 bool Money::operator!=(const double amount) const{
   return(this->amount != amount);
@@ -250,9 +246,6 @@ bool Money::operator!=(const int amount) const{
 }
 bool Money::operator!=(const Money & money) const{
   return(this->amount != money.amount || this->currency != money.currency);
-}
-bool operator!=(const Money & moneyA, const Money & moneyB){
-  return(moneyA.amount != moneyB.amount || moneyA.currency != moneyB.currency);
 }
 
 bool Money::operator>(const double amount) const{

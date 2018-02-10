@@ -43,14 +43,8 @@ void Person::operator=(const Person &person){
 bool Person::operator==(const Person & person) const{
   return(this->name == person.name && this->lastName == person.lastName && this->age == person.age);
 }
-bool operator==(const Person & personA, const Person & personB){
-  return(personA.name == personB.name && personA.lastName == personB.lastName && personA.age == personB.age);
-}
 bool Person::operator!=(const Person & person) const{
   return(this->name != person.name || this->lastName != person.lastName || this->age != person.age);
-}
-bool operator!=(const Person & personA, const Person & personB){
-  return(personA.name != personB.name || personA.lastName != personB.lastName || personA.age != personB.age);
 }
 
 static int getMaxAge(){ return(MAX_AGE);  }

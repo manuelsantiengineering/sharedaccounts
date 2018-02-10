@@ -23,10 +23,7 @@ public:
   void operator=(const User &user);
 
   bool operator==(const User & user) const;
-  friend bool operator==(const User & userA, const User & userB);
-
   bool operator!=(const User & user) const;
-  friend bool operator!=(const User & userA, const User & userB);
 
 
 };

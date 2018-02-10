@@ -31,10 +31,7 @@ public:
   void operator=(const Person &person);
 
   bool operator==(const Person & person) const;
-  friend bool operator==(const Person & personA, const Person & personB);
-
   bool operator!=(const Person & person) const;
-  friend bool operator!=(const Person & personA, const Person & personB);
 
 };
 

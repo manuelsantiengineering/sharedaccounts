@@ -28,6 +28,8 @@ LIBS = -l./Model -lm
 # define the C source files
 DIR_MODEL = ./Model/
 DIR_UTILITIES = ./Utilities/
+DIR_CONTROLLER = ./Controller/
+
 
 SRCS = main.cpp  $(DIR_UTILITIES)MyString.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp
 

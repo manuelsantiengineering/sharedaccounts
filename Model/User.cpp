@@ -27,13 +27,13 @@ void User::operator=(const User &user){
 bool User::operator==(const User & user) const{
   return( this->name == user.name && this->lastName == user.lastName && this->age == user.age && this->userId == user.userId);
 }
-bool operator==(const User & userA, const User & userB){
-  return( userA.name == userB.name && userA.lastName == userB.lastName && userA.age == userB.age && userA.userId == userB.userId);
-}
+// bool operator==(const User & userA, const User & userB){
+//   return( userA.name == userB.name && userA.lastName == userB.lastName && userA.age == userB.age && userA.userId == userB.userId);
+// }
 bool User::operator!=(const User & user) const{
   return(this->name != user.name || this->lastName != user.lastName || this->age != user.age || this->userId != user.userId);
   // return( !( user == *this ) );
 }
-bool operator!=(const User & userA, const User & userB){
-  return( userA.name != userB.name || userA.lastName != userB.lastName || userA.age != userB.age || userA.userId != userB.userId);
-}
+// bool operator!=(const User & userA, const User & userB){
+//   return( userA.name != userB.name || userA.lastName != userB.lastName || userA.age != userB.age || userA.userId != userB.userId);
+// }
