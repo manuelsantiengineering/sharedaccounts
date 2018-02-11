@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <exception>
+
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
 #include "../Utilities/MyTime.h"
@@ -58,6 +59,24 @@ public:
   void testConstructor(Money money, MyString currency, double amount);
   void testConstructor(MyDate date, int day, int month, int year);
   void testConstructor(MyTime time, int h, int m, int s, bool isAM);
+
+  /*
+    Exception tests...
+    expect function arguments explanation:
+    1) The function name
+    2) The function to be called
+    3) The expected exception value
+  */
+  void testException(MyString functionName, int functionResult, MyString expectedResult);
+  void testException(MyString functionName, double functionResult, MyString expectedResult);
+  void testException(MyString functionName, MyString functionResult, MyString expectedResult);
+  void testException(MyString functionName, bool functionResult, MyString expectedResult);
+  void testException(MyString functionName, float functionResult, MyString expectedResult);
+  void testException(MyString functionName, Person functionResult, MyString expectedResult);
+  void testException(MyString functionName, User functionResult, MyString expectedResult);
+  void testException(MyString functionName, Money functionResult, MyString expectedResult);
+  void testException(MyString functionName, MyDate functionResult, MyString expectedResult);
+  void testException(MyString functionName, MyTime functionResult, MyString expectedResult);
 
 };
 

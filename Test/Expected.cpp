@@ -129,3 +129,134 @@ void Expected::testConstructor(MyTime time, int h, int m, int s, bool isAM){
     std::cout << "FAILED! " << std::endl;
   }
 }
+
+void Expected::testException(MyString functionName, int functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, double functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, MyString functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, bool functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, float functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, Person functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, User functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, Money functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, MyDate functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}
+void Expected::testException(MyString functionName, MyTime functionResult, MyString expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  try{
+    std::cout << "FAILED: " << " Did not catched the exception." << std::endl;
+  }catch(MyString e){
+    if(e == expectedResult)
+    {
+      std::cout << "SUCCESS: " << e << std::endl;
+    }else{
+      std::cout << "FAILED: " << e << std::endl;
+    }
+  }
+}

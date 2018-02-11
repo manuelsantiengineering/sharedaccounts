@@ -183,7 +183,6 @@ bool MyTime::operator > (const MyTime & timeInstance) const{
   }
   return(greater);
 }
-
 bool MyTime::operator <= (const MyTime & timeInstance) const{
   return( ((*this) < timeInstance) || ((*this) == timeInstance) );
 }
