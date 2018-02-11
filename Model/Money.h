@@ -9,9 +9,11 @@
 #define MONEY_H
 
 #include <exception>
+#include <iomanip>
 
 #include "../Utilities/MyString.h"
 
+using namespace std;
 
 class Money
 {
@@ -112,6 +114,8 @@ public:
   bool operator<=(const Money & money) const;
   friend bool operator<=(const int & moneyA, const Money & moneyB);
   friend bool operator<=(const double & moneyA, const Money & moneyB);
+
+  friend ostream & operator <<(ostream & out, const Money & money);
 
 };
 

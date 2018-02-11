@@ -17,22 +17,28 @@
 class Account
 {
 protected:
+  MyString accName;
+  MyString bankName;
   MyString accId;
   MyString accUserId;
   MyString accType;
   Money accBalance;
   double interest;
 
+  void setAccName(MyString accName);
+  void setAccBankName(MyString bankName);
   void setAccId(MyString accId);
   void setAccUserId(MyString accUserId);
   void setAccType(MyString accType);
   void setAccInterest(double interest);
 
 public:
-  Account(MyString accId="XXXXXX", MyString accUserId="", MyString accType="Savings", Money accBalance=0.0, double interest=0.0);
+  Account(MyString accName="", MyString bankName="", MyString accId="XXXXXX", MyString accUserId="", MyString accType="Savings", Money accBalance=0.0, double interest=0.0);
   Account(const Account &acc);
   ~Account();
 
+  MyString getAccName() const;
+  MyString getAccBankName() const;
   MyString getAccId() const;
   MyString getAccUserId() const;
   MyString getAccType() const;
@@ -50,34 +56,6 @@ public:
   void operator=(const Account & acc);
   bool operator==(const Account & acc) const;
   bool operator!=(const Account & acc) const;
-
-  // bool operator>(const double amount) const;
-  // bool operator>(const int amount) const;
-  // bool operator>(const Account & acc) const;
-  // friend bool operator>(const int & accA, const Account & accB);
-  // friend bool operator>(const double & accA, const Account & accB);
-  // friend bool operator>(const Money & accA, const Account & accB);
-  //
-  // bool operator>=(const double amount) const;
-  // bool operator>=(const int amount) const;
-  // bool operator>=(const Account & acc) const;
-  // friend bool operator>=(const int & accA, const Account & accB);
-  // friend bool operator>=(const double & accA, const Account & accB);
-  // friend bool operator>=(const Money & accA, const Account & accB);
-  //
-  // bool operator<(const double amount) const;
-  // bool operator<(const int amount) const;
-  // bool operator<(const Account & acc) const;
-  // friend bool operator<(const int & accA, const Account & accB);
-  // friend bool operator<(const double & accA, const Account & accB);
-  // friend bool operator<(const Money & accA, const Account & accB);
-  //
-  // bool operator<=(const double amount) const;
-  // bool operator<=(const int amount) const;
-  // bool operator<=(const Account & acc) const;
-  // friend bool operator<=(const int & accA, const Account & accB);
-  // friend bool operator<=(const double & accA, const Account & accB);
-  // friend bool operator<=(const Money & accA, const Account & accB);
 
 };
 

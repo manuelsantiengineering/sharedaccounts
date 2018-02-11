@@ -122,6 +122,9 @@ void Test::testMoney(){
   expected.expect("operator>()", (20 > money4), true );
   expected.expect("operator>()", (20.0 > money4), true );
 
+  money1 = 2.34455;
+  cout << "Money: " << money1 << ", " << money2 << ", " << money3 << ", " << money4 << endl;
+
   cout << endl;
 }
 void Test::testMyDate(){

@@ -21,6 +21,8 @@
 
 #include "./Test/Expected.h"
 
+using namespace std;
+
 class Test{
 
 public:

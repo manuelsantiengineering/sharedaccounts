@@ -26,9 +26,9 @@ int main(int argc, const char * argv[]) {
 
   try{
     testing.testMoney();
-    testing.testPerson();
-    testing.testMyDate();
-    testing.testMyTime();
+    // testing.testPerson();
+    // testing.testMyDate();
+    // testing.testMyTime();
   }
   catch (MyString e)
   {

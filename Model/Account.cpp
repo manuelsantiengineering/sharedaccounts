@@ -1,9 +1,11 @@
 #include "Account.h"
 
-Account::Account(MyString accId, MyString accUserId, MyString accType, Money accBalance, double interest) :
-    accId(accId), accUserId(accUserId), accType(accType), accBalance(accBalance), interest(interest) {}
+Account::Account(MyString accName, MyString bankName, MyString accId, MyString accUserId, MyString accType, Money accBalance, double interest) :
+    accName(accName), bankName(bankName), accId(accId), accUserId(accUserId), accType(accType), accBalance(accBalance), interest(interest) {}
 
 Account::Account(const Account &acc){
+  this->accName = acc.accName;
+  this->bankName = acc.bankName;
   this->accId = acc.accId;
   this->accUserId = acc.accUserId;
   this->accType = acc.accType;
@@ -12,11 +14,15 @@ Account::Account(const Account &acc){
 }
 Account::~Account(){}
 
+void Account::setAccName(MyString accName){ this->accName = accName;  }
+void Account::setAccBankName(MyString bankName){ this->bankName = bankName;  }
 void Account::setAccId(MyString accId){ this->accId = accId;  }
 void Account::setAccUserId(MyString accUserId){  this->accUserId = accUserId;  }
 void Account::setAccType(MyString accType){  this->accType = accType;  }
 void Account::setAccInterest(double interest){  this->interest = interest;  }
 
+MyString Account::getAccName() const{ return(this->accName); }
+MyString Account::getAccBankName() const{ return(this->bankName); }
 MyString Account::getAccId() const  { return(this->accId); }
 MyString Account::getAccUserId() const  { return(this->accUserId); }
 MyString Account::getAccType() const  { return(this->accType); }
@@ -56,6 +62,8 @@ void Account::retire(int money){
 }
 
 void Account::operator=(const Account & acc){
+  this->accName = acc.accName;
+  this->bankName = acc.bankName;
   this->accId = acc.accId;
   this->accUserId = acc.accUserId;
   this->accType = acc.accType;
@@ -63,7 +71,8 @@ void Account::operator=(const Account & acc){
   this->interest = acc.interest;
 }
 bool Account::operator==(const Account & acc) const{
-  return( this->accId == acc.accId && this->accUserId == acc.accUserId && this->accType == acc.accType );
+  return( this->bankName == acc.bankName && this->accId == acc.accId &&
+    this->accUserId == acc.accUserId && this->accType == acc.accType );
 }
 bool Account::operator!=(const Account & acc) const{
   return( !((*this) == acc) );

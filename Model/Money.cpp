@@ -324,3 +324,7 @@ bool operator<=(const int & moneyA, const Money & moneyB){
 bool operator<=(const double & moneyA, const Money & moneyB){
   return(moneyA <= moneyB.amount);
 }
+std::ostream & operator <<(std::ostream & out, const Money & money){
+  out << "$" << std::fixed << std::setprecision(2) << money.getAmount();
+  return(out);
+}
