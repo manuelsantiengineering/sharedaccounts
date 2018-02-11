@@ -120,7 +120,47 @@ MyString MyTime::timeToString_Seconds() const{
   }
   return(temporal);
 }
+MyString MyTime::timeToStringMilitary() const{
+  MyString temporal ="";
 
+  int h = (this->isAM) ? this->hours : (this->hours+12) ;
+
+  if(h < 10){
+      temporal = temporal + "0" + MyString(h) + ":";
+  }else{
+      temporal = temporal + MyString(h) + ":";
+  }
+  if(this->minutes < 10){
+      temporal = temporal + "0" + MyString(this->minutes);
+  }else{
+      temporal = temporal +  MyString(this->minutes);
+  }
+
+  return(temporal);
+}
+MyString MyTime::timeToStringMilitary_Seconds() const{
+  MyString temporal ="";
+
+  int h = (this->isAM) ? this->hours : (this->hours+12) ;
+
+  if(h < 10){
+      temporal = temporal + "0" + MyString(h) + ":";
+  }else{
+      temporal = temporal + MyString(h) + ":";
+  }
+  if(this->minutes < 10){
+      temporal = temporal + "0" + MyString(this->minutes) + ":";
+  }else{
+      temporal = temporal +  MyString(this->minutes) + ":";
+  }
+  if(this->seconds < 10){
+      temporal = temporal +  "0"+ MyString(this->seconds);
+  }else{
+      temporal = temporal +  MyString(this->seconds);
+  }
+
+  return(temporal);
+}
 bool MyTime::operator == (const MyTime & timeInstance) const{
   return((this->seconds == timeInstance.seconds) && (this->minutes == timeInstance.minutes) && (this->hours == timeInstance.hours) && (this->isAM == timeInstance.isAM));
 }

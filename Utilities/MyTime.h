@@ -40,6 +40,8 @@ public:
 
   MyString timeToString() const;
   MyString timeToString_Seconds() const;
+  MyString timeToStringMilitary() const;
+  MyString timeToStringMilitary_Seconds() const;
 
   bool operator == (const MyTime & timeInstance) const;
   bool operator != (const MyTime & timeInstance) const;

@@ -207,8 +207,10 @@ void Test::testMyTime(){
   expected.expect(" operator<() ", (time1 < time2), true );
   expected.expect(" operator<() ", (time2 < time1), false );
 
-  expected.expect(" timeToString() ", time0.timeToString(), "12:00AM" );
-  expected.expect(" timeToString_Seconds() ", time0.timeToString_Seconds(), "12:00:00AM"  );
+  time3.setTime(3, 2, 36, false);
+  expected.expect(" timeToStringMilitary() ", time3.timeToStringMilitary(), "15:02" );
+  expected.expect(" timeToStringMilitary_Seconds() ", time3.timeToStringMilitary_Seconds(), "15:02:36"  );
+
 
 
   time0.setTime(12, 0, 0, true);
