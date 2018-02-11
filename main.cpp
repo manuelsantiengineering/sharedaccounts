@@ -12,6 +12,8 @@
 #include "./Utilities/MyString.h"
 #include "./Model/User.h"
 
+#include "./Test/Expected.h"
+
 using namespace std;
 
 void testMoney();
@@ -33,7 +35,7 @@ int main(int argc, const char * argv[]) {
 }
 
 void testPerson(){
-  cout << "Testing Person object" << endl;
+  cout << endl << "Testing Person object" << endl;
   User person1;
   User person2;
   person2.setName("Persona2");
@@ -41,68 +43,67 @@ void testPerson(){
   person2.setAge(22);
   User person3("Persona3","Tres",35);
 
-  cout << "\t [Default Constructor] Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
-  person1 = person2;
-  cout << "\t [Overload =] Name: " << person1.getName() << " , Last Name: " << person1.getLastName() << " Age: " << person1.getAge() << endl;
-  cout << "\t [Overload Constructor] Name: " << person3.getName() << " , Last Name: " << person3.getLastName() << " Age: " << person3.getAge() << endl;
-  User person4(person2);
-  cout << "\t [Copy Constructor] Name: " << person4.getName() << " , Last Name: " << person4.getLastName() << " Age: " << person4.getAge() << endl;
+  Expected expected("Person");
 
-  if(person1 == person2){ cout << "\t [ == ]" << person1.getName() << " == " << person2.getName()  << " Same" << endl; }
+  MyString empty;
+  expected.testConstructor(person1, empty, empty, 18);
+  expected.testConstructor(person2, "Persona2", "Dos", 22);
+  expected.testConstructor(person3, "Persona3", "Tres", 35);
+  person1 = person3;
+  expected.expect(" operator=() ", (person1 == person3), true );
+  expected.expect(" operator=() ", (person1 == person2), false );
+  expected.expect(" operator=() ", (person1 != person2), true );
 
-
-  if(person3 == person2){ cout << "\t [ == ]" << person3.getName() << " == " << person2.getName()  << " Same" << endl; }
-  else{ cout << "\t Not the Same" << endl; }
-
-
-  if(person3 != person2){ cout << "\t [ != ] " << person3.getName() << " != " << person2.getName()  << " Not the Same" << endl; }
-  else{ cout << "\t Same" << endl; }
+  cout << endl;
 }
 
 void testMoney(){
 
-  cout << "Testing Money object" << endl;
-  Money cash;
-  Money pesetas(11);
-  Money pesos(30.0);
+  cout << endl << "Testing Money object" << endl;
+  Money money1;
+  Money money2(2);
+  Money money3(2.0);
+  Money money4("EU", 3.0);
 
-  cout << "\t Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash.setAmount(20.2);
-  cash.setCurrency("EUR");
-  cout << "\t Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash = pesetas;
-  cout << "\t = Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash = pesetas + pesos;
-  cout << "\t +Money Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash = pesetas - 1;
-  cout << "\t -1 Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash = pesetas - 10.0;
-  cout << "\t -10.0 Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  // pesetas.setCurrency("EUR");
-  // cash = pesetas + pesos;
-  // cout << "Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash -= pesetas;
-  cout << "\t -=Money Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash += pesetas;
-  cout << "\t +=Money Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash += 20;
-  cout << "\t +=20 Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash -= 10;
-  cout << "\t -=10 Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash--;
-  cout << "\t -- Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
-  cash++;
-  cout << "\t ++ Amount = " << cash.getAmount() << " Currency = " << cash.getCurrency() << endl;
+  Expected expected("Money");
 
-  cout << "\t " << pesetas.getAmount() << " == " << pesetas.getAmount();
-  if(pesetas == pesetas){ cout << " Same" << endl; }
+  expected.testConstructor(money1, "USD", 0);
+  expected.testConstructor(money2, "USD", 2);
+  expected.testConstructor(money3, "USD", 2.0);
+  expected.testConstructor(money4, "EU", 3.0);
 
-  cout << "\t " << cash.getAmount() << " == " << pesetas.getAmount();
-  if(cash == pesetas){ cout << " Same" << endl; }
-  else{ cout << " Not the Same" << endl; }
+  money4.setCurrency("USD");
+  money4.setAmount(4);
 
-  cout << "\t " << cash.getAmount() << " != " << pesos.getAmount();
-  if(cash != pesos){  cout << " Not the Same" << endl; }
-  else{ cout << " Same" << endl; }
+  expected.expect("operator+()", (money2+money1+money3), money4 );
+  expected.expect("operator+()", (money2+2), money4 );
+  expected.expect("operator+()", (money2+2.0), money4 );
 
+  expected.expect("operator-()", (money2-money3), money1 );
+  expected.expect("operator-()", (money2-2), money1 );
+  expected.expect("operator-()", (money2-2.0), money1 );
+
+  expected.expect("operator*()", (money2*money3), money4 );
+  expected.expect("operator*()", (money2*2), money4 );
+  expected.expect("operator*()", (money2*2.0), money4 );
+
+  expected.expect("operator/()", (money4/money3), money2 );
+  expected.expect("operator/()", (money4/2), money2 );
+  expected.expect("operator/()", (money4/2.0), money2 );
+
+  expected.expect("operator+=()", (money2+=money3), money4 );
+  money2.setAmount(2);
+  expected.expect("operator+=()", (money2+=2), money4 );
+  money2.setAmount(2);
+  expected.expect("operator+=()", (money2+=2.0), money4 );
+  money2.setAmount(2);
+  expected.expect("operator-=()", (money2-=money3), money1 );
+  money2.setAmount(2);
+  expected.expect("operator-=()", (money2-=2), money1 );
+  money2.setAmount(2);
+  expected.expect("operator-=()", (money2-=2.0), money1 );
+  money2.setAmount(2);
+
+
+  cout << endl;
 }

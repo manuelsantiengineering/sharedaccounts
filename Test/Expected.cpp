@@ -1,10 +1,15 @@
 
 #include "Expected.h"
 
+// Expected::Expected() {}
+Expected::Expected(MyString name) : className(name) {}
+
 void Expected::setClassName(MyString className){  this->className = className;  }
 
+Expected::~Expected(){}
+
 void Expected::expect(MyString functionName, int functionResult, int expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
@@ -12,7 +17,7 @@ void Expected::expect(MyString functionName, int functionResult, int expectedRes
   }
 }
 void Expected::expect(MyString functionName, double functionResult, double expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
@@ -20,7 +25,7 @@ void Expected::expect(MyString functionName, double functionResult, double expec
   }
 }
 void Expected::expect(MyString functionName, MyString functionResult, MyString expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
@@ -28,7 +33,7 @@ void Expected::expect(MyString functionName, MyString functionResult, MyString e
   }
 }
 void Expected::expect(MyString functionName, bool functionResult, bool expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
@@ -36,7 +41,7 @@ void Expected::expect(MyString functionName, bool functionResult, bool expectedR
   }
 }
 void Expected::expect(MyString functionName, float functionResult, float expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
@@ -44,7 +49,7 @@ void Expected::expect(MyString functionName, float functionResult, float expecte
   }
 }
 void Expected::expect(MyString functionName, Person functionResult, Person expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult.getName() << " == " << expectedResult.getName()  << std::endl;
   }else{
@@ -52,7 +57,7 @@ void Expected::expect(MyString functionName, Person functionResult, Person expec
   }
 }
 void Expected::expect(MyString functionName, User functionResult, User expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult.getUserId() << " == " << expectedResult.getUserId()  << std::endl;
   }else{
@@ -60,7 +65,7 @@ void Expected::expect(MyString functionName, User functionResult, User expectedR
   }
 }
 void Expected::expect(MyString functionName, Money functionResult, Money expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult.getAmount() << " == " << expectedResult.getAmount()  << std::endl;
   }else{
@@ -68,10 +73,42 @@ void Expected::expect(MyString functionName, Money functionResult, Money expecte
   }
 }
 void Expected::expect(MyString functionName, MyDate functionResult, MyDate expectedResult){
-  std::cout << "Testing function: " << functionName << " in class: " << this->className << std::endl;
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
   }else{
     std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
+  }
+}
+void Expected::testConstructor(Person person, MyString name, MyString lastName, int age){
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( name == person.getName() && lastName == person.getLastName() && age == person.getAge() ){
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+}
+void Expected::testConstructor(User user, MyString name, MyString lastName, int age, MyString userId){
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( name == user.getName() && lastName == user.getLastName() && age == user.getAge() && userId == user.getUserId() ){
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+}
+void Expected::testConstructor(Money money, MyString currency, double amount){
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( currency == money.getCurrency() && amount == money.getAmount() ){
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+}
+void Expected::testConstructor(MyDate date, int day, int month, int year){
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( day == date.getDay() && month == date.getMonth() && year == date.getYear() ){
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
   }
 }

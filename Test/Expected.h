@@ -23,7 +23,8 @@ private:
   MyString className;
 
 public:
-  Expected();
+  // Expected();
+  Expected(MyString name = "");
   ~Expected();
 
   void setClassName(MyString className);
@@ -50,9 +51,10 @@ public:
     1) The class object
     2...N) The expected attributes
   */
-
   void testConstructor(Person person, MyString name, MyString lastName, int age);
+  void testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
   void testConstructor(Money money, MyString currency, double amount);
+  void testConstructor(MyDate date, int day, int month, int year);
 
 };
 
