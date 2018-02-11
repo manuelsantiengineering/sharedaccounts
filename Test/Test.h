@@ -17,6 +17,7 @@
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
+#include "../Model/Account.h"
 
 #include "./Test/Expected.h"
 

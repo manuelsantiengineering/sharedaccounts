@@ -12,7 +12,6 @@
 
 #include "../Utilities/MyString.h"
 
-using namespace std;
 const int MAX_AGE = 110;
 
 class Person
