@@ -57,7 +57,7 @@ public:
   void testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
   void testConstructor(Money money, MyString currency, double amount);
   void testConstructor(MyDate date, int day, int month, int year);
-  void testConstructor(MyTime time, int s, int m, int h, bool isAM);
+  void testConstructor(MyTime time, int h, int m, int s, bool isAM);
 
 };
 

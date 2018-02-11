@@ -1,8 +1,8 @@
 
 #include "MyTime.h"
 
-MyTime::MyTime(int seconds, int minutes, int hours, bool isAM){
-  if(this->isTimeCorrect(seconds, minutes, hours)){
+MyTime::MyTime(int hours, int minutes, int seconds, bool isAM){
+  if(this->isTimeCorrect(hours, minutes, seconds)){
     this->seconds = seconds;
     this->minutes = minutes;
     this->hours = hours;
@@ -27,8 +27,8 @@ MyTime & MyTime::operator=(const MyTime & timeInstance){
   this->isAM = timeInstance.isAM;
   return(*this);
 }
-void MyTime::setTime(int s, int m, int h, int isAM){
-  if(this->isTimeCorrect(s, m, h)){
+void MyTime::setTime(int h, int m, int s, bool isAM){
+  if(this->isTimeCorrect(h, m, s)){
     this->seconds = s;
     this->minutes = m;
     this->hours = h;
@@ -71,7 +71,7 @@ bool MyTime::isAm() const{  return(this->isAM); }
 bool MyTime::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
 bool MyTime::isMinutesCorrect(int m){ return((m >= 0 && m < 60));  }
 bool MyTime::isHoursCorrect(int h){ return(h > 0 && h <= 12);  }
-bool MyTime::isTimeCorrect(int s, int m, int h){
+bool MyTime::isTimeCorrect(int h, int m, int s){
   return( this->isSecondsCorrect(s) && this->isMinutesCorrect(m) && this->isHoursCorrect(h) );
 }
 
@@ -84,14 +84,14 @@ MyString MyTime::timeToString() const{
       temporal = temporal + MyString(this->hours) + ":";
   }
   if(this->minutes < 10){
-      temporal = temporal + "0" + MyString(this->minutes) + ":";
+      temporal = temporal + "0" + MyString(this->minutes);
   }else{
-      temporal = temporal +  MyString(this->minutes) + ":";
+      temporal = temporal +  MyString(this->minutes);
   }
   if(this->isAM == true){
-      temporal = temporal +  " AM " ;
+      temporal = temporal +  "AM" ;
   }else{
-      temporal = temporal +  " PM " ;
+      temporal = temporal +  "PM" ;
   }
   return(temporal);
 }
@@ -114,9 +114,9 @@ MyString MyTime::timeToString_Seconds() const{
       temporal = temporal +  MyString(this->seconds);
   }
   if(this->isAM == true){
-      temporal = temporal +  " AM " ;
+      temporal = temporal +  "AM" ;
   }else{
-      temporal = temporal +  " PM " ;
+      temporal = temporal +  "PM" ;
   }
   return(temporal);
 }

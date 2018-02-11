@@ -18,12 +18,12 @@ private:
   bool isAM;
 
 public:
-  MyTime(int seconds = 0, int minutes = 0, int hours = 0, bool isAM = true);
+  MyTime(int hours = 12, int minutes = 0, int seconds = 0, bool isAM = true);
   MyTime(const MyTime & timeInstance);
   ~MyTime();
   MyTime & operator=(const MyTime & timeInstance);
 
-  void setTime(int s, int m, int h, int isAM);
+  void setTime(int h, int m, int s, bool isAM);
   void setSeconds(int seconds);
   void setMinutes(int minutes);
   void setHours(int hours);
@@ -36,7 +36,7 @@ public:
   bool isSecondsCorrect(int s);
   bool isMinutesCorrect(int m);
   bool isHoursCorrect(int h);
-  bool isTimeCorrect(int s, int m, int h);
+  bool isTimeCorrect(int h, int m, int s);
 
   MyString timeToString() const;
   MyString timeToString_Seconds() const;

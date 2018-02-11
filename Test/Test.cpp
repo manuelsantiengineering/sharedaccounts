@@ -170,25 +170,47 @@ void Test::testMyDate(){
 }
 
 void Test::testMyTime(){
-  cout << endl << "Testing MyDate object" << endl;
+  cout << endl << "Testing MyTime object" << endl;
 
   MyTime time0;
-  MyTime time1(1,1,1,true);
-  MyTime time2(2,2,2, true);
+  MyTime time1(2,2,2,true);
+  MyTime time2(3,3,3, true);
   MyTime time3(time1);
 
   Expected expected("MyTime");
 
-  expected.testConstructor(time0, 0,0,0, true);
-  expected.testConstructor(time1, 1,1,1, true);
-  expected.testConstructor(time2, 2,2,2, true);
-  expected.testConstructor(time3, 1,1,1, true);
+  expected.testConstructor(time0, 12,0,0, true);
+  expected.testConstructor(time1, 2,2,2, true);
+  expected.testConstructor(time2, 3,3,3, true);
+  expected.testConstructor(time3, 2,2,2, true);
   time0 = time2;
   expected.expect(" operator==() ", (time0 == time2), true );
   expected.expect(" operator==() ", (time0 == time1), false );
   expected.expect(" operator!=() ", (time0 != time1), true );
   expected.expect(" operator!=() ", (time0 != time2), false );
 
-  time0.setTime(0, 0, 0, true);
+  expected.expect(" operator>=() ", (time0 >= time2), true );
+  time3.setTime(3, 2, 36, true);
+  time0.setTime(12, 0, 0, true);
+  expected.expect(" operator>=() ", (time2 >= time1), true );
+  expected.expect(" operator>=() ", (time1 >= time3), false );
+  expected.expect(" operator>() ", (time2 > time1), true );
+  expected.expect(" operator>() ", (time1 > time2), false );
+
+  time0 = time2;
+
+  expected.expect(" operator<=() ", (time0 <= time2), true );
+  time3.setTime(3, 2, 36, true);
+  time0.setTime(12, 0, 0, true);
+  expected.expect(" operator<=() ", (time1 <= time2), true );
+  expected.expect(" operator<=() ", (time3 <= time1), false );
+  expected.expect(" operator<() ", (time1 < time2), true );
+  expected.expect(" operator<() ", (time2 < time1), false );
+
+  expected.expect(" timeToString() ", time0.timeToString(), "12:00AM" );
+  expected.expect(" timeToString_Seconds() ", time0.timeToString_Seconds(), "12:00:00AM"  );
+
+
+  time0.setTime(12, 0, 0, true);
 
 }

@@ -121,7 +121,7 @@ void Expected::testConstructor(MyDate date, int day, int month, int year){
     std::cout << "FAILED! " << std::endl;
   }
 }
-void Expected::testConstructor(MyTime time, int s, int m, int h, bool isAM){
+void Expected::testConstructor(MyTime time, int h, int m, int s, bool isAM){
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
   if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAm() ){
     std::cout << "SUCCESS! " << std::endl;
