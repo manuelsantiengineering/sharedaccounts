@@ -33,9 +33,13 @@ public:
   int getHours() const;
   bool isAm() const;
 
+  bool isSecondsCorrect(int s);
+  bool isMinutesCorrect(int m);
+  bool isHoursCorrect(int h);
   bool isTimeCorrect(int s, int m, int h);
 
   MyString timeToString() const;
+  MyString timeToString_Seconds() const;
 
   bool operator == (const MyTime & timeInstance) const;
   bool operator != (const MyTime & timeInstance) const;

@@ -2,10 +2,15 @@
 #include "MyTime.h"
 
 MyTime::MyTime(int seconds, int minutes, int hours, bool isAM){
-  this->seconds = seconds;
-  this->minutes = minutes;
-  this->hours = hours;
-  this->isAM = isAM;
+  if(this->isTimeCorrect(seconds, minutes, hours)){
+    this->seconds = seconds;
+    this->minutes = minutes;
+    this->hours = hours;
+    this->isAM = isAM;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
 }
 MyTime::MyTime(const MyTime & timeInstance){
   this->seconds = timeInstance.seconds;
@@ -23,25 +28,74 @@ MyTime & MyTime::operator=(const MyTime & timeInstance){
   return(*this);
 }
 void MyTime::setTime(int s, int m, int h, int isAM){
-  this->seconds = s;
-  this->minutes = m;
-  this->hours = h;
-  this->isAM = isAM;
+  if(this->isTimeCorrect(s, m, h)){
+    this->seconds = s;
+    this->minutes = m;
+    this->hours = h;
+    this->isAM = isAM;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
 }
-void MyTime::setSeconds(int seconds){ this->seconds = seconds;  }
-void MyTime::setMinutes(int minutes){ this->minutes = minutes; }
-void MyTime::setHours(int hours){ this->hours = hours;  }
+void MyTime::setSeconds(int seconds){
+  if(this->isSecondsCorrect(seconds)){
+    this->seconds = seconds;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
+void MyTime::setMinutes(int minutes){
+  if(this->isMinutesCorrect(minutes)){
+    this->minutes = minutes;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
+void MyTime::setHours(int hours){
+  if(this->isHoursCorrect(hours)){
+    this->hours = hours;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
 
 int MyTime::getSeconds() const{ return(this->seconds);  }
 int MyTime::getMinutes() const{ return(this->minutes);  }
 int MyTime::getHours() const{ return(this->hours);  }
 bool MyTime::isAm() const{  return(this->isAM); }
 
+bool MyTime::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
+bool MyTime::isMinutesCorrect(int m){ return((m >= 0 && m < 60));  }
+bool MyTime::isHoursCorrect(int h){ return(h > 0 && h <= 12);  }
 bool MyTime::isTimeCorrect(int s, int m, int h){
-  return( (s >= 0 && s <= 60) && (m >= 0 && m <= 60) && (h >= 0 && h <= 12)  );
+  return( this->isSecondsCorrect(s) && this->isMinutesCorrect(m) && this->isHoursCorrect(h) );
 }
 
 MyString MyTime::timeToString() const{
+  MyString temporal ="";
+
+  if(this->hours < 10){
+      temporal = temporal + "0" + MyString(this->hours) + ":";
+  }else{
+      temporal = temporal + MyString(this->hours) + ":";
+  }
+  if(this->minutes < 10){
+      temporal = temporal + "0" + MyString(this->minutes) + ":";
+  }else{
+      temporal = temporal +  MyString(this->minutes) + ":";
+  }
+  if(this->isAM == true){
+      temporal = temporal +  " AM " ;
+  }else{
+      temporal = temporal +  " PM " ;
+  }
+  return(temporal);
+}
+MyString MyTime::timeToString_Seconds() const{
   MyString temporal ="";
 
   if(this->hours < 10){
