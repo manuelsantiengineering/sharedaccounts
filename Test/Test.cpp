@@ -137,7 +137,7 @@ void Test::testMyDate(){
   Expected expected("MyDate");
 
   MyString empty;
-  expected.testConstructor(date1, 1, 2, 1990);
+  expected.testConstructor(date1, 1, 1, 1990);
   expected.testConstructor(date2, 2, 2, 2020);
   expected.testConstructor(date3, 5, 6, 1998);
   expected.testConstructor(date4, 5, 6, 1998);
@@ -148,4 +148,22 @@ void Test::testMyDate(){
   expected.expect(" operator!=() ", (date4 != date4), false );
   expected.expect(" operator!=() ", (date4 != date3), true );
 
+  date2.setDate(2,2,1992);
+  date4.setDate(4,4,1994);
+
+  expected.expect(" operator<() ", (date2 < date4), true );
+  expected.expect(" operator<() ", (date4 < date2), false );
+  expected.expect(" operator<() ", (date4 < date4), false );
+
+  expected.expect(" operator<=() ", (date1 <= date4), true );
+  expected.expect(" operator<=() ", (date4 <= date1), false );
+  expected.expect(" operator<=() ", (date4 <= date4), true );
+
+  expected.expect(" operator>() ", (date4 > date3), true );
+  expected.expect(" operator>() ", (date2 > date4), false );
+  expected.expect(" operator>() ", (date2 > date2), false );
+
+  expected.expect(" operator>=() ", (date4 >= date2), true );
+  expected.expect(" operator>=() ", (date2 >= date4), false );
+  expected.expect(" operator>=() ", (date4 >= date4), true );
 }

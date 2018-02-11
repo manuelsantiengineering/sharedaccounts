@@ -126,7 +126,8 @@ bool MyDate::operator ==(const MyDate & dateInstance) const{
     return (this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year);
 }
 bool MyDate::operator !=(const MyDate & dateInstance) const{
-    return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
+    // return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
+    return( !((*this) == dateInstance) );
 }
 bool MyDate::operator >=(const MyDate & dateInstance) const{
   return((this->year >= dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
@@ -137,11 +138,12 @@ bool MyDate::operator >(const MyDate & dateInstance) const{
     (this->year == dateInstance.year && this->month == dateInstance.month && this->day > dateInstance.day));
 }
 bool MyDate::operator <(const MyDate & dateInstance) const{
-    return(!((*this) > dateInstance) || (*this) == dateInstance);
+    return(!((*this) > dateInstance) && (*this) != dateInstance);
 }
 bool MyDate::operator <=(const MyDate & dateInstance) const{
-  return((this->year <= dateInstance.year) || (this->year == dateInstance.year && this->month < dateInstance.month) ||
-  (this->year == dateInstance.year && this->month == dateInstance.month && this->day <= dateInstance.day));
+  // return((this->year <= dateInstance.year) || (this->year == dateInstance.year && this->month < dateInstance.month) ||
+  // (this->year == dateInstance.year && this->month == dateInstance.month && this->day <= dateInstance.day));
+  return( (*this) < dateInstance || (*this) == dateInstance  );
 }
 ostream & operator<<(ostream & out, const MyDate dateInstance){
     out << dateInstance.month << "/" << dateInstance.day << "/" << dateInstance.year;
