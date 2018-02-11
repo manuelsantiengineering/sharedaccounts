@@ -8,7 +8,7 @@ MyTime::MyTime(int seconds, int minutes, int hours, bool isAM){
     this->hours = hours;
     this->isAM = isAM;
   }else{
-    MyString e("Please verify the date values.");
+    MyString e("Please verify the time values.");
     throw e;
   }
 }
@@ -34,7 +34,7 @@ void MyTime::setTime(int s, int m, int h, int isAM){
     this->hours = h;
     this->isAM = isAM;
   }else{
-    MyString e("Please verify the date values.");
+    MyString e("Please verify the time values.");
     throw e;
   }
 }
@@ -42,7 +42,7 @@ void MyTime::setSeconds(int seconds){
   if(this->isSecondsCorrect(seconds)){
     this->seconds = seconds;
   }else{
-    MyString e("Please verify the date values.");
+    MyString e("Please verify the seconds values.");
     throw e;
   }
 }
@@ -50,7 +50,7 @@ void MyTime::setMinutes(int minutes){
   if(this->isMinutesCorrect(minutes)){
     this->minutes = minutes;
   }else{
-    MyString e("Please verify the date values.");
+    MyString e("Please verify the minutes values.");
     throw e;
   }
 }
@@ -58,7 +58,7 @@ void MyTime::setHours(int hours){
   if(this->isHoursCorrect(hours)){
     this->hours = hours;
   }else{
-    MyString e("Please verify the date values.");
+    MyString e("Please verify the hours values.");
     throw e;
   }
 }
