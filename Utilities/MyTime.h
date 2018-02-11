@@ -8,49 +8,44 @@
 #ifndef __MyTime__
 #define __MyTime__
 
-#include <stdio.h>
-#include "../MyString.h"
+#include <exception>
+
+#include "MyString.h"
 
 class MyTime{
 private:
-    int seconds, minutes, hours;
-    bool isAM;
+  int seconds, minutes, hours;
+  bool isAM;
 
 public:
-    MyTime(int seconds = 1, int minutes = 1, int hours = 1, bool isAM = true);
-    MyTime(const MyTime & timeInstance);
-    ~MyTime();
-    MyTime & operator=(const MyTime & timeInstance);
+  MyTime(int seconds = 0, int minutes = 0, int hours = 0, bool isAM = true);
+  MyTime(const MyTime & timeInstance);
+  ~MyTime();
+  MyTime & operator=(const MyTime & timeInstance);
 
-    void setSeconds(int seconds);
-    void setMinutes(int minutes);
-    void setHours(int hours);
+  void setTime(int s, int m, int h, int isAM);
+  void setSeconds(int seconds);
+  void setMinutes(int minutes);
+  void setHours(int hours);
 
-    int getSeconds() const;
-    int getMinutes() const;
-    int getHours() const;
+  int getSeconds() const;
+  int getMinutes() const;
+  int getHours() const;
+  bool isAm() const;
 
-    void showSeconds() const;
-    void showMinutes() const;
-    void showHours() const;
-    void showTime() const;
+  bool isTimeCorrect(int s, int m, int h);
 
-    void askSeconds();
-    void askMinutes();
-    void askHours();
-    void askTime();
-    void askAMPM();
+  MyString timeToString() const;
 
-    MyString timeToString() const;
+  bool operator == (const MyTime & timeInstance) const;
+  bool operator != (const MyTime & timeInstance) const;
+  bool operator >= (const MyTime & timeInstance) const;
+  bool operator > (const MyTime & timeInstance) const;
+  bool operator <= (const MyTime & timeInstance) const;
+  bool operator < (const MyTime & timeInstance) const;
 
-    bool operator == (const MyTime & timeInstance) const;
-    bool operator != (const MyTime & timeInstance) const;
-    bool operator > (const MyTime & timeInstance) const;
-    bool operator < (const MyTime & timeInstance) const;
-
-    friend ostream & operator<<(ostream & out, const MyTime & timeInstance);
-    friend istream & operator>>(istream & in, MyTime & timeInstance);
+  friend ostream & operator<<(ostream & out, const MyTime & timeInstance);
 
 };
 
-#endif /* defined(__Lab03_CatalogoLibros__MyTime__) */
+#endif /* defined(__MyTime__) */

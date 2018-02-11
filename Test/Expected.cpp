@@ -80,6 +80,15 @@ void Expected::expect(MyString functionName, MyDate functionResult, MyDate expec
     std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
   }
 }
+void Expected::expect(MyString functionName, MyTime functionResult, MyTime expectedResult){
+  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+  if(functionResult == expectedResult){
+    std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
+  }else{
+    std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
+  }
+}
+
 void Expected::testConstructor(Person person, MyString name, MyString lastName, int age){
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
   if( name == person.getName() && lastName == person.getLastName() && age == person.getAge() ){
@@ -107,6 +116,14 @@ void Expected::testConstructor(Money money, MyString currency, double amount){
 void Expected::testConstructor(MyDate date, int day, int month, int year){
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
   if( day == date.getDay() && month == date.getMonth() && year == date.getYear() ){
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+}
+void Expected::testConstructor(MyTime time, int s, int m, int h, bool isAM){
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAm() ){
     std::cout << "SUCCESS! " << std::endl;
   }else{
     std::cout << "FAILED! " << std::endl;

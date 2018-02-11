@@ -11,7 +11,7 @@
 const MyString MONTHS[13] = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"};
 
 MyDate::MyDate(int day, int month, int year){
-  if( dateIsCorrect(day, month, year) ){
+  if( isDateCorrect(day, month, year) ){
     this->day = day;
     this->month = month;
     this->year = year;
@@ -35,7 +35,7 @@ MyDate & MyDate::operator=(const MyDate & dateInstance){
 }
 
 void MyDate::setDate(int d, int m, int y){
-  if( dateIsCorrect(d, m, y) ){
+  if( isDateCorrect(d, m, y) ){
       this->day = d;
       this->month = m;
       this->year = y;
@@ -45,7 +45,7 @@ void MyDate::setDate(int d, int m, int y){
   }
 }
 void MyDate::setDay(int d){
-  if( dateIsCorrect(d, this->month, this->year) ){
+  if( isDateCorrect(d, this->month, this->year) ){
       this->day = d;
   }else{
     MyString e("Please verify the date values.");
@@ -53,7 +53,7 @@ void MyDate::setDay(int d){
   }
 }
 void MyDate::setMonth(int m){
-  if( dateIsCorrect(this->day, m, this->year) ){
+  if( isDateCorrect(this->day, m, this->year) ){
       this->month = m;
   }else{
     MyString e("Please verify the date values.");
@@ -61,7 +61,7 @@ void MyDate::setMonth(int m){
   }
 }
 void MyDate::setYear(int y){
-  if( dateIsCorrect(this->day, this->month, y) ){
+  if( isDateCorrect(this->day, this->month, y) ){
       this->year = y;
   }else{
     MyString e("Please verify the date values.");
@@ -88,19 +88,18 @@ MyString MyDate::dateToMyString() const{
     return (temporal);
 }
 
-bool MyDate::dateIsCorrect(const int d, const int m, const int y) const{
+bool MyDate::isDateCorrect(const int d, const int m, const int y) const{
     bool isCorrect = true;
     bool isLeapYear = this->isLeapYear();
     /*
-      1) On leap years, February can have up to 29 days and 28 in non-leap years.
-      2) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
+      1) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
+      2) On leap years, February can have up to 29 days and 28 in non-leap years.
       3) All the odd months before August, and all the even months after July have up to 31 days.
       4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
     */
 
-    if( (m < 1) ||
-        (m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
-        ( m < 1 || m > 12 || d < 1 || y < 1908) ||
+    if( ( m < 1 || m > 12 || d < 1 || y < 1908) ||
+        ( m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
         ( d > 31 && ( (m%2 != 0 && m < 8) || (m%2 == 0 && m > 7) ) ) ||
         ( d > 30 && ( (m%2 == 0 && m < 8) || (m%2 != 0 && m > 7) ) )
       ){

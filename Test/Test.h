@@ -13,6 +13,7 @@
 #include <exception>
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
+#include "../Utilities/MyTime.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -28,6 +29,7 @@ public:
   void testMoney();
   void testPerson();
   void testMyDate();
+  void testMyTime();
 
 };
 

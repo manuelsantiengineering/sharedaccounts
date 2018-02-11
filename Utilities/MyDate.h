@@ -8,9 +8,8 @@
 #ifndef __MyDate__
 #define __MyDate__
 
-#include <stdio.h>
-#include <iostream>
 #include <exception>
+
 #include "MyString.h"
 
 using namespace std;
@@ -36,8 +35,8 @@ public:
 
     MyString dateToMyStringNumbers() const;
     MyString dateToMyString() const;
-    bool dateIsCorrect(const int, const int, const int) const;
 
+    bool isDateCorrect(const int, const int, const int) const;
     bool isLeapYear() const;
 
     bool operator ==(const MyDate & dateInstance) const;

@@ -9,8 +9,10 @@
  #include <cstring>
 
 #include "./Model/Money.h"
-#include "./Utilities/MyString.h"
 #include "./Model/User.h"
+#include "./Utilities/MyString.h"
+#include "./Utilities/MyDate.h"
+#include "./Utilities/MyTime.h"
 
 #include "./Test/Test.h"
 
@@ -26,6 +28,7 @@ int main(int argc, const char * argv[]) {
     testing.testMoney();
     testing.testPerson();
     testing.testMyDate();
+    testing.testMyTime();
   }
   catch (MyString e)
   {

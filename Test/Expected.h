@@ -13,6 +13,7 @@
 #include <exception>
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
+#include "../Utilities/MyTime.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -45,6 +46,7 @@ public:
   void expect(MyString functionName, User functionResult, User expectedResult);
   void expect(MyString functionName, Money functionResult, Money expectedResult);
   void expect(MyString functionName, MyDate functionResult, MyDate expectedResult);
+  void expect(MyString functionName, MyTime functionResult, MyTime expectedResult);
   /*
     Constructor tests...
     expect function arguments explanation:
@@ -55,6 +57,7 @@ public:
   void testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
   void testConstructor(Money money, MyString currency, double amount);
   void testConstructor(MyDate date, int day, int month, int year);
+  void testConstructor(MyTime time, int s, int m, int h, bool isAM);
 
 };
 
