@@ -192,9 +192,11 @@ void Test::testMyTime(){
   expected.expect(" operator>=() ", (time0 >= time2), true );
   time3.setTime(3, 2, 36, true);
   time0.setTime(12, 0, 0, true);
+  time1.setTime(1, 0, 0, true);
   expected.expect(" operator>=() ", (time2 >= time1), true );
   expected.expect(" operator>=() ", (time1 >= time3), false );
   expected.expect(" operator>() ", (time2 > time1), true );
+  expected.expect(" operator>() ", (time1 > time0), true );
   expected.expect(" operator>() ", (time1 > time2), false );
 
   time0 = time2;
@@ -205,13 +207,12 @@ void Test::testMyTime(){
   expected.expect(" operator<=() ", (time1 <= time2), true );
   expected.expect(" operator<=() ", (time3 <= time1), false );
   expected.expect(" operator<() ", (time1 < time2), true );
+  expected.expect(" operator<() ", (time0 < time3), true );
   expected.expect(" operator<() ", (time2 < time1), false );
 
   time3.setTime(3, 2, 36, false);
   expected.expect(" timeToStringMilitary() ", time3.timeToStringMilitary(), "15:02" );
   expected.expect(" timeToStringMilitary_Seconds() ", time3.timeToStringMilitary_Seconds(), "15:02:36"  );
-
-
 
   time0.setTime(12, 0, 0, true);
 
