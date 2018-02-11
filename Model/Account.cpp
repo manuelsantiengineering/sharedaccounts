@@ -1,13 +1,70 @@
 #include "Account.h"
 
-Account::Account(MyString accId, MyString userId, MyString type, Money balance, double interest) :
-    accId(accId), userId(userId), type(type), balance(balance), interest(interest) {}
+Account::Account(MyString accId, MyString accUserId, MyString accType, Money accBalance, double interest) :
+    accId(accId), accUserId(accUserId), accType(accType), accBalance(accBalance), interest(interest) {}
 
 Account::Account(const Account &acc){
   this->accId = acc.accId;
-  this->userId = acc.userId;
-  this->type = acc.type;
-  this->balance = acc.balance;
+  this->accUserId = acc.accUserId;
+  this->accType = acc.accType;
+  this->accBalance = acc.accBalance;
   this->interest = acc.interest;
 }
 Account::~Account(){}
+
+void Account::setAccId(MyString accId){ this->accId = accId;  }
+void Account::setAccUserId(MyString accUserId){  this->accUserId = accUserId;  }
+void Account::setAccType(MyString accType){  this->accType = accType;  }
+void Account::setAccInterest(double interest){  this->interest = interest;  }
+
+MyString Account::getAccId() const  { return(this->accId); }
+MyString Account::getAccUserId() const  { return(this->accUserId); }
+MyString Account::getAccType() const  { return(this->accType); }
+Money Account::getAccBalance() const  { return(this->accBalance); }
+double Account::getAccInterest() const  { return(this->interest); }
+
+void Account::deposit(Money money){ this->accBalance += money; }
+void Account::deposit(double money){  this->accBalance += money; }
+void Account::deposit(int money){ this->accBalance += money; }
+
+void Account::retire(Money money){
+  if( (this->accBalance - money) >= 0.0 ){
+    this->accBalance -= money;
+  }else{
+    MyString e("Not enough balance in account: ");
+    e += this->accId;
+    throw e;
+  }
+}
+void Account::retire(double money){
+  if( (this->accBalance - money) >= 0.0 ){
+    this->accBalance -= money;
+  }else{
+    MyString e("Not enough balance in account: ");
+    e += this->accId;
+    throw e;
+  }
+}
+void Account::retire(int money){
+  if( (this->accBalance - money) >= 0.0 ){
+    this->accBalance -= money;
+  }else{
+    MyString e("Not enough balance in account: ");
+    e += this->accId;
+    throw e;
+  }
+}
+
+void Account::operator=(const Account & acc){
+  this->accId = acc.accId;
+  this->accUserId = acc.accUserId;
+  this->accType = acc.accType;
+  this->accBalance = acc.accBalance;
+  this->interest = acc.interest;
+}
+bool Account::operator==(const Account & acc) const{
+  return( this->accId == acc.accId && this->accUserId == acc.accUserId && this->accType == acc.accType );
+}
+bool Account::operator!=(const Account & acc) const{
+  return( !((*this) == acc) );
+}
