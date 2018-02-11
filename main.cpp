@@ -102,8 +102,27 @@ void testMoney(){
   expected.expect("operator-=()", (money2-=2), money1 );
   money2.setAmount(2);
   expected.expect("operator-=()", (money2-=2.0), money1 );
+  money2.setAmount(1);
+  money2++;
+  expected.expect("operator++()", (money2), money3 );
+  money2.setAmount(1);
+  ++money2;
+  expected.expect("operator++()", (money2), money3 );
+  money2.setAmount(3);
+  money2--;
+  expected.expect("operator--()", (money2), money3 );
+  money2.setAmount(3);
+  --money2;
+  expected.expect("operator--()", (money2), money3 );
   money2.setAmount(2);
 
+  expected.expect("operator==()", (money2 == money3), true );
+  expected.expect("operator==()", (money2 == 2), true );
+  expected.expect("operator==()", (money2 == 2.0), true );
+
+  expected.expect("operator==()", (money4 != money3), true );
+  expected.expect("operator==()", (money4 != 3), true );
+  expected.expect("operator==()", (money4 != 3.0), true );
 
   cout << endl;
 }

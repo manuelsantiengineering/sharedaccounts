@@ -80,30 +80,38 @@ public:
   bool operator==(const double amount) const;
   bool operator==(const int amount) const;
   bool operator==(const Money & money) const;
+  friend bool operator==(const int & moneyA, const Money & moneyB);
+  friend bool operator==(const double & moneyA, const Money & moneyB);
 
   bool operator!=(const double amount) const;
   bool operator!=(const int amount) const;
   bool operator!=(const Money & money) const;
+  friend bool operator!=(const int & moneyA, const Money & moneyB);
+  friend bool operator!=(const double & moneyA, const Money & moneyB);
 
   bool operator>(const double amount) const;
   bool operator>(const int amount) const;
   bool operator>(const Money & money) const;
-  friend bool operator>(const Money & moneyA, const Money & moneyB);
+  friend bool operator>(const int & moneyA, const Money & moneyB);
+  friend bool operator>(const double & moneyA, const Money & moneyB);
 
   bool operator>=(const double amount) const;
   bool operator>=(const int amount) const;
   bool operator>=(const Money & money) const;
-  friend bool operator>=(const Money & moneyA, const Money & moneyB);
+  friend bool operator>=(const int & moneyA, const Money & moneyB);
+  friend bool operator>=(const double & moneyA, const Money & moneyB);
 
   bool operator<(const double amount) const;
   bool operator<(const int amount) const;
   bool operator<(const Money & money) const;
-  friend bool operator<(const Money & moneyA, const Money & moneyB);
+  friend bool operator<(const int & moneyA, const Money & moneyB);
+  friend bool operator<(const double & moneyA, const Money & moneyB);
 
   bool operator<=(const double amount) const;
   bool operator<=(const int amount) const;
   bool operator<=(const Money & money) const;
-  friend bool operator<=(const Money & moneyA, const Money & moneyB);
+  friend bool operator<=(const int & moneyA, const Money & moneyB);
+  friend bool operator<=(const double & moneyA, const Money & moneyB);
 
 };
 
