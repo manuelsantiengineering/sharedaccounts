@@ -122,6 +122,30 @@ void Test::testMoney(){
   expected.expect("operator>()", (20 > money4), true );
   expected.expect("operator>()", (20.0 > money4), true );
 
-
   cout << endl;
+}
+void Test::testMyDate(){
+
+  cout << endl << "Testing MyDate object" << endl;
+
+  MyDate date1;
+  MyDate date2(2,2,2020);
+  MyDate date3;
+  date3.setDate(5,6,1998);
+  MyDate date4(date3);
+
+  Expected expected("MyDate");
+
+  MyString empty;
+  expected.testConstructor(date1, 1, 2, 1990);
+  expected.testConstructor(date2, 2, 2, 2020);
+  expected.testConstructor(date3, 5, 6, 1998);
+  expected.testConstructor(date4, 5, 6, 1998);
+  date2 = date4;
+  date3.setDate(3,3,1993);
+  expected.expect(" operator==() ", (date2 == date4), true );
+  expected.expect(" operator==() ", (date1 == date4), false );
+  expected.expect(" operator!=() ", (date4 != date4), false );
+  expected.expect(" operator!=() ", (date4 != date3), true );
+
 }

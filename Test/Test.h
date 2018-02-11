@@ -27,6 +27,7 @@ public:
 
   void testMoney();
   void testPerson();
+  void testMyDate();
 
 };
 

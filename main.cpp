@@ -25,6 +25,7 @@ int main(int argc, const char * argv[]) {
   try{
     testing.testMoney();
     testing.testPerson();
+    testing.testMyDate();
   }
   catch (MyString e)
   {

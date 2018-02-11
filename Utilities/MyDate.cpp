@@ -44,7 +44,30 @@ void MyDate::setDate(int d, int m, int y){
     throw e;
   }
 }
-
+void MyDate::setDay(int d){
+  if( dateIsCorrect(d, this->month, this->year) ){
+      this->day = d;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
+void MyDate::setMonth(int m){
+  if( dateIsCorrect(this->day, m, this->year) ){
+      this->month = m;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
+void MyDate::setYear(int y){
+  if( dateIsCorrect(this->day, this->month, y) ){
+      this->year = y;
+  }else{
+    MyString e("Please verify the date values.");
+    throw e;
+  }
+}
 int MyDate::getDay() const{
     return (this->day);
 }
@@ -54,21 +77,14 @@ int MyDate::getMonth() const{
 int MyDate::getYear() const{
     return (this->year);
 }
-void MyDate::showDay() const{
-    cout << this->day;
+
+MyString MyDate::dateToMyStringNumbers() const{
+    MyString temporal = MyString(this->month) + "/" + MyString(this->day) + "/"+ MyString(this->year);
+    return (temporal);
 }
-void MyDate::showMonth() const{
-    cout << this->month;
-}
-void MyDate::showYear() const{
-    cout << this->year;
-}
-void MyDate::showDate() const{
-    cout << this->month << "/" << this->day << "/" << this->year;
-}
+
 MyString MyDate::dateToMyString() const{
-    MyString temporal;
-    temporal = temporal + MONTHS[(this->month)] + "/" + MyString(this->day) + "/"+ MyString(this->year);
+    MyString temporal = MONTHS[(this->month)] + "/" + MyString(this->day) + "/"+ MyString(this->year);
     return (temporal);
 }
 
@@ -82,7 +98,8 @@ bool MyDate::dateIsCorrect(const int d, const int m, const int y) const{
       4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
     */
 
-    if( (m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
+    if( (m < 1) ||
+        (m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
         ( m < 1 || m > 12 || d < 1 || y < 1908) ||
         ( d > 31 && ( (m%2 != 0 && m < 8) || (m%2 == 0 && m > 7) ) ) ||
         ( d > 30 && ( (m%2 == 0 && m < 8) || (m%2 != 0 && m > 7) ) )
@@ -109,15 +126,24 @@ bool MyDate::operator ==(const MyDate & dateInstance) const{
     return (this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year);
 }
 bool MyDate::operator !=(const MyDate & dateInstance) const{
-    return(!(this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year));
+    return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
+}
+bool MyDate::operator >=(const MyDate & dateInstance) const{
+  return((this->year >= dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
+  (this->year == dateInstance.year && this->month == dateInstance.month && this->day >= dateInstance.day));
 }
 bool MyDate::operator >(const MyDate & dateInstance) const{
-    return((this->year > dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) || (this->year == dateInstance.year && this->month == dateInstance.month && this->day > dateInstance.day));
+    return((this->year > dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
+    (this->year == dateInstance.year && this->month == dateInstance.month && this->day > dateInstance.day));
 }
 bool MyDate::operator <(const MyDate & dateInstance) const{
     return(!((*this) > dateInstance) || (*this) == dateInstance);
 }
+bool MyDate::operator <=(const MyDate & dateInstance) const{
+  return((this->year <= dateInstance.year) || (this->year == dateInstance.year && this->month < dateInstance.month) ||
+  (this->year == dateInstance.year && this->month == dateInstance.month && this->day <= dateInstance.day));
+}
 ostream & operator<<(ostream & out, const MyDate dateInstance){
-    dateInstance.showDate();
+    out << dateInstance.month << "/" << dateInstance.day << "/" << dateInstance.year;
     return(out);
 }

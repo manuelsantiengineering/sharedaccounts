@@ -26,16 +26,15 @@ public:
     MyDate & operator=(const MyDate & dateInstance);
 
     void setDate(int d, int m, int y);
+    void setDay(int d);
+    void setMonth(int m);
+    void setYear(int y);
 
     int getDay() const;
     int getMonth() const;
     int getYear() const;
 
-    void showDay() const;
-    void showMonth() const;
-    void showYear() const;
-    void showDate() const;
-
+    MyString dateToMyStringNumbers() const;
     MyString dateToMyString() const;
     bool dateIsCorrect(const int, const int, const int) const;
 
@@ -43,7 +42,9 @@ public:
 
     bool operator ==(const MyDate & dateInstance) const;
     bool operator !=(const MyDate & dateInstance) const;
+    bool operator >=(const MyDate & dateInstance) const;
     bool operator >(const MyDate & dateInstance) const;
+    bool operator <=(const MyDate & dateInstance) const;
     bool operator <(const MyDate & dateInstance) const;
 
     friend ostream & operator<<(ostream & out, const MyDate dateInstance);
