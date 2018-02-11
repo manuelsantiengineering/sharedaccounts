@@ -175,12 +175,11 @@ bool MyTime::operator > (const MyTime & timeInstance) const{
 
   if((this->isAM == false) && timeInstance.isAM == true){
       greater = true;
-  }else if((this->isAM == timeInstance.isAM)  && (this->hours > timeInstance.hours)){
-      greater = true;
-  }else if((this->isAM == timeInstance.isAM)  && (this->hours == timeInstance.hours) && (this->minutes > timeInstance.minutes)){
-      greater = true;
-  }else if((this->isAM == timeInstance.isAM)  && (this->hours == timeInstance.hours) && (this->minutes == timeInstance.minutes) && (this->seconds == timeInstance.seconds)){
-      greater = true;
+  }else if(this->isAM == timeInstance.isAM){
+    if( (this->hours == 12 && 12 > timeInstance.hours) || (this->hours > timeInstance.hours) ||
+        ((this->hours == timeInstance.hours) && (this->minutes > timeInstance.minutes)) ||
+        ((this->hours == timeInstance.hours) && (this->minutes == timeInstance.minutes) && (this->seconds == timeInstance.seconds))
+    ){  greater = true; }
   }
   return(greater);
 }
