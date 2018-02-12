@@ -256,8 +256,7 @@ bool Test::testMyString(){
   passedTest = expected.testConstructor(str2, "123");
   passedTest = expected.testConstructor(str3, "321");
   passedTest = expected.testConstructor(str4, "1234567890");
-  passedTest = expected.testConstructor(str5, "0987654321");
-  passedTest = expected.testConstructor(str6, "3.456");
+  passedTest = expected.testConstructor(str5, "987654321");
   passedTest = expected.testConstructor(str7, "a");
 
   str7 = str5;
@@ -267,12 +266,12 @@ bool Test::testMyString(){
   passedTest = expected.expect(" operator!=() ", (str7 != str5), false );
 
   str7 = str1 + str2;
-  str7 += 'a';
-  str7 = 'b' + str7;
-  str7 = "string" + str7;
   passedTest = expected.expect(" operator+() ", (str7 == "a123"), true );
+  str7 += 'a';
   passedTest = expected.expect(" operator+=() ", (str7 == "a123a"), true );
+  str7 = 'b' + str7;
   passedTest = expected.expect(" friend operator+() ", (str7 == "ba123a"), true );
+  str7 = "string" + str7;
   passedTest = expected.expect(" friend operator+() ", (str7 == "stringba123a"), true );
 
   passedTest = expected.expect(" operator>() ", (str7 > "23"), true );
