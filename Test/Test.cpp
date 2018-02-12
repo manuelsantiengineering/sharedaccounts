@@ -282,6 +282,37 @@ bool Test::testMyString(){
   passedTest = expected.expect(" operator>() ", (str1 > "a123"), false );
   passedTest = expected.expect(" operator>() ", (str1 > "a123"), false );
 
+  str7++;
+  passedTest = expected.expect("operator++() ", (str7 == "STRINGBA123A"), true );
+  str7--;
+  passedTest = expected.expect("operator--() ", (str7 == "stringba123a"), true );
+  ++str7;
+  passedTest = expected.expect("operator++() ", (str7 == "STRINGBA123A"), true );
+  --str7;
+  passedTest = expected.expect("operator--() ", (str7 == "stringba123a"), true );
+
+  int len = str1.len();
+  passedTest = expected.expect("len() ", (len == 1), true );
+  len = str0.len();
+  passedTest = expected.expect("len() ", (len == 0), true );
+
+  int ind = str7.indexOf('a');
+  passedTest = expected.expect("indexOf() ", (ind == 7), true );
+  ind = str7.indexOfLast('a');
+  passedTest = expected.expect("indexOf() ", (ind == 11), true );
+  ind = str7.frequency('a');
+  passedTest = expected.expect("frequency() ", (ind == 2), true );
+
+  str7 = str7.createSubstring(0,5);
+  passedTest = expected.expect("createSubstring() ", (str7 == "string"), true );
+  str7 = str7.reverse();
+  passedTest = expected.expect("reverse() ", (str7 == "gnirts"), true );
+  passedTest = expected.expect("isEmpty() ", (str0.isEmpty()), true );
+  passedTest = expected.expect("isEmpty() ", (str7.isEmpty()), false );
+  passedTest = expected.expect("representAnInteger() ", (str2.representAnInteger()), true );
+  passedTest = expected.expect("representAnUnsignInteger() ", (str2.representAnUnsignInteger()), true );
+  passedTest = expected.expect("representAReal() ", (str6.representAReal()), true );
+  passedTest = expected.expect("cambiaInt() ", (str2.cambiaInt() == 123), true );
 
   cout << endl;
   return(passedTest);
