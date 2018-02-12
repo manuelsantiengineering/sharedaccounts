@@ -5,10 +5,12 @@
 #
 
 # define the C compiler to use
-CC = g++
+CC = g++-7
 
 # define any compile-time flags
-CFLAGS = -Wall -g
+CFLAGS = -std=gnu++0x -Wall -g #Enables GNU extensions
+# CFLAGS = -std=c++0x -Wall -g #Disables GNU extenstions
+# CFLAGS = -Wall -g
 
 # define any directories containing header files other than /usr/include
 #

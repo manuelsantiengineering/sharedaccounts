@@ -16,19 +16,56 @@
 
 #include "./Test/Test.h"
 
-using namespace std;
+
+// #include <chrono>
+// using namespace std::chrono;
+
+// using namespace std;
 
 int main(int argc, const char * argv[]) {
 
   cout << "Starting program..."<< endl;
 
-  Test testing;
+  // cout << "C++ Version: " << __cplusplus << endl;
 
+  if( __cplusplus == 201103L ) std::cout << "C++11\n" ;
+  else if( __cplusplus == 2017701L ) std::cout << "C++17\n" ;
+  else if( __cplusplus == 199711L ) std::cout << "C++98\n" ;
+  else std::cout << "pre-standard C++\n" ;
+
+
+  Test testing;
+  
   try{
-    testing.testMoney();
-    // testing.testPerson();
-    // testing.testMyDate();
-    // testing.testMyTime();
+    // if(testing.testMoney()){
+    //   cout << "\n\t SUCCESS TESTING: " << "Money\n" << endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "Money\n" << endl;
+    // }
+    //
+    // if(testing.testPerson()){
+    //   cout << "\n\t SUCCESS TESTING: " << "Person\n" << endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "Person\n" << endl;
+    // }
+    //
+    // if(testing.testMyDate()){
+    //   cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
+    // }
+    //
+    // if(testing.testMyTime()){
+    //   cout << "\n\t SUCCESS TESTING: " << "MyTime\n" << endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "MyTime\n" << endl;
+    // }
+
+    if(testing.testMyString()){
+      cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
+    }
   }
   catch (MyString e)
   {

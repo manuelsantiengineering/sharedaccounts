@@ -195,3 +195,26 @@ ostream & operator<<(ostream & out, const MyTime & timeInstance){
   out << timeInstance.timeToString();
   return(out);
 }
+
+long int MyTime::getTimeUTC_Epoch_Long() const{
+  std::time_t result = std::time(NULL);
+  std::gmtime(&result);
+  std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
+  long int t = static_cast<long int> (result);
+  return(t);
+}
+MyString MyTime::getTimeUTC_Epoch_MyString() const{
+  MyString tstr(this->getTimeUTC_Epoch_Long());
+  return(tstr);
+}
+// long int MyTime::getTimeLocaltime_Epoch_Long() const{
+//   std::time_t result = std::time(NULL);
+//   std::localtime(&result);
+//   std::cout << std::asctime(std::localtime(&result)) << result << " (LOCAL) seconds since the Epoch\n";
+//   long int t = static_cast<long int> (result);
+//   return(t);
+// }
+// MyString MyTime::getTimeLocaltime_Epoch_MyString() const{
+//   MyString tstr(this->getTimeLocaltime_Epoch_Long());
+//   return(tstr);
+// }

@@ -26,6 +26,10 @@ public:
     MyString(const char *str = ""); //Constructor with a blank default argument
     MyString(char ch);
     MyString(int value);
+    MyString(unsigned int value);
+    MyString(long int value);
+    MyString(unsigned long int value);
+    MyString(double value);
     ~MyString();
     MyString(const MyString & stringInstance); //Copy constructor
 

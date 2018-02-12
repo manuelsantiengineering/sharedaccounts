@@ -38,27 +38,28 @@ public:
     3) The actual function to be tested
     4) The expected result
   */
-  void expect(MyString functionName, int functionResult, int expectedResult);
-  void expect(MyString functionName, double functionResult, double expectedResult);
-  void expect(MyString functionName, MyString functionResult, MyString expectedResult);
-  void expect(MyString functionName, bool functionResult, bool expectedResult);
-  void expect(MyString functionName, float functionResult, float expectedResult);
-  void expect(MyString functionName, Person functionResult, Person expectedResult);
-  void expect(MyString functionName, User functionResult, User expectedResult);
-  void expect(MyString functionName, Money functionResult, Money expectedResult);
-  void expect(MyString functionName, MyDate functionResult, MyDate expectedResult);
-  void expect(MyString functionName, MyTime functionResult, MyTime expectedResult);
+  bool expect(MyString functionName, int functionResult, int expectedResult);
+  bool expect(MyString functionName, double functionResult, double expectedResult);
+  bool expect(MyString functionName, MyString functionResult, MyString expectedResult);
+  bool expect(MyString functionName, bool functionResult, bool expectedResult);
+  bool expect(MyString functionName, float functionResult, float expectedResult);
+  bool expect(MyString functionName, Person functionResult, Person expectedResult);
+  bool expect(MyString functionName, User functionResult, User expectedResult);
+  bool expect(MyString functionName, Money functionResult, Money expectedResult);
+  bool expect(MyString functionName, MyDate functionResult, MyDate expectedResult);
+  bool expect(MyString functionName, MyTime functionResult, MyTime expectedResult);
   /*
     Constructor tests...
     expect function arguments explanation:
     1) The class object
     2...N) The expected attributes
   */
-  void testConstructor(Person person, MyString name, MyString lastName, int age);
-  void testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
-  void testConstructor(Money money, MyString currency, double amount);
-  void testConstructor(MyDate date, int day, int month, int year);
-  void testConstructor(MyTime time, int h, int m, int s, bool isAM);
+  bool testConstructor(Person person, MyString name, MyString lastName, int age);
+  bool testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
+  bool testConstructor(Money money, MyString currency, double amount);
+  bool testConstructor(MyDate date, int day, int month, int year);
+  bool testConstructor(MyTime time, int h, int m, int s, bool isAM);
+  bool testConstructor(MyString str1, const char *str2);
 
   /*
     Exception tests...
@@ -67,16 +68,16 @@ public:
     2) The function to be called
     3) The expected exception value
   */
-  void testException(MyString functionName, int functionResult, MyString expectedResult);
-  void testException(MyString functionName, double functionResult, MyString expectedResult);
-  void testException(MyString functionName, MyString functionResult, MyString expectedResult);
-  void testException(MyString functionName, bool functionResult, MyString expectedResult);
-  void testException(MyString functionName, float functionResult, MyString expectedResult);
-  void testException(MyString functionName, Person functionResult, MyString expectedResult);
-  void testException(MyString functionName, User functionResult, MyString expectedResult);
-  void testException(MyString functionName, Money functionResult, MyString expectedResult);
-  void testException(MyString functionName, MyDate functionResult, MyString expectedResult);
-  void testException(MyString functionName, MyTime functionResult, MyString expectedResult);
+  bool testException(MyString functionName, int functionResult, MyString expectedResult);
+  bool testException(MyString functionName, double functionResult, MyString expectedResult);
+  bool testException(MyString functionName, MyString functionResult, MyString expectedResult);
+  bool testException(MyString functionName, bool functionResult, MyString expectedResult);
+  bool testException(MyString functionName, float functionResult, MyString expectedResult);
+  bool testException(MyString functionName, Person functionResult, MyString expectedResult);
+  bool testException(MyString functionName, User functionResult, MyString expectedResult);
+  bool testException(MyString functionName, Money functionResult, MyString expectedResult);
+  bool testException(MyString functionName, MyDate functionResult, MyString expectedResult);
+  bool testException(MyString functionName, MyTime functionResult, MyString expectedResult);
 
 };
 

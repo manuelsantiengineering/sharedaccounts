@@ -29,10 +29,11 @@ public:
   Test();
   ~Test();
 
-  void testMoney();
-  void testPerson();
-  void testMyDate();
-  void testMyTime();
+  bool testMoney();
+  bool testPerson();
+  bool testMyDate();
+  bool testMyTime();
+  bool testMyString();
 
 };
 

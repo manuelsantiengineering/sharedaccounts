@@ -5,9 +5,18 @@
 //  Copyright (c) 2015 Manuel. All rights reserved.
 //
 
+// const
+//
+// #ifndef _WIN32
+//
+// #else __linux__
+//
+// #endif
+
 #ifndef __MyTime__
 #define __MyTime__
 
+#include <ctime>
 #include <exception>
 
 #include "MyString.h"
@@ -51,6 +60,12 @@ public:
   bool operator < (const MyTime & timeInstance) const;
 
   friend ostream & operator<<(ostream & out, const MyTime & timeInstance);
+
+
+  long int getTimeUTC_Epoch_Long() const;
+  MyString getTimeUTC_Epoch_MyString() const;
+  // long int getTimeLocaltime_Epoch_Long() const;
+  // MyString getTimeLocaltime_Epoch_MyString() const;
 
 };
 

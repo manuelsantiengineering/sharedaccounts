@@ -7,10 +7,22 @@ MyString::MyString(char ch){
     (*this) = ch;
 }
 MyString::MyString(int value){
-    sprintf(this->str, "%d", value);
+  sprintf(this->str, "%d", value);
 }
-MyString::~MyString(){
+MyString::MyString(unsigned int value){
+  sprintf(this->str, "%d", value);
 }
+MyString::MyString(long int value){
+  sprintf(this->str, "%ld", value);
+}
+MyString::MyString(unsigned long int value){
+  sprintf(this->str, "%lu", value);
+}
+MyString::MyString(double value){
+  sprintf(this->str, "%f", value);
+}
+MyString::~MyString(){}
+
 MyString::MyString(const MyString & stringInstance){
     (*this)= stringInstance;
 }
