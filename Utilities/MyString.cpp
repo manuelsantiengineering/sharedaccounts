@@ -101,15 +101,7 @@ bool MyString::operator>(const MyString & stringInstance) const{
 bool operator>(const char *str, const MyString & stringInstance){
     return(strcmp(str, stringInstance.str) > 0);
 }
-bool MyString::operator>=(const char *str) const{
-  return( (*this) > str || (*this) == str);
-}
-bool MyString::operator>=(const MyString & stringInstance) const{
-  return( (*this) > stringInstance || (*this) == stringInstance);
-}
-bool operator>=(const char *str, const MyString & stringInstance){
-  return( str > stringInstance || str == stringInstance );
-}
+
 bool MyString::operator<(const char *str) const{
     return(strcmp(this->str, str) < 0);
 }
@@ -119,15 +111,7 @@ bool MyString::operator<(const MyString & stringInstance) const{
 bool operator<(const char *str, const MyString & stringInstance){
     return(strcmp(str, stringInstance.str) < 0);
 }
-bool MyString::operator<=(const char *str) const{
-  return( (*this) < str || (*this) == str);
-}
-bool MyString::operator<=(const MyString & stringInstance) const{
-  return( (*this) < stringInstance || (*this) == stringInstance);
-}
-bool operator<=(const char *str, const MyString & stringInstance){
-  return( str < stringInstance || str == stringInstance );
-}
+
 const char & MyString::operator[](int index) const{
     return((this->str)[index]);
 }

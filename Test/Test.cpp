@@ -282,15 +282,6 @@ bool Test::testMyString(){
   passedTest = expected.expect(" operator>() ", (str1 > "a123"), false );
   passedTest = expected.expect(" operator>() ", (str1 > "a123"), false );
 
-  // passedTest = expected.expect(" operator>=() ", (str1 >= "2"), true );
-  // passedTest = expected.expect(" operator>=() ", ("2" >= str1), true );
-  // passedTest = expected.expect(" operator>=() ", (str7 >= "23"), true );
-  // passedTest = expected.expect(" operator>=() ", (str7 >= str1), true );
-  // passedTest = expected.expect(" operator>=() ", ("string" >= str1), true );
-  // passedTest = expected.expect(" operator>=() ", ("s" >= str7), false );
-  // passedTest = expected.expect(" operator>=() ", (str1 >= "a123"), false );
-  // passedTest = expected.expect(" operator>=() ", (str1 >= "a123"), false );
-  // passedTest = expected.expect(" operator>=() ", (str1 >= "a123"), false );
 
   cout << endl;
   return(passedTest);

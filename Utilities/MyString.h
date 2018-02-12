@@ -59,17 +59,9 @@ public:
   bool operator>(const MyString & stringInstance) const;//Compares if greater to a MyString object
   friend bool operator>(const char *str, const MyString & stringInstance); //Compares if a char array if greater to a MyString object using a operator that is not a member of the class
 
-  bool operator>=(const char *str) const;
-  bool operator>=(const MyString & stringInstance) const;
-  friend bool operator>=(const char *str, const MyString & stringInstance);
-
   bool operator<(const char *str) const;//Compares if lower to a char array
   bool operator<(const MyString & stringInstance) const;//Compares if lower to a MyString object
   friend bool operator<(const char *str, const MyString & stringInstance); //Compares if a char array if lower to a MyString object using a operator that is not a member of the class
-
-  bool operator<=(const char *str) const;
-  bool operator<=(const MyString & stringInstance) const;
-  friend bool operator<=(const char *str, const MyString & stringInstance);
 
   const char & operator[](int index) const; //gets a character
   char & operator[](int index); //sets a character
