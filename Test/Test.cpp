@@ -307,6 +307,10 @@ bool Test::testMyString(){
   passedTest = expected.expect("createSubstring() ", (str7 == "string"), true );
   str7 = str7.reverse();
   passedTest = expected.expect("reverse() ", (str7 == "gnirts"), true );
+  passedTest = expected.expect("[]() ", (str7[2] == 'i'), true );
+  passedTest = expected.expect("[]() ", (str7[3] == 'i'), false );
+  passedTest = expected.expect("getCharAt() ", (str7.getCharAt(2) == "i"), true );
+  passedTest = expected.expect("getCharAt() ", (str7.getCharAt(3) == "i"), false );
   passedTest = expected.expect("isEmpty() ", (str0.isEmpty()), true );
   passedTest = expected.expect("isEmpty() ", (str7.isEmpty()), false );
   passedTest = expected.expect("representAnInteger() ", (str2.representAnInteger()), true );

@@ -8,11 +8,11 @@
  #include <string.h>
  #include <cstring>
 
-// #include "./Model/Money.h"
-// #include "./Model/User.h"
+#include "./Model/Money.h"
+#include "./Model/User.h"
 #include "./Utilities/MyString.h"
-// #include "./Utilities/MyDate.h"
-// #include "./Utilities/MyTime.h"
+#include "./Utilities/MyDate.h"
+#include "./Utilities/MyTime.h"
 
 #include "./Test/Test.h"
 
@@ -40,85 +40,85 @@ int main(int argc, const char * argv[]) {
   else if( __cplusplus == 2017701L ) std::cout << "C++17\n" ;
   else if( __cplusplus == 199711L ) std::cout << "C++98\n" ;
   else std::cout << "pre-standard C++\n" ;
+//
+//   switch(os)
+//   {
+//     case OS::LINUX : std::cout << "OS: " << "LINUX" << std::endl; break;
+//     case OS::WIN : std::cout << "OS: " << "WIN" << std::endl; break;
+//     case OS::MAC : std::cout << "OS: " << "MAC" << std::endl; break;
+//     case OS::ANDROID : std::cout << "OS: " << "ANDROID" << std::endl; break;
+//     case OS::IOS : std::cout << "OS: " << "IOS" << std::endl; break;
+//   }
+//
+//   std::time_t result = std::time(NULL);
+//   std::gmtime(&result);
+//   std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
+//   long int t = static_cast<long int> (result);
+//
+//
+//
+//   MyString timestr(t);
+//   std::cout << " MyString time: " << timestr << std::endl;
+//
+//   system_clock::time_point tp = system_clock::now();
+//   system_clock::duration dtn = tp.time_since_epoch();
+//
+//   std::cout << "current time since epoch, expressed in:" << std::endl;
+//   std::cout << "periods: " << dtn.count() << std::endl;
+//   std::cout << "seconds: " << dtn.count() * system_clock::period::num / system_clock::period::den;
+//   std::cout << std::endl;
+//
+//
+//   std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+// std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
+// std::cout << "24 hours ago, the time was "
+//           << std::put_time(std::localtime(&now_c), "%F %T") << '\n';
+//
+// std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+// std::cout << "Hello World\n";
+// std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+// std::cout << "Printing took "
+//           << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+//           << "us.\n";
 
-  switch(os)
-  {
-    case OS::LINUX : std::cout << "OS: " << "LINUX" << std::endl; break;
-    case OS::WIN : std::cout << "OS: " << "WIN" << std::endl; break;
-    case OS::MAC : std::cout << "OS: " << "MAC" << std::endl; break;
-    case OS::ANDROID : std::cout << "OS: " << "ANDROID" << std::endl; break;
-    case OS::IOS : std::cout << "OS: " << "IOS" << std::endl; break;
+
+
+  Test testing;
+
+  try{
+    if(testing.testMoney()){
+      cout << "\n\t SUCCESS TESTING: " << "Money\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "Money\n" << endl;
+    }
+
+    if(testing.testPerson()){
+      cout << "\n\t SUCCESS TESTING: " << "Person\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "Person\n" << endl;
+    }
+
+    if(testing.testMyDate()){
+      cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
+    }
+
+    if(testing.testMyTime()){
+      cout << "\n\t SUCCESS TESTING: " << "MyTime\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyTime\n" << endl;
+    }
+  
+    if(testing.testMyString()){
+      cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
+    }
   }
-
-  std::time_t result = std::time(NULL);
-  std::gmtime(&result);
-  std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
-  long int t = static_cast<long int> (result);
-
-
-
-  MyString timestr(t);
-  std::cout << " MyString time: " << timestr << std::endl;
-
-  system_clock::time_point tp = system_clock::now();
-  system_clock::duration dtn = tp.time_since_epoch();
-
-  std::cout << "current time since epoch, expressed in:" << std::endl;
-  std::cout << "periods: " << dtn.count() << std::endl;
-  std::cout << "seconds: " << dtn.count() * system_clock::period::num / system_clock::period::den;
-  std::cout << std::endl;
-
-
-  std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
-std::cout << "24 hours ago, the time was "
-          << std::put_time(std::localtime(&now_c), "%F %T") << '\n';
-
-std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-std::cout << "Hello World\n";
-std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-std::cout << "Printing took "
-          << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-          << "us.\n";
-
-
-
-  // Test testing;
-
-  // try{
-  //   if(testing.testMoney()){
-  //     cout << "\n\t SUCCESS TESTING: " << "Money\n" << endl;
-  //   }else{
-  //     cout << "\n\t FAILED TESTING: " << "Money\n" << endl;
-  //   }
-  //
-  //   if(testing.testPerson()){
-  //     cout << "\n\t SUCCESS TESTING: " << "Person\n" << endl;
-  //   }else{
-  //     cout << "\n\t FAILED TESTING: " << "Person\n" << endl;
-  //   }
-  //
-  //   if(testing.testMyDate()){
-  //     cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
-  //   }else{
-  //     cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
-  //   }
-  //
-  //   if(testing.testMyTime()){
-  //     cout << "\n\t SUCCESS TESTING: " << "MyTime\n" << endl;
-  //   }else{
-  //     cout << "\n\t FAILED TESTING: " << "MyTime\n" << endl;
-  //   }
-  //
-  //   if(testing.testMyString()){
-  //     cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
-  //   }else{
-  //     cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
-  //   }
-  // }
-  // catch (MyString e)
-  // {
-  //   cout << "Error: " << e << endl;
-  // }
+  catch (MyString e)
+  {
+    cout << "Error: " << e << endl;
+  }
   return 0;
 }

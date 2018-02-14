@@ -111,7 +111,6 @@ bool MyString::operator<(const MyString & stringInstance) const{
 bool operator<(const char *str, const MyString & stringInstance){
     return(strcmp(str, stringInstance.str) < 0);
 }
-
 const char & MyString::operator[](int index) const{
     return((this->str)[index]);
 }
@@ -230,6 +229,7 @@ int MyString::frequency(const MyString & stringInstance) const{
     }
     return (freq);
 }
+MyString MyString::getCharAt(int i){  return(MyString((*this)[i])); }
 MyString MyString::trimLeadingSpaces() const{
     MyString r;
     for (int i = 0; (this->str)[i] == '\t'|| (this->str)[i] == ' '; i++){

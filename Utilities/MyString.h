@@ -63,6 +63,7 @@ public:
   bool operator<(const MyString & stringInstance) const;//Compares if lower to a MyString object
   friend bool operator<(const char *str, const MyString & stringInstance); //Compares if a char array if lower to a MyString object using a operator that is not a member of the class
 
+  // MyString & operator[](int index) const; //gets a character
   const char & operator[](int index) const; //gets a character
   char & operator[](int index); //sets a character
 
@@ -83,6 +84,7 @@ public:
   int frequency(char ch) const;
   int frequency(const char *str) const;
   int frequency(const MyString & stringInstance) const;
+  MyString getCharAt(int i);
   MyString trimLeadingSpaces() const;
   MyString trimEndingSpaces() const;
   MyString trimAllSpaces() const;

@@ -90,22 +90,16 @@ MyString MyDate::dateToMyString() const{
 
 bool MyDate::isDateCorrect(const int d, const int m, const int y) const{
     bool isCorrect = true;
-    bool isLeapYear = this->isLeapYear();
+    int a = (this->isLeapYear()) ? 29 : 28;
+    int maxDaysInMonth[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     /*
       1) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
       2) On leap years, February can have up to 29 days and 28 in non-leap years.
       3) All the odd months before August, and all the even months after July have up to 31 days.
       4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
     */
-
-    if( ( m < 1 || m > 12 || d < 1 || y < 1908) ||
-        ( m == 2 && ( (isLeapYear && d > 29 ) || (!isLeapYear && d > 28 ) ) ) ||
-        ( d > 31 && ( (m%2 != 0 && m < 8) || (m%2 == 0 && m > 7) ) ) ||
-        ( d > 30 && ( (m%2 == 0 && m < 8) || (m%2 != 0 && m > 7) ) )
-      ){
-      isCorrect = false;
-    }
-
+    if( ( m < 1 || m > 12 || d < 1 || y < 1908) || (d > maxDaysInMonth[m]) )
+    { isCorrect = false;  }
     return(isCorrect);
 }
 
