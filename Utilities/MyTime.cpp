@@ -1,6 +1,24 @@
 
 #include "MyTime.h"
 
+MyTime::MyTime() : seconds(0), minutes(0), hours(12), isAM(true){}
+
+MyTime::MyTime(int hours, int minutes, int seconds){
+  if(this->isSecondsCorrect(seconds) && this->isMinutesCorrect(minutes) && hours < 25){
+    if(hours > 12){
+      hours-=12;
+      this->isAM = false;
+    }else{
+      this->isAM = true;
+    }
+    this->seconds = seconds;
+    this->minutes = minutes;
+    this->hours = hours;
+  }else{
+    MyString e("Please verify the time values.");
+    throw e;
+  }
+}
 MyTime::MyTime(int hours, int minutes, int seconds, bool isAM){
   if(this->isTimeCorrect(hours, minutes, seconds)){
     this->seconds = seconds;
@@ -196,17 +214,17 @@ ostream & operator<<(ostream & out, const MyTime & timeInstance){
   return(out);
 }
 
-long int MyTime::getTimeUTC_Epoch_Long() const{
-  std::time_t result = std::time(NULL);
-  std::gmtime(&result);
-  std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
-  long int t = static_cast<long int> (result);
-  return(t);
-}
-MyString MyTime::getTimeUTC_Epoch_MyString() const{
-  MyString tstr(this->getTimeUTC_Epoch_Long());
-  return(tstr);
-}
+// long int MyTime::getTimeUTC_Epoch_Long() const{
+//   std::time_t result = std::time(NULL);
+//   std::gmtime(&result);
+//   std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
+//   long int t = static_cast<long int> (result);
+//   return(t);
+// }
+// MyString MyTime::getTimeUTC_Epoch_MyString() const{
+//   MyString tstr(this->getTimeUTC_Epoch_Long());
+//   return(tstr);
+// }
 // long int MyTime::getTimeLocaltime_Epoch_Long() const{
 //   std::time_t result = std::time(NULL);
 //   std::localtime(&result);
