@@ -62,6 +62,13 @@ public:
   int getEndMinute() const;
   int getEndHour() const;
 
+  double getPeriodInDays() const;
+  double getPeriodInMonths() const;
+  double getPeriodInYears() const;
+  double getPeriodInSeconds() const;
+  double getPeriodInMinutes() const;
+  double getPeriodInHours() const;
+
   void setStartDate(MyDate date);
   void setStartDay(MyString d);
   void setStartMonth(MyString m);
@@ -84,88 +91,87 @@ public:
   void setEndMinute(int m);
   void setEndHour(int h);
 
-  // MyDate getPeriodDate() const;
-  // MyTime getPeriodTime() const;
-  // int getPeriodYears() const;
-  // int getPeriodMonths() const;
-  // int getPeriodDays() const;
-  // int getPeriodHours() const;
-  // int getPeriodMinutes() const;
-  //
-  // void setPeriod(int years, int months, int days, int hours, int minutes, int seconds);
-  // void setPeriod(MyDate date, MyTime time);
-  // void setPeriodTime(MyTime time);
-  // void setPeriodDate(MyDate date);
-  // void setPeriodYears(int y);
-  // void setPeriodMonths(int m);
-  // void setPeriodDays(int d);
-  // void setPeriodHours(int h);
-  // void setPeriodMinutes(int m);
-  // void setPeriodSeconds(int s);
-  //
-  // void operator=(const Period &period);
-  // void operator=(const MyDate &date);
-  // void operator=(const MyTime &time);
-  //
-  // Period operator+(const Period & period) const;
-  // Period operator+(const MyDate &date);
-  // Period operator+(const MyTime &time);
-  //
-  // Period operator-(const Period & period) const;
-  // Period operator-(const MyDate &date);
-  // Period operator-(const MyTime &time);
-  //
-  // Period & operator+=(const Period & period);
-  // Period & operator+=(const MyDate &date);
-  // Period & operator+=(const MyTime &time);
-  //
-  // Period & operator-=(const Period & period);
-  // Period & operator-=(const MyDate &date);
-  // Period & operator-=(const MyTime &time);
-  //
-  // Period operator*(const int) const;
-  // Period operator*(const double) const;
-  //
-  // Period operator/(const int) const;
-  // Period operator/(const double) const;
-  //
-  // Period operator*=(const int);
-  // Period operator*=(const double);
-  //
-  // Period operator/=(const int);
-  // Period operator/=(const double);
-  //
-  // bool operator==(const Period & period) const;
-  // bool operator==(const MyDate &date) const;
-  // bool operator==(const MyTime &time) const;
-  //
-  // bool operator!=(const Period & period) const;
-  // bool operator!=(const MyDate &date) const;
-  // bool operator!=(const MyTime &time) const;
-  //
-  // bool operator>(const Period & period) const;
-  // bool operator>(const MyDate &date) const;
-  // bool operator>(const MyTime &time) const;
-  // friend bool operator>(const MyDate &date, const Period & period);
-  // friend bool operator>(const MyTime &time, const Period & period);
-  //
-  // bool operator>=(const Period & period) const;
-  // bool operator>=(const MyDate &date) const;
-  // bool operator>=(const MyTime &time) const;
-  // friend bool operator>=(const MyDate &date, const Period & period);
-  // friend bool operator>=(const MyTime &time, const Period & period);
-  //
-  // bool operator<(const Period & period) const;
-  // bool operator<(const MyDate &date) const;
-  // bool operator<(const MyTime &time) const;
-  // friend bool operator<(const MyDate &date, const Period & period);
-  // friend bool operator<(const MyTime &time, const Period & period);
-  //
-  // bool operator<=(const Period & period) const;
-  // bool operator<=(const MyDate &date) const;
-  // bool operator<=(const MyTime &time) const;
-  // friend bool operator<=(const MyDate &date, const Period & period);
-  // friend bool operator<=(const MyTime &time, const Period & period);
+  void setPeriod(MyDate startDate, MyDate endDate);
+  void setPeriod(MyTime startTime, MyTime endTime);
+  void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+  /*
+    In the next setters the start date and time will be assumed to be .now().
+    The end date and time depends on the input.
+  */
+  void setPeriod(MyDate endDate);
+  void setPeriod(MyTime endTime);
+  void setPeriod(MyDate endDate, MyTime endTime);
+  void setPeriod(int years, int months, int days, int hours, int minutes, int seconds);
+  void setPeriodYears(int y);
+  void setPeriodMonths(int m);
+  void setPeriodDays(int d);
+  void setPeriodHours(int h);
+  void setPeriodMinutes(int m);
+  void setPeriodSeconds(int s);
+
+  void operator=(const Period &period);
+  void operator=(const MyDate &date);
+  void operator=(const MyTime &time);
+
+  Period operator+(const Period & period) const;
+  Period operator+(const MyDate &date);
+  Period operator+(const MyTime &time);
+
+  Period operator-(const Period & period) const;
+  Period operator-(const MyDate &date);
+  Period operator-(const MyTime &time);
+
+  Period & operator+=(const Period & period);
+  Period & operator+=(const MyDate &date);
+  Period & operator+=(const MyTime &time);
+
+  Period & operator-=(const Period & period);
+  Period & operator-=(const MyDate &date);
+  Period & operator-=(const MyTime &time);
+
+  Period operator*(const int) const;
+  Period operator*(const double) const;
+
+  Period operator/(const int) const;
+  Period operator/(const double) const;
+
+  Period operator*=(const int);
+  Period operator*=(const double);
+
+  Period operator/=(const int);
+  Period operator/=(const double);
+
+  bool operator==(const Period & period) const;
+  bool operator==(const MyDate &date) const;
+  bool operator==(const MyTime &time) const;
+
+  bool operator!=(const Period & period) const;
+  bool operator!=(const MyDate &date) const;
+  bool operator!=(const MyTime &time) const;
+  
+  bool operator>(const Period & period) const;
+  bool operator>(const MyDate &date) const;
+  bool operator>(const MyTime &time) const;
+  friend bool operator>(const MyDate &date, const Period & period);
+  friend bool operator>(const MyTime &time, const Period & period);
+
+  bool operator>=(const Period & period) const;
+  bool operator>=(const MyDate &date) const;
+  bool operator>=(const MyTime &time) const;
+  friend bool operator>=(const MyDate &date, const Period & period);
+  friend bool operator>=(const MyTime &time, const Period & period);
+
+  bool operator<(const Period & period) const;
+  bool operator<(const MyDate &date) const;
+  bool operator<(const MyTime &time) const;
+  friend bool operator<(const MyDate &date, const Period & period);
+  friend bool operator<(const MyTime &time, const Period & period);
+
+  bool operator<=(const Period & period) const;
+  bool operator<=(const MyDate &date) const;
+  bool operator<=(const MyTime &time) const;
+  friend bool operator<=(const MyDate &date, const Period & period);
+  friend bool operator<=(const MyTime &time, const Period & period);
 
 };
 
