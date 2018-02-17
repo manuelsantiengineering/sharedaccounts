@@ -34,7 +34,7 @@ DIR_CONTROLLER = ./Controller/
 DIR_TEST = ./Test/
 
 
-SRCS = main.cpp $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_UTILITIES)Period.cpp $(DIR_UTILITIES)MyTime.cpp $(DIR_MODEL)Account.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp  $(DIR_TEST)Expected.cpp  $(DIR_TEST)Test.cpp
+SRCS = main.cpp $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_UTILITIES)Period.cpp $(DIR_UTILITIES)MyClock.cpp $(DIR_UTILITIES)MyTime.cpp $(DIR_MODEL)Account.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp  $(DIR_TEST)Expected.cpp  $(DIR_TEST)Test.cpp
 
 # define the C object files
 #

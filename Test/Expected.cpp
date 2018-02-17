@@ -107,7 +107,7 @@ bool Expected::expect(MyString functionName, MyDate functionResult, MyDate expec
   }
   return(passedTest);
 }
-bool Expected::expect(MyString functionName, MyTime functionResult, MyTime expectedResult){
+bool Expected::expect(MyString functionName, MyClock functionResult, MyClock expectedResult){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
@@ -163,7 +163,7 @@ bool Expected::testConstructor(MyDate date, int day, int month, int year){
   }
   return(passedTest);
 }
-bool Expected::testConstructor(MyTime time, int h, int m, int s, bool isAM){
+bool Expected::testConstructor(MyClock time, int h, int m, int s, bool isAM){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
   if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAm() ){
@@ -329,7 +329,7 @@ bool Expected::testException(MyString functionName, MyDate functionResult, MyStr
   }
   return(passedTest);
 }
-bool Expected::testException(MyString functionName, MyTime functionResult, MyString expectedResult){
+bool Expected::testException(MyString functionName, MyClock functionResult, MyString expectedResult){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   try{

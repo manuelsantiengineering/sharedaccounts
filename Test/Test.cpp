@@ -179,15 +179,15 @@ bool Test::testMyDate(){
   return(passedTest);
 }
 
-bool Test::testMyTime(){
-  cout << endl << "Testing MyTime object" << endl;
+bool Test::testMyClock(){
+  cout << endl << "Testing MyClock object" << endl;
   bool passedTest = false;
-  MyTime time0;
-  MyTime time1(2,2,2,true);
-  MyTime time2(3,3,3, true);
-  MyTime time3(time1);
+  MyClock time0;
+  MyClock time1(2,2,2,true);
+  MyClock time2(3,3,3, true);
+  MyClock time3(time1);
 
-  Expected expected("MyTime");
+  Expected expected("MyClock");
 
   passedTest = expected.testConstructor(time0, 12,0,0, true);
   passedTest = expected.testConstructor(time1, 2,2,2, true);

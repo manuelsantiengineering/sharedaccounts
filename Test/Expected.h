@@ -14,7 +14,7 @@
 
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
-#include "../Utilities/MyTime.h"
+#include "../Utilities/MyClock.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -47,7 +47,7 @@ public:
   bool expect(MyString functionName, User functionResult, User expectedResult);
   bool expect(MyString functionName, Money functionResult, Money expectedResult);
   bool expect(MyString functionName, MyDate functionResult, MyDate expectedResult);
-  bool expect(MyString functionName, MyTime functionResult, MyTime expectedResult);
+  bool expect(MyString functionName, MyClock functionResult, MyClock expectedResult);
   /*
     Constructor tests...
     expect function arguments explanation:
@@ -58,7 +58,7 @@ public:
   bool testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
   bool testConstructor(Money money, MyString currency, double amount);
   bool testConstructor(MyDate date, int day, int month, int year);
-  bool testConstructor(MyTime time, int h, int m, int s, bool isAM);
+  bool testConstructor(MyClock time, int h, int m, int s, bool isAM);
   bool testConstructor(MyString str1, const char *str2);
 
   /*
@@ -77,7 +77,7 @@ public:
   bool testException(MyString functionName, User functionResult, MyString expectedResult);
   bool testException(MyString functionName, Money functionResult, MyString expectedResult);
   bool testException(MyString functionName, MyDate functionResult, MyString expectedResult);
-  bool testException(MyString functionName, MyTime functionResult, MyString expectedResult);
+  bool testException(MyString functionName, MyClock functionResult, MyString expectedResult);
 
 };
 

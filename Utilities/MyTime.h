@@ -17,26 +17,27 @@
 #define __MyTime__
 
 // #include <ctime>
-#include <exception>
+#include <math.h>
 
 #include "MyString.h"
 
 class MyTime{
 private:
+  void setToStandardTime();
+
+protected:
   int seconds;
   int minutes;
   int hours;
-  bool isAM;
 
 public:
   MyTime();
   MyTime(int hours, int minutes, int seconds);
-  MyTime(int hours, int minutes, int seconds, bool isAM);
   MyTime(const MyTime & timeInstance);
   ~MyTime();
   MyTime & operator=(const MyTime & timeInstance);
 
-  void setTime(int h, int m, int s, bool isAM);
+  void setTime(int h, int m, int s);
   void setSeconds(int seconds);
   void setMinutes(int minutes);
   void setHours(int hours);
@@ -44,17 +45,13 @@ public:
   int getSeconds() const;
   int getMinutes() const;
   int getHours() const;
-  bool isAm() const;
 
-  bool isSecondsCorrect(int s);
-  bool isMinutesCorrect(int m);
-  bool isHoursCorrect(int h);
-  bool isTimeCorrect(int h, int m, int s);
+  int getTimeInSeconds() const;
+  double getTimeInMinutes() const;
+  double getTimeInHours() const;
 
   MyString timeToString() const;
   MyString timeToString_Seconds() const;
-  MyString timeToStringMilitary() const;
-  MyString timeToStringMilitary_Seconds() const;
 
   bool operator == (const MyTime & timeInstance) const;
   bool operator != (const MyTime & timeInstance) const;
@@ -62,6 +59,12 @@ public:
   bool operator > (const MyTime & timeInstance) const;
   bool operator <= (const MyTime & timeInstance) const;
   bool operator < (const MyTime & timeInstance) const;
+
+  MyTime operator-(const MyTime & timeInstance) const;
+  MyTime operator+(const MyTime & timeInstance) const;
+
+  MyTime & operator+=(const MyTime & timeInstance);
+  MyTime & operator-=(const MyTime & timeInstance);
 
   friend ostream & operator<<(ostream & out, const MyTime & timeInstance);
 

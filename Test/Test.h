@@ -13,7 +13,7 @@
 #include <exception>
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
-#include "../Utilities/MyTime.h"
+#include "../Utilities/MyClock.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -32,7 +32,7 @@ public:
   bool testMoney();
   bool testPerson();
   bool testMyDate();
-  bool testMyTime();
+  bool testMyClock();
   bool testMyString();
 
 };
