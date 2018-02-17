@@ -32,6 +32,7 @@ public:
 
   void setAmount(const double);
   void setAmount(const int);
+
   double getAmount() const;
 
   void setCurrency(const MyString);

@@ -38,3 +38,17 @@ MyTime Period::getStartTime() const
 {  return( MyTime(this->startTimeInfo.tm_hour, this->startTimeInfo.tm_min, this->startTimeInfo.tm_sec) ); }
 MyTime Period::getEndTime() const
 {  return( MyTime(this->endTimeInfo.tm_hour, this->endTimeInfo.tm_min, this->endTimeInfo.tm_sec) ); }
+
+int Period::getStartDay() const{  return(this->startTimeInfo.tm_mday);  }
+int Period::getStartMonth() const{  return(this->startTimeInfo.tm_mon); }
+int Period::getStartYear() const{ return(this->startTimeInfo.tm_year);  }
+int Period::getStartSecond() const{ return(this->startTimeInfo.tm_sec); }
+int Period::getStartMinute() const{ return(this->startTimeInfo.tm_min); }
+int Period::getStartHour() const{ return(this->startTimeInfo.tm_hour);  }
+
+int Period::getEndDay() const{  return(this->endTimeInfo.tm_mday);  }
+int Period::getEndMonth() const{  return(this->endTimeInfo.tm_mon); }
+int Period::getEndYear() const{ return(this->endTimeInfo.tm_year);  }
+int Period::getEndSecond() const{ return(this->endTimeInfo.tm_sec); }
+int Period::getEndMinute() const{ return(this->endTimeInfo.tm_min); }
+int Period::getEndHour() const{ return(this->endTimeInfo.tm_hour);  }

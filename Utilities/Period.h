@@ -110,23 +110,17 @@ public:
   void setPeriodSeconds(int s);
 
   void operator=(const Period &period);
-  void operator=(const MyDate &date);
-  void operator=(const MyTime &time);
 
   Period operator+(const Period & period) const;
-  Period operator+(const MyDate &date);
   Period operator+(const MyTime &time);
 
   Period operator-(const Period & period) const;
-  Period operator-(const MyDate &date);
   Period operator-(const MyTime &time);
 
   Period & operator+=(const Period & period);
-  Period & operator+=(const MyDate &date);
   Period & operator+=(const MyTime &time);
 
   Period & operator-=(const Period & period);
-  Period & operator-=(const MyDate &date);
   Period & operator-=(const MyTime &time);
 
   Period operator*(const int) const;
@@ -142,36 +136,16 @@ public:
   Period operator/=(const double);
 
   bool operator==(const Period & period) const;
-  bool operator==(const MyDate &date) const;
-  bool operator==(const MyTime &time) const;
 
   bool operator!=(const Period & period) const;
-  bool operator!=(const MyDate &date) const;
-  bool operator!=(const MyTime &time) const;
-  
+
   bool operator>(const Period & period) const;
-  bool operator>(const MyDate &date) const;
-  bool operator>(const MyTime &time) const;
-  friend bool operator>(const MyDate &date, const Period & period);
-  friend bool operator>(const MyTime &time, const Period & period);
 
   bool operator>=(const Period & period) const;
-  bool operator>=(const MyDate &date) const;
-  bool operator>=(const MyTime &time) const;
-  friend bool operator>=(const MyDate &date, const Period & period);
-  friend bool operator>=(const MyTime &time, const Period & period);
 
   bool operator<(const Period & period) const;
-  bool operator<(const MyDate &date) const;
-  bool operator<(const MyTime &time) const;
-  friend bool operator<(const MyDate &date, const Period & period);
-  friend bool operator<(const MyTime &time, const Period & period);
 
   bool operator<=(const Period & period) const;
-  bool operator<=(const MyDate &date) const;
-  bool operator<=(const MyTime &time) const;
-  friend bool operator<=(const MyDate &date, const Period & period);
-  friend bool operator<=(const MyTime &time, const Period & period);
 
 };
 
