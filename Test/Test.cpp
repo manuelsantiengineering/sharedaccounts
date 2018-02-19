@@ -175,6 +175,70 @@ bool Test::testMyDate(){
   passedTest = expected.expect(" operator>=() ", (date4 >= date2), true );
   passedTest = expected.expect(" operator>=() ", (date2 >= date4), false );
   passedTest = expected.expect(" operator>=() ", (date4 >= date4), true );
+
+  date2.setDate(1,1,1991);
+  date4.setDate(1,2,1991);
+
+  passedTest = expected.expect(" getNumberOfDaysFromStartOfYear() ", (date2.getNumberOfDaysFromStartOfYear() == 0), true );
+  passedTest = expected.expect(" getNumberOfDaysFromStartOfYear() ", (date4.getNumberOfDaysFromStartOfYear() == 31), true );
+
+  date2.setDate(31,12,1991);
+  date4.setDate(1,1,1991);
+
+  passedTest = expected.expect(" getNumberOfDaysUntilEndOfYear() ", (date2.getNumberOfDaysUntilEndOfYear() == 1), true );
+  passedTest = expected.expect(" getNumberOfDaysUntilEndOfYear() ", (date4.getNumberOfDaysUntilEndOfYear() == 365), true );
+
+  date2.setDate(1,1,1992);
+  date3.setDate(1,2,1992);
+  date4.setDate(1,1,1992);
+  date4.setDateAtNumberOfDaysFromDate(date2, 31);
+
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true );
+  date4.setDateAtNumberOfDaysFromDate(date2, 32);
+  date3.setDate(2,2,1992);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true );
+  date2.setDate(1,1,1993);
+  date4.setDateAtNumberOfDaysFromDate(date2, 365);
+  date3.setDate(1,1,1994);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true );
+  date2.setDate(1,1,1993);
+  date4.setDateAtNumberOfDaysFromDate(date2, 366);
+  date3.setDate(2,1,1994);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true );
+  date2.setDate(1,3,1993);
+  date4.setDateAtNumberOfDaysFromDate(date2, 61);
+  date3.setDate(1,5,1993);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true );
+  date2.setDate(1,3,1993);
+  date4.setDateAtNumberOfDaysFromDate(date2, 0);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date2), true );
+
+  date4.setDate(1,1,1991);
+  date3.setDate(1,2,1991);
+  date4.setDateAtNumberOfDaysFromStartOfYear(31);
+  // std::cout << "Date 4 " << date4 << " Date 3 " << date3 << std::endl;
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int) ", (date4 == date3), true );
+
+  date4.setDate(1,1,1991);
+  date3.setDate(4,3,1991);
+  date4.setDateAtNumberOfDaysFromStartOfYear(62);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int) ", (date4 == date3), true );
+
+  date4.setDate(1,1,1991);
+  date3.setDate(3,2,2002);
+  date4.setDateAtNumberOfDaysFromStartOfYear(33,2002);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int, int) ", (date4 == date3), true );
+
+  date4.setDate(1,1,1991);
+  date3.setDate(1,1,1991);
+  date4.setDateAtNumberOfDaysFromStartOfYear(0,1991);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int, int) ", (date4 == date3), true );
+
+  date4.setDate(1,1,1991);
+  date3.setDate(31,12,1991);
+  date4.setDateAtNumberOfDaysFromStartOfYear(364,1991);
+  passedTest = expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int, int) ", (date4 == date3), true );
+
   cout << endl;
   return(passedTest);
 }

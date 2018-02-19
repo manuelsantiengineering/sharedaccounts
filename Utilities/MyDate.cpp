@@ -8,7 +8,7 @@
 
 #include "MyDate.h"
 
-const MyString MONTHS[13] = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"};
+static const MyString MONTHS[13] = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"};
 
 MyDate::MyDate(int day, int month, int year){
   if( isDateCorrect(day, month, year) ){
@@ -21,17 +21,17 @@ MyDate::MyDate(int day, int month, int year){
   }
 }
 MyDate::MyDate(const MyDate & dateInstance){
-    this->day = dateInstance.day;
-    this->month = dateInstance.month;
-    this->year = dateInstance.year;
+  this->day = dateInstance.day;
+  this->month = dateInstance.month;
+  this->year = dateInstance.year;
 }
 MyDate::~MyDate(){
 }
 MyDate & MyDate::operator=(const MyDate & dateInstance){
-    this->day = dateInstance.day;
-    this->month = dateInstance.month;
-    this->year = dateInstance.year;
-    return(*this);
+  this->day = dateInstance.day;
+  this->month = dateInstance.month;
+  this->year = dateInstance.year;
+  return(*this);
 }
 
 void MyDate::setDate(int d, int m, int y){
@@ -69,69 +69,196 @@ void MyDate::setYear(int y){
   }
 }
 int MyDate::getDay() const{
-    return (this->day);
+  return (this->day);
 }
 int MyDate::getMonth() const{
-    return (this->month);
+  return (this->month);
 }
 int MyDate::getYear() const{
-    return (this->year);
+  return (this->year);
 }
+int MyDate::getNumberOfDaysFromStartOfYear() const{
+  /*
+    The amount of days is 1 day before the current day.
+    Example: The amount of days that have passed from the years
+    on January 2 is 1 day. So, it is assumed that 1 day is 24 hrs and
+    the time is 00:00:00.
+  */
 
+  int a = (isLeapYear()) ? 29 : 28;
+  const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  int amountOfDays = this->day-1;
+  for(int i = 1; i < this->month; i++){ amountOfDays+= days_in_month[i];  }
+  return(amountOfDays);
+}
+int MyDate::getNumberOfDaysUntilEndOfYear() const{
+  /*
+    The amount of days starts counting 1 day before the current day.
+    Example: The amount of days until the end of year on December 31
+    is 1 day. So, it is assumed that 1 day is 24 hrs and the time is 00:00:00.
+  */
+  int a = (isLeapYear()) ? 29 : 28;
+  const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  int amountOfDays = days_in_month[this->month]-this->day+1;
+  for(int i = (this->month+1); i < 13; i++){ amountOfDays+= days_in_month[i];  }
+  return(amountOfDays);
+}
+void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amountOfDays){
+  int a;
+  int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int yearsCount = 0;
+  int startMonth = dateInstance.month;
+
+  if(amountOfDays == 0){
+    (*this) = dateInstance;
+  }
+  else{
+    while(amountOfDays != -1){
+      a = (this->isLeapYear(dateInstance.year + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = dateInstance.year + yearsCount;
+          amountOfDays = -1;
+          break;
+        }else if(amountOfDays >= days_in_month[i]){
+          amountOfDays -= (days_in_month[i]);
+        }else{
+          this->day = amountOfDays+1;
+          this->month = i;
+          this->year = dateInstance.year + yearsCount;
+          amountOfDays = -1;
+          break;
+        }
+      }
+      if(amountOfDays != -1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }
+}
+void MyDate::setDateAtNumberOfDaysFromStartOfYear(int amountOfDays){
+  int a, maxDays;
+  if(this->isLeapYear())
+  {
+    a = 29;
+    maxDays = 365;
+  }else{
+    a = 28;
+    maxDays = 364;
+  }
+  if( amountOfDays <= maxDays && amountOfDays >= 0 && isDateCorrect(1, 1, this->year) ){
+    const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    for(int i = 1; i < 13; i++){
+      if(amountOfDays == 0){
+        this->day = 1;
+        this->month = i;
+        break;
+      }else if(amountOfDays >= days_in_month[i]){
+        amountOfDays -= (days_in_month[i]);
+      }else{
+        this->day = amountOfDays+1;
+        this->month = i;
+        break;
+      }
+    }
+  }else{
+    MyString e("Please verify the amount of days from start of year value.");
+    throw e;
+  }
+}
+void MyDate::setDateAtNumberOfDaysFromStartOfYear(int amountOfDays, int year){
+  this->year = year;
+  int a, maxDays;
+  if(this->isLeapYear())
+  {
+    a = 29;
+    maxDays = 365;
+  }else{
+    a = 28;
+    maxDays = 364;
+  }
+  if( amountOfDays <= maxDays && amountOfDays >= 0 && isDateCorrect(1, 1, year) ){
+    const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    for(int i = 1; i < 13; i++){
+      if(amountOfDays == 0){
+        this->day = 1;
+        this->month = i;
+        break;
+      }else if(amountOfDays >= days_in_month[i]){
+        amountOfDays -= (days_in_month[i]);
+      }else{
+        this->day = amountOfDays+1;
+        this->month = i;
+        break;
+      }
+    }
+  }else{
+    MyString e("Please verify the amount of days from start of year value.");
+    throw e;
+  }
+}
 MyString MyDate::dateToMyStringNumbers() const{
-    MyString temporal = MyString(this->month) + "/" + MyString(this->day) + "/"+ MyString(this->year);
-    return (temporal);
+  MyString temporal = MyString(this->month) + "/" + MyString(this->day) + "/"+ MyString(this->year);
+  return (temporal);
 }
 
 MyString MyDate::dateToMyString() const{
-    MyString temporal = MONTHS[(this->month)] + "/" + MyString(this->day) + "/"+ MyString(this->year);
-    return (temporal);
+  MyString temporal = MONTHS[(this->month)] + "/" + MyString(this->day) + "/"+ MyString(this->year);
+  return (temporal);
 }
 
 bool MyDate::isDateCorrect(const int d, const int m, const int y) const{
-    bool isCorrect = true;
-    int a = (this->isLeapYear()) ? 29 : 28;
-    int maxDaysInMonth[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    /*
-      1) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
-      2) On leap years, February can have up to 29 days and 28 in non-leap years.
-      3) All the odd months before August, and all the even months after July have up to 31 days.
-      4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
-    */
-    if( ( m < 1 || m > 12 || d < 1 || y < 1908) || (d > maxDaysInMonth[m]) )
-    { isCorrect = false;  }
-    return(isCorrect);
+  bool isCorrect = true;
+  int a = (isLeapYear()) ? 29 : 28;
+  const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  /*
+    1) Months are always between 1 and 12, days are always greater than 1, year has to be over 1908.
+    2) On leap years, February can have up to 29 days and 28 in non-leap years.
+    3) All the odd months before August, and all the even months after July have up to 31 days.
+    4) All the even months (but February) before August, and all the odd months after July have up to 30 days.
+  */
+  if( ( m < 1 || m > 12 || d < 1 || y < 1908) || (d > days_in_month[m]) )
+  { isCorrect = false;  }
+  return(isCorrect);
 }
 
 bool MyDate::isLeapYear() const{
-  /*
-    To determine whether a year is a leap year, follow these steps:
-      1) If the year is evenly divisible by 4, go to step 2. Otherwise, go to step 5.
-      2) If the year is evenly divisible by 100, go to step 3. Otherwise, go to step 4.
-      3) If the year is evenly divisible by 400, go to step 4. Otherwise, go to step 5.
-      4) The year is a leap year (it has 366 days).
-      5) The year is not a leap year (it has 365 days).
-  */
-    return((this->year%400 == 0) || (this->year%100 != 0 && this->year%4 == 0));
+/*
+  To determine whether a year is a leap year, follow these steps:
+    1) If the year is evenly divisible by 4, go to step 2. Otherwise, go to step 5.
+    2) If the year is evenly divisible by 100, go to step 3. Otherwise, go to step 4.
+    3) If the year is evenly divisible by 400, go to step 4. Otherwise, go to step 5.
+    4) The year is a leap year (it has 366 days).
+    5) The year is not a leap year (it has 365 days).
+*/
+  return((this->year%400 == 0) || (this->year%100 != 0 && this->year%4 == 0));
 }
-
+bool MyDate::isLeapYear(int year) const{
+  return((year%400 == 0) || (year%100 != 0 && year%4 == 0));
+}
 bool MyDate::operator ==(const MyDate & dateInstance) const{
-    return (this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year);
+  return (this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year);
 }
 bool MyDate::operator !=(const MyDate & dateInstance) const{
-    // return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
-    return( !((*this) == dateInstance) );
+  // return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
+  return( !((*this) == dateInstance) );
 }
 bool MyDate::operator >=(const MyDate & dateInstance) const{
   return((this->year >= dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
   (this->year == dateInstance.year && this->month == dateInstance.month && this->day >= dateInstance.day));
 }
 bool MyDate::operator >(const MyDate & dateInstance) const{
-    return((this->year > dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
-    (this->year == dateInstance.year && this->month == dateInstance.month && this->day > dateInstance.day));
+  return((this->year > dateInstance.year) || (this->year == dateInstance.year && this->month > dateInstance.month) ||
+  (this->year == dateInstance.year && this->month == dateInstance.month && this->day > dateInstance.day));
 }
 bool MyDate::operator <(const MyDate & dateInstance) const{
-    return(!((*this) > dateInstance) && (*this) != dateInstance);
+  return(!((*this) > dateInstance) && (*this) != dateInstance);
 }
 bool MyDate::operator <=(const MyDate & dateInstance) const{
   // return((this->year <= dateInstance.year) || (this->year == dateInstance.year && this->month < dateInstance.month) ||
@@ -139,6 +266,6 @@ bool MyDate::operator <=(const MyDate & dateInstance) const{
   return( (*this) < dateInstance || (*this) == dateInstance  );
 }
 ostream & operator<<(ostream & out, const MyDate dateInstance){
-    out << dateInstance.month << "/" << dateInstance.day << "/" << dateInstance.year;
-    return(out);
+  out << dateInstance.month << "/" << dateInstance.day << "/" << dateInstance.year;
+  return(out);
 }
