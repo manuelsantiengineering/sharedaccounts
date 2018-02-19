@@ -84,7 +84,7 @@ public:
   void setPeriod(MyDate startDate, MyDate endDate);
   void setPeriod(MyTime startTime, MyTime endTime);
   void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
-  
+
   /*
     In the next setters the start date and time will be assumed to be .now().
     The end date and time depends on the input.

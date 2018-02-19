@@ -100,3 +100,9 @@ void Period::setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTim
   this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
     endDate.getDay(),endDate.getMonth(),endDate.getYear()};
 }
+void setPeriodDateFromNow(MyDate endDate){
+
+}
+void setPeriodTimeFromNow(MyTime endTime){
+
+}

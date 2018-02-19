@@ -52,32 +52,32 @@ int main(int argc, const char * argv[]) {
 // //     case OS::IOS : std::cout << "OS: " << "IOS" << std::endl; break;
 // //   }
 // //
-  // Test testing;
-  //
-  // try{
+  Test testing;
 
-    // if(testing.testMyDate()){
-    //   cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
-    // }else{
-    //   cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
-    // }
+  try{
 
-    // if(testing.testMyClock()){
-    //   cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << endl;
-    // }else{
-    //   cout << "\n\t FAILED TESTING: " << "MyClock\n" << endl;
-    // }
+    if(testing.testMyDate()){
+      cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
+    }
 
-    // if(testing.testMyString()){
-    //   cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
-    // }else{
-    //   cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
-    // }
-  // }
-  // catch (MyString e)
-  // {
-  //   cout << "Error: " << e << endl;
-  // }
+    if(testing.testMyClock()){
+      cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyClock\n" << endl;
+    }
+
+    if(testing.testMyString()){
+      cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
+    }else{
+      cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
+    }
+  }
+  catch (MyString e)
+  {
+    cout << "Error: " << e << endl;
+  }
 
 
 
@@ -125,6 +125,27 @@ int main(int argc, const char * argv[]) {
 
   time ( &rawtime );
   timeinfo = localtime ( &rawtime );
+  std::cout << std::endl << "LOCALTIME Today is: "
+            << "Day: " << weekday[timeinfo->tm_wday]
+            << ", Date: " << timeinfo->tm_mday
+            << ", Month: " << (timeinfo->tm_mon+1)
+            << ", Year: " << (timeinfo->tm_year+1900)
+            << ", Hour: " << (timeinfo->tm_hour)
+            << ", Minutes: " << (timeinfo->tm_min)
+            << ", Seconds: " << (timeinfo->tm_sec)
+            << std::endl << std::endl;
+
+timeinfo = gmtime ( &rawtime );
+std::cout << std::endl << "UTC Today is: "
+          << "Day: " << weekday[timeinfo->tm_wday]
+          << ", Date: " << timeinfo->tm_mday
+          << ", Month: " << (timeinfo->tm_mon+1)
+          << ", Year: " << (timeinfo->tm_year+1900)
+          << ", Hour: " << (timeinfo->tm_hour)
+          << ", Minutes: " << (timeinfo->tm_min)
+          << ", Seconds: " << (timeinfo->tm_sec)
+          << std::endl << std::endl;
+
   timeinfo->tm_year = year - 1900;
   timeinfo->tm_mon = month - 1;
   timeinfo->tm_mday = day;
@@ -134,24 +155,7 @@ int main(int argc, const char * argv[]) {
 
   std::cout << "That day is a " << weekday[timeinfo->tm_wday] << std::endl;
 
-  struct tm tInfo {1,2,3,4,5,6};//= {.tm_mday=1};
-  struct tm tInfo2 = tInfo;
-  // struct tm tt = {.tm_mday=1};
-  // struct tm my_time = { .tm_year=112, .tm_mon=9, .tm_mday=9, .tm_hour=8, .tm_min=10, .tm_sec=20 };
-  // tInfo = {.tm_year=0,.tm_mon=1,.tm_mday=1,.tm_hour=0,.tm_min=0,.tm_sec=0 };
 
-  std::cout << "Year: " << tInfo.tm_year << " Month: " << tInfo.tm_mon << " Day: " << tInfo.tm_mday
-      << " Hour: " << tInfo.tm_hour << " Min: " << tInfo.tm_min << " Sec: " << tInfo.tm_sec << std::endl;
-
-  std::cout << "Year: " << tInfo2.tm_year << " Month: " << tInfo2.tm_mon << " Day: " << tInfo2.tm_mday
-      << " Hour: " << tInfo2.tm_hour << " Min: " << tInfo2.tm_min << " Sec: " << tInfo2.tm_sec << std::endl;
-
-
-  tInfo2 = {7,8,9,10,11,12};
-  tInfo2.tm_mday = 1;
-  tInfo2.tm_mon = 2;
-  std::cout << "Year: " << tInfo2.tm_year << " Month: " << tInfo2.tm_mon << " Day: " << tInfo2.tm_mday
-      << " Hour: " << tInfo2.tm_hour << " Min: " << tInfo2.tm_min << " Sec: " << tInfo2.tm_sec << std::endl;
 
 
   return 0;
