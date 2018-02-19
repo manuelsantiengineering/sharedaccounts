@@ -30,6 +30,10 @@ Period::Period(const Period &period){
 }
 Period::~Period(){}
 
+int Period::getTimeNow_Seconds() const{
+  return(0);
+}
+
 MyDate Period::getStartDate() const
 {  return( MyDate(this->startTimeInfo.tm_mday, this->startTimeInfo.tm_mon, this->startTimeInfo.tm_year) ); }
 MyDate Period::getEndDate() const
@@ -52,3 +56,26 @@ int Period::getEndYear() const{ return(this->endTimeInfo.tm_year);  }
 int Period::getEndSecond() const{ return(this->endTimeInfo.tm_sec); }
 int Period::getEndMinute() const{ return(this->endTimeInfo.tm_min); }
 int Period::getEndHour() const{ return(this->endTimeInfo.tm_hour);  }
+
+void Period::setPeriod(MyDate startDate, MyDate endDate){
+  this->startTimeInfo.tm_mday = startDate.getDay();
+  this->startTimeInfo.tm_mon = startDate.getMonth();
+  this->startTimeInfo.tm_year = startDate.getYear();
+  this->endTimeInfo.tm_mday = endDate.getDay();
+  this->endTimeInfo.tm_mon = endDate.getMonth();
+  this->endTimeInfo.tm_year = endDate.getYear();
+}
+void Period::setPeriod(MyTime startTime, MyTime endTime){
+  this->startTimeInfo.tm_hour = startTime.getHours();
+  this->startTimeInfo.tm_min = startTime.getMinutes();
+  this->startTimeInfo.tm_sec = startTime.getSeconds();
+  this->endTimeInfo.tm_hour = endTime.getHours();
+  this->endTimeInfo.tm_min = endTime.getMinutes();
+  this->endTimeInfo.tm_sec = endTime.getSeconds();
+}
+void Period::setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime){
+  this->startTimeInfo = {startTime.getSeconds(),startTime.getMinutes(),startTime.getHours(),
+    startDate.getDay(),startDate.getMonth(),startDate.getYear()};
+  this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
+    endDate.getDay(),endDate.getMonth(),endDate.getYear()};
+}

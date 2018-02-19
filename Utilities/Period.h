@@ -16,18 +16,6 @@
 class Period
 {
 private:
-  // MyDate startDate,
-  // MyTime startTime;
-  // MyDate endDate,
-  // MyTime endTime;
-  //
-  // MyTime timePeriod;
-  // int yearsPeriod;
-  // int monthsPeriod;
-  // int daysPeriod;
-  // bool isDatePeriod;
-  // bool isTimePeriod;
-
   struct tm startTimeInfo;
   struct tm endTimeInfo;
 
@@ -40,6 +28,7 @@ public:
   Period(const Period &period);
   ~Period();
 
+  int getTimeNow_Seconds() const;
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
@@ -98,16 +87,16 @@ public:
     In the next setters the start date and time will be assumed to be .now().
     The end date and time depends on the input.
   */
-  void setPeriod(MyDate endDate);
-  void setPeriod(MyTime endTime);
-  void setPeriod(MyDate endDate, MyTime endTime);
-  void setPeriod(int years, int months, int days, int hours, int minutes, int seconds);
-  void setPeriodYears(int y);
-  void setPeriodMonths(int m);
-  void setPeriodDays(int d);
-  void setPeriodHours(int h);
-  void setPeriodMinutes(int m);
-  void setPeriodSeconds(int s);
+  void setPeriodDateFromNow(MyDate endDate);
+  void setPeriodTimeFromNow(MyTime endTime);
+  void setPeriodDateAndTimeFromNow(MyDate endDate, MyTime endTime);
+  void setPeriodDateAndTimeFromNow(int years, int months, int days, int hours, int minutes, int seconds);
+  void setPeriodYearsFromNow(int y);
+  void setPeriodMonthsFromNow(int m);
+  void setPeriodDaysFromNow(int d);
+  void setPeriodHoursFromNow(int h);
+  void setPeriodMinutesFromNow(int m);
+  void setPeriodSecondsFromNow(int s);
 
   void operator=(const Period &period);
 
@@ -136,15 +125,10 @@ public:
   Period operator/=(const double);
 
   bool operator==(const Period & period) const;
-
   bool operator!=(const Period & period) const;
-
   bool operator>(const Period & period) const;
-
   bool operator>=(const Period & period) const;
-
   bool operator<(const Period & period) const;
-
   bool operator<=(const Period & period) const;
 
 };
