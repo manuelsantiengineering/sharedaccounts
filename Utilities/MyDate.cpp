@@ -85,7 +85,7 @@ int MyDate::getNumberOfDaysFromStartOfYear() const{
     the time is 00:00:00.
   */
 
-  int a = (isLeapYear()) ? 29 : 28;
+  int a = (this->isLeapYear()) ? 29 : 28;
   const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   int amountOfDays = this->day-1;
@@ -98,12 +98,53 @@ int MyDate::getNumberOfDaysUntilEndOfYear() const{
     Example: The amount of days until the end of year on December 31
     is 1 day. So, it is assumed that 1 day is 24 hrs and the time is 00:00:00.
   */
-  int a = (isLeapYear()) ? 29 : 28;
+  int a = (this->isLeapYear()) ? 29 : 28;
   const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   int amountOfDays = days_in_month[this->month]-this->day+1;
   for(int i = (this->month+1); i < 13; i++){ amountOfDays+= days_in_month[i];  }
   return(amountOfDays);
+}
+int MyDate::getNumberOfDaysUntilDate(const MyDate & dateInstance) const{
+  int amountOfDays = 0;
+
+  if(this->year > dateInstance.year){
+    for(int i = (dateInstance.year+1); i < this->year; i++){
+      amountOfDays += (this->isLeapYear(dateInstance.year+i)) ? 366 : 365;
+    }
+    amountOfDays += this->getNumberOfDaysFromStartOfYear();
+    amountOfDays += dateInstance.getNumberOfDaysUntilEndOfYear();
+    amountOfDays *= -1;
+  }else if(this->year < dateInstance.year){
+    for(int i = (this->year+1); i < dateInstance.year; i++){
+      amountOfDays += (this->isLeapYear(this->year+i)) ? 366 : 365;
+    }
+    amountOfDays += dateInstance.getNumberOfDaysFromStartOfYear();
+    amountOfDays += this->getNumberOfDaysUntilEndOfYear();
+  }else {
+    int a = (isLeapYear()) ? 29 : 28;
+    int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if(this->month < dateInstance.month){
+      for(int i = (this->month+1); i < dateInstance.month; i++){
+        amountOfDays += days_in_month[i];
+      }
+
+      amountOfDays += dateInstance.day;
+      amountOfDays += days_in_month[this->month] - this->day;
+    }else if(this->month > dateInstance.month){
+      for(int i = (dateInstance.month+1); i < this->month; i++){
+        amountOfDays += days_in_month[i];
+      }
+
+      amountOfDays += this->day;
+      amountOfDays += days_in_month[dateInstance.month] - dateInstance.day;
+      amountOfDays *= -1;
+    }else{
+      amountOfDays += dateInstance.day - this->day;
+    }
+  }
+
+  return (amountOfDays);
 }
 void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amountOfDays){
   int a;
