@@ -51,12 +51,13 @@ public:
   int getEndMinute() const;
   int getEndHour() const;
 
-  double getPeriodInDays() const;
-  double getPeriodInMonths() const;
-  double getPeriodInYears() const;
-  double getPeriodInSeconds() const;
+  MyTime getPeriodTime() const;
+  int getPeriodInSeconds() const;
+  int getDaysBetweenStartDateAndEndDate() const;
+
   double getPeriodInMinutes() const;
   double getPeriodInHours() const;
+  double getPeriodInDays() const;
 
   void setStartDate(MyDate date);
   void setStartDay(MyString d);
@@ -83,6 +84,7 @@ public:
   void setPeriod(MyDate startDate, MyDate endDate);
   void setPeriod(MyTime startTime, MyTime endTime);
   void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+  
   /*
     In the next setters the start date and time will be assumed to be .now().
     The end date and time depends on the input.

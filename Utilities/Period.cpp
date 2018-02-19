@@ -3,6 +3,9 @@
 /*
   struct tm * timeinfo{tm_sec,tm_min,tm_hour,tm_mday,tm_mon,tm_year}
 */
+static const int SECONDS_IN_DAY = 86400;
+static const int SECONDS_IN_HOUR = 3600;
+static const int MINUTES_IN_DAY = 1440;
 
 Period::Period(){
   this->startTimeInfo = {1,1,1,1,1,1};
@@ -42,6 +45,24 @@ MyTime Period::getStartTime() const
 {  return( MyTime(this->startTimeInfo.tm_hour, this->startTimeInfo.tm_min, this->startTimeInfo.tm_sec) ); }
 MyTime Period::getEndTime() const
 {  return( MyTime(this->endTimeInfo.tm_hour, this->endTimeInfo.tm_min, this->endTimeInfo.tm_sec) ); }
+
+MyTime Period::getPeriodTime() const{
+  return( MyTime(0,0,this->getPeriodInSeconds()) );
+}
+int Period::getPeriodInSeconds() const{
+  int totalSeconds = SECONDS_IN_DAY*this->getDaysBetweenStartDateAndEndDate();
+  MyTime startTime(this->getStartTime());
+  MyTime endTime(this->getEndTime());
+  totalSeconds += endTime.getTimeInSeconds() - startTime.getTimeInSeconds();
+  return(totalSeconds);
+}
+int Period::getDaysBetweenStartDateAndEndDate() const{
+  MyDate startDate(this->getStartDate());
+  return(startDate.getNumberOfDaysUntilDate(this->getEndDate()) );
+}
+double Period::getPeriodInMinutes() const{ return( this->getPeriodInSeconds()/60 ); }
+double Period::getPeriodInHours() const{  return( this->getPeriodInMinutes()/60 );  }
+double Period::getPeriodInDays() const{  return( this->getPeriodInMinutes()/MINUTES_IN_DAY );  }
 
 int Period::getStartDay() const{  return(this->startTimeInfo.tm_mday);  }
 int Period::getStartMonth() const{  return(this->startTimeInfo.tm_mon); }
