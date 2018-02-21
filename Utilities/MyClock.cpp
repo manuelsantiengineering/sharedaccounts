@@ -209,6 +209,6 @@ bool MyClock::operator < (const MyClock & timeInstance) const{
 }
 
 ostream & operator<<(ostream & out, const MyClock & timeInstance){
-  out << timeInstance.timeToString();
+  out << timeInstance.timeToString_Seconds();
   return(out);
 }

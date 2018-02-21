@@ -15,7 +15,7 @@
 using namespace std;
 
 class MyDate{
-private:
+protected:
   int day, month, year;
 
 public:

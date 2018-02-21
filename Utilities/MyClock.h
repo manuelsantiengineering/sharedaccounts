@@ -22,7 +22,7 @@
 #include "MyString.h"
 
 class MyClock : public MyTime{
-private:
+protected:
   bool isAM;
 
 public:

@@ -270,12 +270,24 @@ bool Test::testMyDate(){
   date4.setDate(1,1,1970);
   int days = (int) 1514764800/86400;
   date2.setDateAtNumberOfDaysFromDate(date4, days);
+  date3.setDate(1,1,2018);
   std::cout << "Resulting Date must be 1/1/2018, result: " << date2 << std::endl;
+  passedTest = expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true );
+
 
   date4.setDate(1,1,2018);
   days = (int) (-1.0)*1514764800/86400;
   date2.setDateAtNumberOfDaysFromDate(date4, days);
+    date3.setDate(1,1,1970);
   std::cout << "Resulting Date must be 1/1/1970, result: " << date2 << std::endl;
+  passedTest = expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true );
+
+  date4.setDate(1,1,1970);
+  days = (int) 928497600/86400;
+  date2.setDateAtNumberOfDaysFromDate(date4, days);
+  date3.setDate(4,6,1999);
+  std::cout << "Resulting Date must be 6/4/1999, result: " << date2 << std::endl;
+  passedTest = expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true );
 
   cout << endl;
   return(passedTest);

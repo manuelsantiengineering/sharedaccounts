@@ -1,6 +1,5 @@
 //
 //  MyDate.cpp
-//  Lab03_CatalogoLibros
 //
 //  Created by Manuel E Santiago on 1/20/15.
 //  Copyright (c) 2015 Manuel. All rights reserved.
