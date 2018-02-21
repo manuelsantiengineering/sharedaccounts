@@ -318,7 +318,6 @@ bool MyDate::operator ==(const MyDate & dateInstance) const{
   return (this->day == dateInstance.day && this->month == dateInstance.month && this->year == dateInstance.year);
 }
 bool MyDate::operator !=(const MyDate & dateInstance) const{
-  // return(this->day != dateInstance.day || this->month != dateInstance.month || this->year != dateInstance.year);
   return( !((*this) == dateInstance) );
 }
 bool MyDate::operator >=(const MyDate & dateInstance) const{
@@ -333,8 +332,6 @@ bool MyDate::operator <(const MyDate & dateInstance) const{
   return(!((*this) > dateInstance) && (*this) != dateInstance);
 }
 bool MyDate::operator <=(const MyDate & dateInstance) const{
-  // return((this->year <= dateInstance.year) || (this->year == dateInstance.year && this->month < dateInstance.month) ||
-  // (this->year == dateInstance.year && this->month == dateInstance.month && this->day <= dateInstance.day));
   return( (*this) < dateInstance || (*this) == dateInstance  );
 }
 ostream & operator<<(ostream & out, const MyDate dateInstance){

@@ -13,8 +13,8 @@
 //
 // #endif
 
-#ifndef __MyTime__
-#define __MyTime__
+#ifndef __MYTIME__
+#define __MYTIME__
 
 // #include <ctime>
 #include <math.h>
@@ -68,12 +68,6 @@ public:
 
   friend ostream & operator<<(ostream & out, const MyTime & timeInstance);
 
-
-  // long int getTimeUTC_Epoch_Long() const;
-  // MyString getTimeUTC_Epoch_MyString() const;
-  // long int getTimeLocaltime_Epoch_Long() const;
-  // MyString getTimeLocaltime_Epoch_MyString() const;
-
 };
 
-#endif /* defined(__MyTime__) */
+#endif /* defined(__MYTIME__) */

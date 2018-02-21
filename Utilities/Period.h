@@ -10,24 +10,20 @@
 
 #include <chrono>
 
-#include "MyTime.h"
-#include "MyDate.h"
+#include "TimeAndDate.h"
 
 class Period
 {
 private:
   struct tm startTimeInfo;
   struct tm endTimeInfo;
-  // int startYear, startMonth, startDay, startHour, startMinute, startSecond;
-  // int endYear, endMonth, endDay, endHour, endMinute, endSecond;
 
 public:
   Period();
-  // Period(startYear = 1990, startMonth = 1, startDay = 1,
-  //       startHour = 12, start);
   Period(MyDate startDate, MyDate endDate);
   Period(MyTime startTime, MyTime endTime);
   Period(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+  Period(TimeAndDate start, TimeAndDate end);
   Period(const Period &period);
   ~Period();
 
@@ -35,6 +31,8 @@ public:
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
+  TimeAndDate getStartTimeAndDate() const;
+  TimeAndDate getEndTimeAndDate() const;
   MyDate getStartDate() const;
   MyDate getEndDate() const;
   MyTime getStartTime() const;

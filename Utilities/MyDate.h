@@ -1,12 +1,12 @@
 //
 //  MyDate.*
 //
-//  Created by Manuel E Santiago on 1/20/15.
+//  Created by Manuel E Santiago on 1/20/2015.
 //  Copyright (c) 2015 Manuel. All rights reserved.
 //
 
-#ifndef __MyDate__
-#define __MyDate__
+#ifndef __MYDATE__
+#define __MYDATE__
 
 #include <exception>
 
@@ -59,4 +59,4 @@ public:
   friend ostream & operator<<(ostream & out, const MyDate dateInstance);
 };
 
-#endif /* defined(__MyDate__) */
+#endif /* defined(__MYDATE__) */

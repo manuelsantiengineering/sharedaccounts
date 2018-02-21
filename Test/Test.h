@@ -5,8 +5,8 @@
 //  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
-#ifndef __Test__
-#define __Test__
+#ifndef __TEST__
+#define __TEST__
 
 #include <stdio.h>
 #include <iostream>
@@ -14,6 +14,7 @@
 #include "../Utilities/MyString.h"
 #include "../Utilities/MyDate.h"
 #include "../Utilities/MyClock.h"
+// #include "../Utilities/TimeAndDate.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -37,4 +38,4 @@ public:
 
 };
 
-#endif /* defined(__Test__) */
+#endif /* defined(__TEST__) */

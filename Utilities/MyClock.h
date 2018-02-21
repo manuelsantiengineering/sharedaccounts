@@ -1,8 +1,8 @@
 //
 //  MyClock.*
 //
-//  Created by Manuel E Santiago on 1/20/15.
-//  Copyright (c) 2015 Manuel. All rights reserved.
+//  Created by Manuel E Santiago on 2/17/2018.
+//  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
 // const
@@ -13,8 +13,8 @@
 //
 // #endif
 
-#ifndef __MyClock__
-#define __MyClock__
+#ifndef __MYCLOCK__
+#define __MYCLOCK__
 
 #include <exception>
 

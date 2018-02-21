@@ -5,6 +5,9 @@
 //  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
+#ifndef __TIMEANDDATE__
+#define __TIMEANDDATE__
+
 #include "MyDate.h"
 #include "MyClock.h"
 
@@ -15,9 +18,15 @@ public:
   TimeAndDate(int day, int mon, int yr, int hr, int min, int sec);
   TimeAndDate(MyDate date);
   TimeAndDate(MyClock time);
-  TimeAndDate(MyDate date, MyClock time);
+  TimeAndDate(MyDate date, MyClock td);
   TimeAndDate(const TimeAndDate &td );
   ~TimeAndDate();
+
+  MyClock getTime() const;
+  MyDate getDate() const;
+
+  void setTime(MyClock td);
+  void setDate(MyDate date);
 
   void operator=(const TimeAndDate &td);
 
@@ -31,3 +40,5 @@ public:
 
   friend ostream & operator<<(ostream & out, const TimeAndDate td);
 };
+
+#endif /* defined(__TIMEANDDATE__) */
