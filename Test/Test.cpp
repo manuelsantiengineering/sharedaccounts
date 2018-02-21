@@ -267,8 +267,15 @@ bool Test::testMyDate(){
   passedTest = expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date2.getNumberOfDaysUntilDate(date4) == 364), true );
   passedTest = expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date4.getNumberOfDaysUntilDate(date2) == -364), true );
 
+  date4.setDate(1,1,1970);
+  int days = (int) 1514764800/86400;
+  date2.setDateAtNumberOfDaysFromDate(date4, days);
+  std::cout << "Resulting Date must be 1/1/2018, result: " << date2 << std::endl;
 
-
+  date4.setDate(1,1,2018);
+  days = (int) (-1.0)*1514764800/86400;
+  date2.setDateAtNumberOfDaysFromDate(date4, days);
+  std::cout << "Resulting Date must be 1/1/1970, result: " << date2 << std::endl;
 
   cout << endl;
   return(passedTest);

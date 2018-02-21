@@ -62,17 +62,17 @@ int main(int argc, const char * argv[]) {
       cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
     }
 
-    if(testing.testMyClock()){
-      cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << endl;
-    }else{
-      cout << "\n\t FAILED TESTING: " << "MyClock\n" << endl;
-    }
+    // if(testing.testMyClock()){
+    //   cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "MyClock\n" << endl;
+    // }
 
-    if(testing.testMyString()){
-      cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
-    }else{
-      cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
-    }
+    // if(testing.testMyString()){
+    //   cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
+    // }else{
+    //   cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
+    // }
   }
   catch (MyString e)
   {
@@ -154,8 +154,6 @@ std::cout << std::endl << "UTC Today is: "
   mktime ( timeinfo );
 
   std::cout << "That day is a " << weekday[timeinfo->tm_wday] << std::endl;
-
-
 
 
   return 0;

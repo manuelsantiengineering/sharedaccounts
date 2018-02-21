@@ -1,8 +1,9 @@
 #include "Period.h"
 
 /*
-  struct tm * timeinfo{tm_sec,tm_min,tm_hour,tm_mday,tm_mon,tm_year}
+  Period has the number of seconds on January 1, 1990 at 00:00:00
 */
+
 static const int SECONDS_IN_DAY = 86400;
 static const int SECONDS_IN_HOUR = 3600;
 static const int MINUTES_IN_DAY = 1440;
@@ -100,6 +101,12 @@ void Period::setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTim
   this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
     endDate.getDay(),endDate.getMonth(),endDate.getYear()};
 }
+// MyDate getDateToday() const{
+//
+// }
+// MyTime getTimeToday() const{
+//
+// }
 void setPeriodDateFromNow(MyDate endDate){
 
 }

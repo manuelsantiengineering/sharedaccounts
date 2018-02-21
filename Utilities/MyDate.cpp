@@ -155,7 +155,7 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
   if(amountOfDays == 0){
     (*this) = dateInstance;
   }
-  else{
+  else if(amountOfDays > 0){
     while(amountOfDays != -1){
       a = (this->isLeapYear(dateInstance.year + yearsCount)) ? 29 : 28;
       days_in_month[2] = a;
@@ -177,6 +177,38 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
         }
       }
       if(amountOfDays != -1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }else{
+    while(amountOfDays != 1){
+      a = (this->isLeapYear(dateInstance.year + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = dateInstance.year - yearsCount;
+          amountOfDays = 1;
+          break;
+        }else if(abs(amountOfDays) >= days_in_month[i]){
+          amountOfDays += (days_in_month[i]);
+        }else{
+          if(i == 1){ //? 12 : i;
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = dateInstance.year - yearsCount - 1;
+          }else{
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = dateInstance.year - yearsCount;
+          }
+          amountOfDays = 1;
+          break;
+        }
+      }
+      if(amountOfDays != 1){
         yearsCount++;
         startMonth = 1;
       }

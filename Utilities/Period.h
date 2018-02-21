@@ -18,10 +18,13 @@ class Period
 private:
   struct tm startTimeInfo;
   struct tm endTimeInfo;
-
+  // int startYear, startMonth, startDay, startHour, startMinute, startSecond;
+  // int endYear, endMonth, endDay, endHour, endMinute, endSecond;
 
 public:
   Period();
+  // Period(startYear = 1990, startMonth = 1, startDay = 1,
+  //       startHour = 12, start);
   Period(MyDate startDate, MyDate endDate);
   Period(MyTime startTime, MyTime endTime);
   Period(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
@@ -84,11 +87,14 @@ public:
   void setPeriod(MyDate startDate, MyDate endDate);
   void setPeriod(MyTime startTime, MyTime endTime);
   void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
-
   /*
-    In the next setters the start date and time will be assumed to be .now().
+    In the next getters and setters use the current time.
+    For the setters, the start date and time will be assumed to be .now().
     The end date and time depends on the input.
   */
+  // long int getSecondsSinceEpoch() const;
+  MyDate getDateToday() const;
+  MyTime getTimeToday() const;
   void setPeriodDateFromNow(MyDate endDate);
   void setPeriodTimeFromNow(MyTime endTime);
   void setPeriodDateAndTimeFromNow(MyDate endDate, MyTime endTime);
