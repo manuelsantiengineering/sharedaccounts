@@ -176,6 +176,45 @@ TimeAndDate Period::getTimeDateToday_Local() const{
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
             timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec ) );
 }
+void Period::setPeriodDateFromNow_UTC(MyDate endDate){
+  this->setStartTimeNow_UTC();
+  this->setEndDate(endDate);
+}
+void Period::setPeriodTimeFromNow_UTC(MyTime endTime){
+  this->setStartTimeNow_UTC();
+  this->endTimeInfo.tm_hour = endTime.getHours();
+  this->endTimeInfo.tm_min = endTime.getMinutes();
+  this->endTimeInfo.tm_sec = endTime.getSeconds();
+}
+void Period::setPeriodDateAndTimeFromNow_UTC(MyDate endDate, MyTime endTime){
+  this->setStartTimeNow_UTC();
+  this->setEndDate(endDate);
+  this->endTimeInfo.tm_hour = endTime.getHours();
+  this->endTimeInfo.tm_min = endTime.getMinutes();
+  this->endTimeInfo.tm_sec = endTime.getSeconds();
+}
+void Period::setPeriodDateAndTimeFromNow_UTC(int years, int months, int days, int hours, int minutes, int seconds){
+  this->setStartTimeNow_UTC();
+  this->endTimeInfo.tm_mday = days;
+  this->endTimeInfo.tm_mon = months;
+  this->endTimeInfo.tm_year = years;
+  this->endTimeInfo.tm_hour = hours;
+  this->endTimeInfo.tm_min = minutes;
+  this->endTimeInfo.tm_sec = seconds;
+}
+void Period::setPeriodDateFromNow_UTC(int d, int m, int y){
+  this->setStartTimeNow_UTC();
+  this->endTimeInfo.tm_mday = d;
+  this->endTimeInfo.tm_mon = m;
+  this->endTimeInfo.tm_year = y;
+}
+void Period::setPeriodTimeFromNow_UTC(int h, int m, int s){
+  this->setStartTimeNow_UTC();
+  this->endTimeInfo.tm_hour = h;
+  this->endTimeInfo.tm_min = m;
+  this->endTimeInfo.tm_sec = s;
+}
+
 void Period::operator=(const Period &period){
   this->startTimeInfo = period.startTimeInfo;
   this->endTimeInfo = period.endTimeInfo;

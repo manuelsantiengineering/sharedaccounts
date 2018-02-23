@@ -79,27 +79,24 @@ public:
   void setPeriod(MyTime startTime, MyTime endTime);
   void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
 
-  void setStartTimeNow_UTC();
-  void setStartTimeNow_Local();
   /*
     In the next getters and setters use the current time.
     For the setters, the start date and time will be assumed to be .now().
     The end date and time depends on the input.
   */
-  // long int getSecondsSinceEpoch() const;
+  void setStartTimeNow_UTC();
+  void setStartTimeNow_Local();
+
   TimeAndDate getTimeDateToday_UTC() const;
   TimeAndDate getTimeDateToday_Local() const;
 
-  void setPeriodDateFromNow(MyDate endDate);
-  void setPeriodTimeFromNow(MyTime endTime);
-  void setPeriodDateAndTimeFromNow(MyDate endDate, MyTime endTime);
-  void setPeriodDateAndTimeFromNow(int years, int months, int days, int hours, int minutes, int seconds);
-  void setPeriodYearsFromNow(int y);
-  void setPeriodMonthsFromNow(int m);
-  void setPeriodDaysFromNow(int d);
-  void setPeriodHoursFromNow(int h);
-  void setPeriodMinutesFromNow(int m);
-  void setPeriodSecondsFromNow(int s);
+  void setPeriodDateFromNow_UTC(MyDate endDate);
+  void setPeriodTimeFromNow_UTC(MyTime endTime);
+  void setPeriodDateAndTimeFromNow_UTC(MyDate endDate, MyTime endTime);
+  void setPeriodDateAndTimeFromNow_UTC(int years, int months, int days, int hours, int minutes, int seconds);
+  void setPeriodDateFromNow_UTC(int d, int m, int y);
+  void setPeriodTimeFromNow_UTC(int h, int m, int s);
+
 
   void operator=(const Period &period);
 
