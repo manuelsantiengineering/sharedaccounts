@@ -176,3 +176,7 @@ TimeAndDate Period::getTimeDateToday_Local() const{
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
             timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec ) );
 }
+void Period::operator=(const Period &period){
+  this->startTimeInfo = period.startTimeInfo;
+  this->endTimeInfo = period.endTimeInfo;
+}

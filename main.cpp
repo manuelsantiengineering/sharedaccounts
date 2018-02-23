@@ -29,8 +29,6 @@
 
 enum OS {LINUX = 0, WIN, MAC, ANDROID, IOS};
 
-using namespace std::chrono;
-
 // using namespace std;
 
 int main(int argc, const char * argv[]) {
@@ -79,87 +77,5 @@ int main(int argc, const char * argv[]) {
     cout << "Error: " << e << endl;
   }
 
-
-
-  /*
-    FROM HERE STARTS THE PERIOD TESTING
-  */
-
-    std::time_t result = std::time(NULL);
-    std::gmtime(&result);
-    std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
-    long int t = static_cast<long int> (result);
-
-
-
-    MyString timestr(t);
-    std::cout << " MyString time: " << timestr << std::endl;
-
-    system_clock::time_point tp = system_clock::now();
-    system_clock::duration dtn = tp.time_since_epoch();
-
-    std::cout << "current time since epoch, expressed in:" << std::endl;
-    std::cout << "periods: " << dtn.count() << std::endl;
-    std::cout << "seconds: " << dtn.count() * system_clock::period::num / system_clock::period::den;
-    std::cout << std::endl;
-
-
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-  std::time_t now_c = std::chrono::system_clock::to_time_t(now - std::chrono::hours(24));
-  std::cout << "24 hours ago, the time was "
-            << std::put_time(std::localtime(&now_c), "%F %T") << '\n';
-
-  std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-  std::cout << "Hello World\n";
-  std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-  std::cout << "Printing took "
-            << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-            << "us.\n";
-
-  time_t rawtime;
-  struct tm * timeinfo;
-
-  // timeinfo2 = tm(&timeinfo);
-  // timeinfo2 = time_t(&timeinfo)
-  int year = 2018;
-  int month = 2;
-  int day = 13;
-  const char * weekday[] = { "Sunday", "Monday","Tuesday", "Wednesday","Thursday", "Friday", "Saturday"};
-
-  time ( &rawtime );
-  timeinfo = localtime ( &rawtime );
-  std::cout << std::endl << "LOCALTIME Today is: "
-            << "Day: " << weekday[timeinfo->tm_wday]
-            << ", Date: " << timeinfo->tm_mday
-            << ", Month: " << (timeinfo->tm_mon+1)
-            << ", Year: " << (timeinfo->tm_year+1900)
-            << ", Hour: " << (timeinfo->tm_hour)
-            << ", Minutes: " << (timeinfo->tm_min)
-            << ", Seconds: " << (timeinfo->tm_sec)
-            << std::endl << std::endl;
-
-timeinfo = gmtime ( &rawtime );
-std::cout << std::endl << "UTC Today is: "
-          << "Day: " << weekday[timeinfo->tm_wday]
-          << ", Date: " << timeinfo->tm_mday
-          << ", Month: " << (timeinfo->tm_mon+1)
-          << ", Year: " << (timeinfo->tm_year+1900)
-          << ", Hour: " << (timeinfo->tm_hour)
-          << ", Minutes: " << (timeinfo->tm_min)
-          << ", Seconds: " << (timeinfo->tm_sec)
-          << std::endl << std::endl;
-
-  timeinfo->tm_year = year - 1900;
-  timeinfo->tm_mon = month - 1;
-  timeinfo->tm_mday = day;
-
-  /* call mktime: timeinfo->tm_wday will be set */
-  time_t rawtime2;
-  struct tm timeinfo2;
-  rawtime2 = mktime ( timeinfo );
-  // timeinfo2 = time(rawtime2);
-  std::cout << "That day is a " << weekday[timeinfo->tm_wday] << std::endl;
-
-
-  return 0;
+  return (0);
 }

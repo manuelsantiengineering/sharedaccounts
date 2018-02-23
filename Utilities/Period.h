@@ -8,7 +8,7 @@
 #ifndef PERIOD_H
 #define PERIOD_H
 
-#include <chrono>
+#include <ctime>
 
 #include "TimeAndDate.h"
 
