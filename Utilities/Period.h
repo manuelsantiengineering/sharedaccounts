@@ -27,7 +27,6 @@ public:
   Period(const Period &period);
   ~Period();
 
-  int getTimeNow_Seconds() const;
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
@@ -61,9 +60,6 @@ public:
   double getPeriodInDays() const;
 
   void setStartDate(MyDate date);
-  void setStartDay(MyString d);
-  void setStartMonth(MyString m);
-  void setStartYear(MyString y);
   void setStartDay(int d);
   void setStartMonth(int m);
   void setStartYear(int y);
@@ -72,9 +68,6 @@ public:
   void setStartHour(int h);
 
   void setEndDate(MyDate date);
-  void setEndDay(MyString d);
-  void setEndMonth(MyString m);
-  void setEndYear(MyString y);
   void setEndDay(int d);
   void setEndMonth(int m);
   void setEndYear(int y);
@@ -85,14 +78,18 @@ public:
   void setPeriod(MyDate startDate, MyDate endDate);
   void setPeriod(MyTime startTime, MyTime endTime);
   void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+
+  void setStartTimeNow_UTC();
+  void setStartTimeNow_Local();
   /*
     In the next getters and setters use the current time.
     For the setters, the start date and time will be assumed to be .now().
     The end date and time depends on the input.
   */
   // long int getSecondsSinceEpoch() const;
-  MyDate getDateToday() const;
-  MyTime getTimeToday() const;
+  TimeAndDate getTimeDateToday_UTC() const;
+  TimeAndDate getTimeDateToday_Local() const;
+
   void setPeriodDateFromNow(MyDate endDate);
   void setPeriodTimeFromNow(MyTime endTime);
   void setPeriodDateAndTimeFromNow(MyDate endDate, MyTime endTime);

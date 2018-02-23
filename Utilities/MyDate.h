@@ -39,6 +39,7 @@ public:
   int getNumberOfDaysUntilDate(const MyDate & dateInstance) const;
 
   void setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amountOfDays);
+  void setDateAtNumberOfDaysFromDate(const int d, const int m, const int y, int amountOfDays);
   void setDateAtNumberOfDaysFromStartOfYear(int amountOfDays);
   void setDateAtNumberOfDaysFromStartOfYear(int amountOfDays, int year);
 

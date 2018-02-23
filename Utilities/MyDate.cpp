@@ -10,11 +10,10 @@
 static const MyString MONTHS[13] = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DEC"};
 
 MyDate::MyDate(int day, int month, int year){
-  if( isDateCorrect(day, month, year) ){
-    this->day = day;
-    this->month = month;
-    this->year = year;
-  }else{
+  this->day = day;
+  this->month = month;
+  this->year = year;
+  if( !isDateCorrect(day, month, year) ){
     MyString e("Please verify the date values.");
     throw e;
   }
@@ -202,6 +201,75 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
             this->day = days_in_month[12] + amountOfDays;
             this->month = 12;
             this->year = dateInstance.year - yearsCount;
+          }
+          amountOfDays = 1;
+          break;
+        }
+      }
+      if(amountOfDays != 1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }
+}
+void MyDate::setDateAtNumberOfDaysFromDate(const int d, const int m, const int y, int amountOfDays){
+  int a;
+  int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int yearsCount = 0;
+  int startMonth = m;
+
+  if(amountOfDays == 0){
+    this->setDate(d,m,y);
+  }
+  else if(amountOfDays > 0){
+    while(amountOfDays != -1){
+      a = (this->isLeapYear(y + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = y + yearsCount;
+          amountOfDays = -1;
+          break;
+        }else if(amountOfDays >= days_in_month[i]){
+          amountOfDays -= (days_in_month[i]);
+        }else{
+          this->day = amountOfDays+1;
+          this->month = i;
+          this->year = y + yearsCount;
+          amountOfDays = -1;
+          break;
+        }
+      }
+      if(amountOfDays != -1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }else{
+    while(amountOfDays != 1){
+      a = (this->isLeapYear(y + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = y - yearsCount;
+          amountOfDays = 1;
+          break;
+        }else if(abs(amountOfDays) >= days_in_month[i]){
+          amountOfDays += (days_in_month[i]);
+        }else{
+          if(i == 1){ //? 12 : i;
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = y - yearsCount - 1;
+          }else{
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = y - yearsCount;
           }
           amountOfDays = 1;
           break;

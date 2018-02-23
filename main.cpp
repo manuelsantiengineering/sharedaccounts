@@ -118,6 +118,9 @@ int main(int argc, const char * argv[]) {
 
   time_t rawtime;
   struct tm * timeinfo;
+
+  // timeinfo2 = tm(&timeinfo);
+  // timeinfo2 = time_t(&timeinfo)
   int year = 2018;
   int month = 2;
   int day = 13;
@@ -151,8 +154,10 @@ std::cout << std::endl << "UTC Today is: "
   timeinfo->tm_mday = day;
 
   /* call mktime: timeinfo->tm_wday will be set */
-  mktime ( timeinfo );
-
+  time_t rawtime2;
+  struct tm timeinfo2;
+  rawtime2 = mktime ( timeinfo );
+  // timeinfo2 = time(rawtime2);
   std::cout << "That day is a " << weekday[timeinfo->tm_wday] << std::endl;
 
 

@@ -1,11 +1,7 @@
 #include "Period.h"
 
-/*
-  Period has the number of seconds on January 1, 1990 at 00:00:00
-*/
-
 static const int SECONDS_IN_DAY = 86400;
-static const int SECONDS_IN_HOUR = 3600;
+// static const int SECONDS_IN_HOUR = 3600;
 static const int MINUTES_IN_DAY = 1440;
 
 Period::Period(){
@@ -40,9 +36,6 @@ Period::Period(const Period &period){
 }
 Period::~Period(){}
 
-int Period::getTimeNow_Seconds() const{
-  return(0);
-}
 TimeAndDate Period::getStartTimeAndDate() const{
   return( TimeAndDate(this->startTimeInfo.tm_mday, this->startTimeInfo.tm_mon, this->startTimeInfo.tm_year,
             this->startTimeInfo.tm_hour, this->startTimeInfo.tm_min, this->startTimeInfo.tm_sec ) );
@@ -59,6 +52,20 @@ MyTime Period::getStartTime() const
 {  return( MyTime(this->startTimeInfo.tm_hour, this->startTimeInfo.tm_min, this->startTimeInfo.tm_sec) ); }
 MyTime Period::getEndTime() const
 {  return( MyTime(this->endTimeInfo.tm_hour, this->endTimeInfo.tm_min, this->endTimeInfo.tm_sec) ); }
+
+int Period::getStartDay() const{  return(this->startTimeInfo.tm_mday);  }
+int Period::getStartMonth() const{  return(this->startTimeInfo.tm_mon); }
+int Period::getStartYear() const{ return(this->startTimeInfo.tm_year);  }
+int Period::getStartSecond() const{ return(this->startTimeInfo.tm_sec); }
+int Period::getStartMinute() const{ return(this->startTimeInfo.tm_min); }
+int Period::getStartHour() const{ return(this->startTimeInfo.tm_hour);  }
+
+int Period::getEndDay() const{  return(this->endTimeInfo.tm_mday);  }
+int Period::getEndMonth() const{  return(this->endTimeInfo.tm_mon); }
+int Period::getEndYear() const{ return(this->endTimeInfo.tm_year);  }
+int Period::getEndSecond() const{ return(this->endTimeInfo.tm_sec); }
+int Period::getEndMinute() const{ return(this->endTimeInfo.tm_min); }
+int Period::getEndHour() const{ return(this->endTimeInfo.tm_hour);  }
 
 MyTime Period::getPeriodTime() const{
   return( MyTime(0,0,this->getPeriodInSeconds()) );
@@ -78,19 +85,29 @@ double Period::getPeriodInMinutes() const{ return( this->getPeriodInSeconds()/60
 double Period::getPeriodInHours() const{  return( this->getPeriodInMinutes()/60 );  }
 double Period::getPeriodInDays() const{  return( this->getPeriodInMinutes()/MINUTES_IN_DAY );  }
 
-int Period::getStartDay() const{  return(this->startTimeInfo.tm_mday);  }
-int Period::getStartMonth() const{  return(this->startTimeInfo.tm_mon); }
-int Period::getStartYear() const{ return(this->startTimeInfo.tm_year);  }
-int Period::getStartSecond() const{ return(this->startTimeInfo.tm_sec); }
-int Period::getStartMinute() const{ return(this->startTimeInfo.tm_min); }
-int Period::getStartHour() const{ return(this->startTimeInfo.tm_hour);  }
+void Period::setStartDate(MyDate date){
+  this->startTimeInfo.tm_mday = date.getDay();
+  this->startTimeInfo.tm_mon = date.getMonth();
+  this->startTimeInfo.tm_year = date.getYear();
+}
+void Period::setStartDay(int d){ this->startTimeInfo.tm_mday = d; }
+void Period::setStartMonth(int m){ this->startTimeInfo.tm_mon = m;  }
+void Period::setStartYear(int y){ this->startTimeInfo.tm_year = y;  }
+void Period::setStartSecond(int s){ this->startTimeInfo.tm_sec = s; }
+void Period::setStartMinute(int m){ this->startTimeInfo.tm_min = m; }
+void Period::setStartHour(int h){ this->startTimeInfo.tm_hour = h;  }
 
-int Period::getEndDay() const{  return(this->endTimeInfo.tm_mday);  }
-int Period::getEndMonth() const{  return(this->endTimeInfo.tm_mon); }
-int Period::getEndYear() const{ return(this->endTimeInfo.tm_year);  }
-int Period::getEndSecond() const{ return(this->endTimeInfo.tm_sec); }
-int Period::getEndMinute() const{ return(this->endTimeInfo.tm_min); }
-int Period::getEndHour() const{ return(this->endTimeInfo.tm_hour);  }
+void Period::setEndDate(MyDate date){
+  this->endTimeInfo.tm_mday = date.getDay();
+  this->endTimeInfo.tm_mon = date.getMonth();
+  this->endTimeInfo.tm_year = date.getYear();
+}
+void Period::setEndDay(int d){ this->endTimeInfo.tm_mday = d; }
+void Period::setEndMonth(int m){ this->endTimeInfo.tm_mon = m;  }
+void Period::setEndYear(int y){ this->endTimeInfo.tm_year = y;  }
+void Period::setEndSecond(int s){ this->endTimeInfo.tm_sec = s; }
+void Period::setEndMinute(int m){ this->endTimeInfo.tm_min = m; }
+void Period::setEndHour(int h){ this->endTimeInfo.tm_hour = h;  }
 
 void Period::setPeriod(MyDate startDate, MyDate endDate){
   this->startTimeInfo.tm_mday = startDate.getDay();
@@ -114,15 +131,48 @@ void Period::setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTim
   this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
     endDate.getDay(),endDate.getMonth(),endDate.getYear()};
 }
-// MyDate getDateToday() const{
-//
-// }
-// MyTime getTimeToday() const{
-//
-// }
-void setPeriodDateFromNow(MyDate endDate){
-
+void Period::setStartTimeNow_UTC(){
+  /*
+    // const long int SECONDS_2_23_2018_UTC = 1519344000;
+    The amount of seconds since 1/1/1970 00:00:00 to
+    2/23/2018 00:00:00 in UTC is 1519344000
+  */
+  std::time_t result = std::time(NULL);
+  std::gmtime(&result);
+  const long int NOW = static_cast<long int> (result);
+  int since20180223 = (int)(1519344000-NOW);
+  MyDate date;
+  date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
+  this->setStartDate(date);
 }
-void setPeriodTimeFromNow(MyTime endTime){
+void Period::setStartTimeNow_Local(){
+  /*
+    // const long int SECONDS_2_23_2018_UTC = 1519344000;
+    The amount of seconds since 1/1/1970 00:00:00 to
+    2/23/2018 00:00:00 in UTC is 1519344000
+  */
+  std::time_t result = std::time(NULL);
+  std::localtime(&result);
+  const long int NOW = static_cast<long int> (result);
+  int since20180223 = (int)(1519344000-NOW);
+  MyDate date;
+  date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
+  this->setStartDate(date);
+}
 
+TimeAndDate Period::getTimeDateToday_UTC() const{
+  time_t rawtime;
+  struct tm * timeInfo;
+  time ( &rawtime );
+  timeInfo = gmtime ( &rawtime );
+  return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
+            timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec ) );
+}
+TimeAndDate Period::getTimeDateToday_Local() const{
+  time_t rawtime;
+  struct tm * timeInfo;
+  time ( &rawtime );
+  timeInfo = localtime ( &rawtime );
+  return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
+            timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec ) );
 }
