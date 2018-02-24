@@ -21,8 +21,8 @@ private:
 public:
   Period();
   Period(MyDate startDate, MyDate endDate);
-  Period(MyTime startTime, MyTime endTime);
-  Period(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+  Period(MyClock startTime, MyClock endTime);
+  Period(MyDate startDate, MyDate endDate, MyClock startTime, MyClock endTime);
   Period(TimeAndDate start, TimeAndDate end);
   Period(const Period &period);
   ~Period();
@@ -30,12 +30,14 @@ public:
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
+  bool periodIsValid() const; //Period must be no more than a year
+
   TimeAndDate getStartTimeAndDate() const;
   TimeAndDate getEndTimeAndDate() const;
   MyDate getStartDate() const;
   MyDate getEndDate() const;
-  MyTime getStartTime() const;
-  MyTime getEndTime() const;
+  MyClock getStartTime() const;
+  MyClock getEndTime() const;
 
   int getStartDay() const;
   int getStartMonth() const;
@@ -52,9 +54,9 @@ public:
   int getEndHour() const;
 
   MyTime getPeriodTime() const;
-  int getPeriodInSeconds() const;
   int getDaysBetweenStartDateAndEndDate() const;
 
+  int getPeriodInSeconds() const;
   double getPeriodInMinutes() const;
   double getPeriodInHours() const;
   double getPeriodInDays() const;
@@ -76,8 +78,9 @@ public:
   void setEndHour(int h);
 
   void setPeriod(MyDate startDate, MyDate endDate);
-  void setPeriod(MyTime startTime, MyTime endTime);
-  void setPeriod(MyDate startDate, MyDate endDate, MyTime startTime, MyTime endTime);
+  void setPeriod(MyClock startTime, MyClock endTime);
+  void setPeriod(MyDate startDate, MyDate endDate, MyClock startTime, MyClock endTime);
+  void setPeriod(TimeAndDate start, TimeAndDate end);
 
   /*
     In the next getters and setters use the current time.
@@ -91,8 +94,8 @@ public:
   TimeAndDate getTimeDateToday_Local() const;
 
   void setPeriodDateFromNow_UTC(MyDate endDate);
-  void setPeriodTimeFromNow_UTC(MyTime endTime);
-  void setPeriodDateAndTimeFromNow_UTC(MyDate endDate, MyTime endTime);
+  void setPeriodTimeFromNow_UTC(MyClock endTime);
+  void setPeriodDateAndTimeFromNow_UTC(MyDate endDate, MyClock endTime);
   void setPeriodDateAndTimeFromNow_UTC(int years, int months, int days, int hours, int minutes, int seconds);
   void setPeriodDateFromNow_UTC(int d, int m, int y);
   void setPeriodTimeFromNow_UTC(int h, int m, int s);
@@ -101,16 +104,16 @@ public:
   void operator=(const Period &period);
 
   Period operator+(const Period & period) const;
-  Period operator+(const MyTime &time);
+  Period operator+(const MyClock &time);
 
   Period operator-(const Period & period) const;
-  Period operator-(const MyTime &time);
+  Period operator-(const MyClock &time);
 
   Period & operator+=(const Period & period);
-  Period & operator+=(const MyTime &time);
+  Period & operator+=(const MyClock &time);
 
   Period & operator-=(const Period & period);
-  Period & operator-=(const MyTime &time);
+  Period & operator-=(const MyClock &time);
 
   Period operator*(const int) const;
   Period operator*(const double) const;
