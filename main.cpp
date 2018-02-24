@@ -50,32 +50,41 @@ int main(int argc, const char * argv[]) {
 // //     case OS::IOS : std::cout << "OS: " << "IOS" << std::endl; break;
 // //   }
 // //
-  Test testing;
+  // Test testing;
 
   try{
-
-    if(testing.testMyDate()){
-      cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< endl;
-    }else{
-      cout << "\n\t FAILED TESTING: " << "MyDate\n" << endl;
-    }
+    //
+    // if(testing.testMyDate()){
+    //   std::cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< std::endl;
+    // }else{
+    //   std::cout << "\n\t FAILED TESTING: " << "MyDate\n" << std::endl;
+    // }
 
     // if(testing.testMyClock()){
-    //   cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << endl;
+    //   std::cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << std::endl;
     // }else{
-    //   cout << "\n\t FAILED TESTING: " << "MyClock\n" << endl;
+    //   std::cout << "\n\t FAILED TESTING: " << "MyClock\n" << std::endl;
     // }
 
     // if(testing.testMyString()){
-    //   cout << "\n\t SUCCESS TESTING: " << "MyString\n" << endl;
+    //   std::cout << "\n\t SUCCESS TESTING: " << "MyString\n" << std::endl;
     // }else{
-    //   cout << "\n\t FAILED TESTING: " << "MyString\n" << endl;
+    //   std::cout << "\n\t FAILED TESTING: " << "MyString\n" << std::endl;
     // }
   }
   catch (MyString e)
   {
-    cout << "Error: " << e << endl;
+    std::cerr << "Error: " << e << std::endl;
   }
+
+  struct startTimeDates{
+    int age;
+    int number;
+  };
+
+  startTimeDates start = {1, 1};
+
+  std::cout << "Start Test: " << start.age << " Number: " << start.number << std::endl;
 
   return (0);
 }

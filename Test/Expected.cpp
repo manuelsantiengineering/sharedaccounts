@@ -166,7 +166,7 @@ bool Expected::testConstructor(MyDate date, int day, int month, int year){
 bool Expected::testConstructor(MyClock time, int h, int m, int s, bool isAM){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
-  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAm() ){
+  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAM() ){
     passedTest = true;
     std::cout << "SUCCESS! " << std::endl;
   }else{

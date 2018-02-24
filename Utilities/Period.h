@@ -12,11 +12,17 @@
 
 #include "TimeAndDate.h"
 
+struct timeInfo{
+  int sec, min, hr;
+  bool AM;
+  int day, mon, yr;
+};
+
 class Period
 {
 private:
-  struct tm startTimeInfo;
-  struct tm endTimeInfo;
+  timeInfo startTimeInfo;
+  timeInfo endTimeInfo;
 
 public:
   Period();
@@ -46,6 +52,7 @@ public:
   int getStartSecond() const;
   int getStartMinute() const;
   int getStartHour() const;
+  bool isStartTimeAM() const;
 
   int getEndDay() const;
   int getEndMonth() const;
@@ -53,15 +60,16 @@ public:
   int getEndSecond() const;
   int getEndMinute() const;
   int getEndHour() const;
+  bool isEndTimeAM() const;
 
   MyTime getPeriodTime() const;
   int getDaysBetweenStartDateAndEndDate() const;
-
   int getPeriodInSeconds() const;
   double getPeriodInMinutes() const;
   double getPeriodInHours() const;
   double getPeriodInDays() const;
 
+  void setStartTimeAndDate(TimeAndDate start);
   void setStartDate(MyDate date);
   void setStartDay(int d);
   void setStartMonth(int m);
@@ -69,7 +77,9 @@ public:
   void setStartSecond(int s);
   void setStartMinute(int m);
   void setStartHour(int h);
+  void setStartMeridiem(bool AM);
 
+  void setEndTimeAndDate(TimeAndDate end);
   void setEndDate(MyDate date);
   void setEndDay(int d);
   void setEndMonth(int m);
@@ -77,6 +87,7 @@ public:
   void setEndSecond(int s);
   void setEndMinute(int m);
   void setEndHour(int h);
+  void setEndMeridiem(bool AM);
 
   void setPeriod(MyDate startDate, MyDate endDate);
   void setPeriod(MyClock startTime, MyClock endTime);
@@ -96,10 +107,11 @@ public:
 
   void setPeriodDateFromNow_UTC(MyDate endDate);
   void setPeriodTimeFromNow_UTC(MyClock endTime);
+  void setPeriodDateAndTimeFromNow_UTC(TimeAndDate end);
   void setPeriodDateAndTimeFromNow_UTC(MyDate endDate, MyClock endTime);
-  void setPeriodDateAndTimeFromNow_UTC(int years, int months, int days, int hours, int minutes, int seconds);
+  void setPeriodDateAndTimeFromNow_UTC(int years, int months, int days, int hours, int minutes, int seconds, bool AM);
   void setPeriodDateFromNow_UTC(int d, int m, int y);
-  void setPeriodTimeFromNow_UTC(int h, int m, int s);
+  void setPeriodTimeFromNow_UTC(int h, int m, int s, bool AM);
 
 
   void operator=(const Period &period);

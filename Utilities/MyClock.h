@@ -23,22 +23,26 @@
 
 class MyClock : public MyTime{
 protected:
-  bool isAM;
+  bool AM;
 
 public:
   MyClock();
   MyClock(int hours, int minutes, int seconds);
-  MyClock(int hours, int minutes, int seconds, bool isAM);
+  MyClock(int hours, int minutes, int seconds, bool AM);
   MyClock(const MyClock & timeInstance);
   ~MyClock();
   MyClock & operator=(const MyClock & timeInstance);
 
-  void setTime(int h, int m, int s, bool isAM);
+  void setTime(int h, int m, int s, bool AM);
   void setSeconds(int seconds);
   void setMinutes(int minutes);
   void setHours(int hours);
 
-  bool isAm() const;
+  bool isAM() const;
+
+  int getTimeInSeconds() const;
+  double getTimeInMinutes() const;
+  double getTimeInHours() const;
 
   bool isSecondsCorrect(int s);
   bool isMinutesCorrect(int m);

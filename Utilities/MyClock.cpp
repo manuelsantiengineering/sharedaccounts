@@ -1,15 +1,15 @@
 
 #include "MyClock.h"
 
-MyClock::MyClock() : MyTime(12,0,0), isAM(true){}
+MyClock::MyClock() : MyTime(12,0,0), AM(true){}
 
 MyClock::MyClock(int hours, int minutes, int seconds){
   if(this->isSecondsCorrect(seconds) && this->isMinutesCorrect(minutes) && hours < 25){
     if(hours > 12){
       hours-=12;
-      this->isAM = false;
+      this->AM = false;
     }else{
-      this->isAM = true;
+      this->AM = true;
     }
     this->seconds = seconds;
     this->minutes = minutes;
@@ -19,12 +19,12 @@ MyClock::MyClock(int hours, int minutes, int seconds){
     throw e;
   }
 }
-MyClock::MyClock(int hours, int minutes, int seconds, bool isAM){
+MyClock::MyClock(int hours, int minutes, int seconds, bool AM){
   if(this->isTimeCorrect(hours, minutes, seconds)){
     this->seconds = seconds;
     this->minutes = minutes;
     this->hours = hours;
-    this->isAM = isAM;
+    this->AM = AM;
   }else{
     MyString e("Please verify the time values.");
     throw e;
@@ -34,7 +34,7 @@ MyClock::MyClock(const MyClock & timeInstance){
   this->seconds = timeInstance.seconds;
   this->minutes = timeInstance.minutes;
   this->hours = timeInstance.hours;
-  this->isAM = timeInstance.isAM;
+  this->AM = timeInstance.AM;
 }
 MyClock::~MyClock(){
 }
@@ -42,7 +42,7 @@ MyClock & MyClock::operator=(const MyClock & timeInstance){
   this->seconds = timeInstance.seconds;
   this->minutes = timeInstance.minutes;
   this->hours = timeInstance.hours;
-  this->isAM = timeInstance.isAM;
+  this->AM = timeInstance.AM;
   return(*this);
 }
 void MyClock::setTime(int h, int m, int s, bool isAM){
@@ -50,7 +50,7 @@ void MyClock::setTime(int h, int m, int s, bool isAM){
     this->seconds = s;
     this->minutes = m;
     this->hours = h;
-    this->isAM = isAM;
+    this->AM = AM;
   }else{
     MyString e("Please verify the time values.");
     throw e;
@@ -81,7 +81,18 @@ void MyClock::setHours(int hours){
   }
 }
 
-bool MyClock::isAm() const{  return(this->isAM); }
+bool MyClock::isAM() const{  return(this->AM); }
+
+int MyClock::getTimeInSeconds() const{
+  int pmSeconds = (this->AM)? 0 : 12*3600;
+  return(pmSeconds + this->seconds + (this->minutes*60) + ((this->hours*3600)));
+}
+double MyClock::getTimeInMinutes() const{
+  return(this->getTimeInSeconds()/60);
+}
+double MyClock::getTimeInHours() const{
+  return(this->getTimeInMinutes()/60);
+}
 
 bool MyClock::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
 bool MyClock::isMinutesCorrect(int m){ return((m >= 0 && m < 60));  }
@@ -103,7 +114,7 @@ MyString MyClock::timeToString() const{
   }else{
       temporal = temporal +  MyString(this->minutes);
   }
-  if(this->isAM == true){
+  if(this->AM == true){
       temporal = temporal +  "AM" ;
   }else{
       temporal = temporal +  "PM" ;
@@ -128,7 +139,7 @@ MyString MyClock::timeToString_Seconds() const{
   }else{
       temporal = temporal +  MyString(this->seconds);
   }
-  if(this->isAM == true){
+  if(this->AM == true){
       temporal = temporal +  "AM" ;
   }else{
       temporal = temporal +  "PM" ;
@@ -138,7 +149,7 @@ MyString MyClock::timeToString_Seconds() const{
 MyString MyClock::timeToStringMilitary() const{
   MyString temporal ="";
 
-  int h = (this->isAM) ? this->hours : (this->hours+12) ;
+  int h = (this->AM) ? this->hours : (this->hours+12) ;
 
   if(h < 10){
       temporal = temporal + "0" + MyString(h) + ":";
@@ -156,7 +167,7 @@ MyString MyClock::timeToStringMilitary() const{
 MyString MyClock::timeToStringMilitary_Seconds() const{
   MyString temporal ="";
 
-  int h = (this->isAM) ? this->hours : (this->hours+12) ;
+  int h = (this->AM) ? this->hours : (this->hours+12) ;
 
   if(h < 10){
       temporal = temporal + "0" + MyString(h) + ":";
@@ -179,7 +190,7 @@ MyString MyClock::timeToStringMilitary_Seconds() const{
 bool MyClock::operator == (const MyClock & timeInstance) const{
   MyTime t1(timeInstance);
   MyTime t2(*this);
-  return((t1 == t2) && (this->isAM == timeInstance.isAM));
+  return((t1 == t2) && (this->AM == timeInstance.AM));
 }
 bool MyClock::operator != (const MyClock & timeInstance) const{
   return(!((*this) == timeInstance));
@@ -190,9 +201,9 @@ bool MyClock::operator >= (const MyClock & timeInstance) const{
 bool MyClock::operator > (const MyClock & timeInstance) const{
   bool greater = false;
 
-  if((this->isAM == false) && timeInstance.isAM == true){
+  if((this->AM == false) && timeInstance.AM == true){
       greater = true;
-  }else if(this->isAM == timeInstance.isAM){
+  }else if(this->AM == timeInstance.AM){
     if( (this->hours != 12 && this->hours > timeInstance.hours) ||
         (timeInstance.hours == 12 && this->hours != timeInstance.hours) ||
         ((this->hours == timeInstance.hours) && (this->minutes > timeInstance.minutes)) ||

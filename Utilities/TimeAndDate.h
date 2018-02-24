@@ -16,6 +16,7 @@ class TimeAndDate: public MyDate, public MyClock {
 public:
   TimeAndDate();
   TimeAndDate(int day, int mon, int yr, int hr, int min, int sec);
+  TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool isAM);
   TimeAndDate(MyDate date);
   TimeAndDate(MyClock time);
   TimeAndDate(MyDate date, MyClock td);
@@ -27,6 +28,8 @@ public:
 
   void setTime(MyClock td);
   void setDate(MyDate date);
+
+  void setTimeAndDateAtNumberOfSecondsFromDate(const TimeAndDate & td, int seconds);
 
   void operator=(const TimeAndDate &td);
 

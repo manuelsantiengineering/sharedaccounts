@@ -6,6 +6,9 @@ TimeAndDate::TimeAndDate() : MyDate(), MyClock()
 TimeAndDate::TimeAndDate(int day, int mon, int yr, int hr, int min, int sec) :
     MyDate(day, mon, yr), MyClock(hr, min, sec)
 {}
+TimeAndDate::TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool isAM) :
+    MyDate(day, mon, yr), MyClock(hr, min, sec, isAM)
+{}
 TimeAndDate::TimeAndDate(MyDate date) : MyDate(date), MyClock()
 {}
 TimeAndDate::TimeAndDate(MyClock td) : MyDate(), MyClock(td)
@@ -29,6 +32,43 @@ MyDate TimeAndDate::getDate() const{
 
 void TimeAndDate::setTime(MyClock td){ (*this) = td; }
 void TimeAndDate::setDate(MyDate date){ (*this) = date;  }
+
+void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromDate(const TimeAndDate & td, int seconds){
+  if(seconds != 0){
+    const int SECONDS_IN_DAY = 86400;
+    double daysFraction = abs(seconds/SECONDS_IN_DAY);
+    int amountOfDaysToAdd = floor(daysFraction);
+
+    int amountOfSecondsToAdd = (daysFraction - amountOfDaysToAdd)*SECONDS_IN_DAY;
+
+    MyClock tdTime = td.getTime();
+    int tdSeconds = tdTime.getTimeInSeconds();
+
+    if(seconds < 0){
+      amountOfDaysToAdd *= -1;
+      amountOfSecondsToAdd = tdSeconds - amountOfSecondsToAdd;
+      if(amountOfSecondsToAdd < 0){
+        amountOfSecondsToAdd += SECONDS_IN_DAY;
+        amountOfDaysToAdd -= 1;
+      }
+    }else if(seconds > 0){
+      amountOfSecondsToAdd = tdSeconds + amountOfSecondsToAdd;
+      if(amountOfSecondsToAdd > SECONDS_IN_DAY){
+        amountOfSecondsToAdd -= SECONDS_IN_DAY;
+        amountOfDaysToAdd += 1;
+      }
+    }
+
+    MyTime ts(0,0,amountOfSecondsToAdd);
+    MyDate date = td.getDate();
+    date.setDateAtNumberOfDays(amountOfDaysToAdd);
+    MyClock tc(ts.getHours(), ts.getMinutes(), ts.getSeconds());
+    (*this) = tc;
+    (*this) = date;
+  }else{
+    (*this) = td;
+  }
+}
 
 void TimeAndDate::operator=(const TimeAndDate &td){
   this->MyDate::operator=(td);

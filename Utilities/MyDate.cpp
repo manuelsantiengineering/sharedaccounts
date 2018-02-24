@@ -144,6 +144,73 @@ int MyDate::getNumberOfDaysUntilDate(const MyDate & dateInstance) const{
 
   return (amountOfDays);
 }
+void MyDate::setDateAtNumberOfDays(int amountOfDays){
+  int a;
+  int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int yearsCount = 0;
+  int startMonth = this->month;
+  int startYear = this->year;
+
+  if(amountOfDays > 0){
+    while(amountOfDays != -1){
+      a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = startYear + yearsCount;
+          amountOfDays = -1;
+          break;
+        }else if(amountOfDays >= days_in_month[i]){
+          amountOfDays -= (days_in_month[i]);
+        }else{
+          this->day = amountOfDays+1;
+          this->month = i;
+          this->year = startYear + yearsCount;
+          amountOfDays = -1;
+          break;
+        }
+      }
+      if(amountOfDays != -1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }else if(amountOfDays < 0){
+    while(amountOfDays != 1){
+      a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
+      days_in_month[2] = a;
+      for(int i = startMonth; i < 13; i++){
+        if(amountOfDays == 0){
+          this->day = 1;
+          this->month = i;
+          this->year = startYear - yearsCount;
+          amountOfDays = 1;
+          break;
+        }else if(abs(amountOfDays) >= days_in_month[i]){
+          amountOfDays += (days_in_month[i]);
+        }else{
+          if(i == 1){ //? 12 : i;
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = startYear - yearsCount - 1;
+          }else{
+            this->day = days_in_month[12] + amountOfDays;
+            this->month = 12;
+            this->year = startYear - yearsCount;
+          }
+          amountOfDays = 1;
+          break;
+        }
+      }
+      if(amountOfDays != 1){
+        yearsCount++;
+        startMonth = 1;
+      }
+    }
+  }
+}
 void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amountOfDays){
   int a;
   int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
