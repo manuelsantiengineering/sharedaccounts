@@ -27,10 +27,11 @@ public:
   Period(const Period &period);
   ~Period();
 
+  bool periodIsValid() const; //Period must be no more than a year
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
-  bool periodIsValid() const; //Period must be no more than a year
+
 
   TimeAndDate getStartTimeAndDate() const;
   TimeAndDate getEndTimeAndDate() const;

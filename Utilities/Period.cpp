@@ -1,7 +1,6 @@
 #include "Period.h"
 
 static const int SECONDS_IN_DAY = 86400;
-// static const int SECONDS_IN_HOUR = 3600;
 static const int MINUTES_IN_DAY = 1440;
 
 Period::Period(){
@@ -37,7 +36,13 @@ Period::Period(const Period &period){
 Period::~Period(){}
 
 bool Period::periodIsValid() const{
+  MyDate startDate = this->getStartDate();
+  const int secondsInPeriod = this->getPeriodInSeconds();
+  const int SecondsNonLeapYear = 31536000;
 
+  return( (secondsInPeriod <= SecondsNonLeapYear) ||
+          (startDate.isLeapYear() && (secondsInPeriod <= (SecondsNonLeapYear+SECONDS_IN_DAY)))
+        );
 }
 TimeAndDate Period::getStartTimeAndDate() const{
   return( TimeAndDate(this->startTimeInfo.tm_mday, this->startTimeInfo.tm_mon, this->startTimeInfo.tm_year,
