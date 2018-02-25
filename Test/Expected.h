@@ -58,8 +58,9 @@ public:
   bool testConstructor(Money money, MyString currency, double amount);
   bool testConstructor(MyDate date, int day, int month, int year);
   bool testConstructor(MyTime time, int h, int m, int s);
-  bool testConstructor(MyClock time, int h, int m, int s, bool isAM);
+  bool testConstructor(MyClock time, int h, int m, int s, bool AM);
   bool testConstructor(MyString str1, const char *str2);
+  bool testConstructor(TimeAndDate td, int day, int mon, int yr, int h, int m, int s, bool AM);
 
   /*
     Exception tests...

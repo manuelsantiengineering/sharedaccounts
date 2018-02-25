@@ -33,8 +33,6 @@ public:
   bool isAM() const;
 
   int getTimeInSeconds() const;
-  // double getTimeInMinutes() const;
-  // double getTimeInHours() const;
 
   bool isSecondsCorrect(int s);
   bool isMinutesCorrect(int m);

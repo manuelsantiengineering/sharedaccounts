@@ -11,12 +11,9 @@
 #include <stdio.h>
 #include <iostream>
 #include <exception>
-#include "../Utilities/MyString.h"
-// #include "../Utilities/MyDate.h"
-// #include "../Utilities/MyClock.h"
-#include "../Utilities/TimeAndDate.h"
+
+#include "../Utilities/Period.h"
 #include "../Model/Money.h"
-#include "../Model/Person.h"
 #include "../Model/User.h"
 #include "../Model/Account.h"
 
@@ -28,6 +25,8 @@ class Test{
 private:
   int passedTests;
   int failedTests;
+  int totalPassedTests;
+  int totalFailedTests;
 
 public:
   Test();
@@ -41,6 +40,7 @@ public:
   bool testMyTime();
   bool testMyClock();
   bool testMyString();
+  bool testTimeAndDate();
 
 };
 

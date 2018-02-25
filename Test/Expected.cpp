@@ -196,6 +196,19 @@ bool Expected::testConstructor(MyString str1, const char *str2){
   }
   return(passedTest);
 }
+bool Expected::testConstructor(TimeAndDate td, int day, int mon, int yr, int h, int m, int s, bool AM){
+  bool passedTest = false;
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( td.getDay() == day && td.getMonth() == mon && td.getYear() == yr &&
+      td.getHours() == h && td.getMinutes() == m && td.getSeconds() == s &&
+      td.isAM() == AM){
+    passedTest = true;
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+  return(passedTest);
+}
 bool Expected::testException(MyString functionName, int functionResult, MyString expectedResult){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";

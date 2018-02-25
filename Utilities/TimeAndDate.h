@@ -16,7 +16,7 @@ class TimeAndDate: public MyDate, public MyClock {
 public:
   TimeAndDate();
   TimeAndDate(int day, int mon, int yr, int hr, int min, int sec);
-  TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool isAM);
+  TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool AM);
   TimeAndDate(MyDate date);
   TimeAndDate(MyClock time);
   TimeAndDate(MyDate date, MyClock td);
