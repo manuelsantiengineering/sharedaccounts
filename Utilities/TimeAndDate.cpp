@@ -37,34 +37,48 @@ void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDa
   if(seconds != 0){
     const int SECONDS_IN_DAY = 86400;
     double daysFraction = abs(seconds/SECONDS_IN_DAY);
-    int amountOfDaysToAdd = floor(daysFraction);
+    int amountOfDaysToAdd = floor(daysFraction); //Gets the amount of days to add
     daysFraction = (daysFraction - amountOfDaysToAdd)*SECONDS_IN_DAY;
-    int amountOfSecondsToAdd = floor(daysFraction);
+    int amountOfSecondsToAdd = floor(daysFraction); //Gets the amount of seconds that will change the time
+
+    std::cout << " 00 Amount of days: " << amountOfDaysToAdd << std::endl;
+    std::cout << " 00 Amount of seconds: " << amountOfSecondsToAdd << std::endl;
 
     MyClock tdTime = td.getTime();
+    std::cout << " Time in Obj: " << tdTime << std::endl;
     int tdSeconds = tdTime.getTimeInSeconds();
+    std::cout << " Time in seconds in Obj: " << tdSeconds << std::endl;
 
     if(seconds < 0){
       amountOfDaysToAdd *= -1;
-      amountOfSecondsToAdd = tdSeconds - amountOfSecondsToAdd;
+      // amountOfSecondsToAdd = tdSeconds - amountOfSecondsToAdd;
+      amountOfSecondsToAdd += tdSeconds;
       if(amountOfSecondsToAdd < 0){
         amountOfSecondsToAdd += SECONDS_IN_DAY;
         amountOfDaysToAdd -= 1;
       }
     }else if(seconds > 0){
-      amountOfSecondsToAdd = tdSeconds + amountOfSecondsToAdd;
+      // amountOfSecondsToAdd = tdSeconds + amountOfSecondsToAdd;
+      amountOfSecondsToAdd += tdSeconds;
+      std::cout << " 01 Amount of seconds: " << amountOfSecondsToAdd << std::endl;
       if(amountOfSecondsToAdd > SECONDS_IN_DAY){
         amountOfSecondsToAdd -= SECONDS_IN_DAY;
         amountOfDaysToAdd += 1;
       }
+      std::cout << " 02 Amount of days: " << amountOfDaysToAdd << std::endl;
+      std::cout << " 02 Amount of seconds: " << amountOfSecondsToAdd << std::endl;
     }
 
     MyTime ts(0,0,amountOfSecondsToAdd);
     MyDate date = td.getDate();
+    std::cout << " 03 Time: " << ts << " Date: " << date << std::endl;
     date.setDateAtNumberOfDays(amountOfDaysToAdd);
-    MyClock tc(ts.getHours(), ts.getMinutes(), ts.getSeconds());
-    (*this) = tc;
-    (*this) = date;
+    std::cout << " 04 Time: " << ts << " Date: " << date << std::endl;
+    MyClock tc(ts);
+    std::cout << " 05 Clock: " << tc << " Date: " << date << std::endl;
+    this->setTime(tc);
+    this->setDate(date);
+    std::cout << " 06 Final: " << (*this) << std::endl;
   }else{
     (*this) = td;
   }

@@ -662,29 +662,37 @@ bool Test::testTimeAndDate(){
   if(expected.expect(" operator<() ", (td2 < td4), true )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" operator<() ", (td4 < td2), false )) {this->passedTests++;}else{this->failedTests++;}
 
-  std::cout << std::endl << "00 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
   MyClock clock1(12,0,0,false);
-  std::cout << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
   MyDate dateToSet(1,3,2010);
-
-  std::cout << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
   td2.setTime(clock1);
   td2.setDate(dateToSet);
-  std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
   dateToSet.setDate(1,6,2010);
   td6.setDate(dateToSet);
   td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+92days) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+
+  std::cout << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+
+  dateToSet.setDate(31,12,2010);
+  // td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  std::cout << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+
+  dateToSet.setDate(30,9,2010);
+  std::cout << std::endl << "Changed:\n03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  td6.setDate(dateToSet);
+  // td6.setTime(clock1);
   std::cout << std::endl << "Changed:\n04 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
 
-  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7948800); //92 days before
+  std::cout << std::endl << "Changed:\n05 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+
   if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate() ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
-  std::cout << std::endl << "Final: \n05 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  std::cout << std::endl << "Final: \n06 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
   std::cout << std::endl;
 

@@ -22,6 +22,7 @@ public:
   MyClock(int hours, int minutes, int seconds);
   MyClock(int hours, int minutes, int seconds, bool AM);
   MyClock(const MyClock & timeInstance);
+  MyClock(const MyTime & timeInstance);
   ~MyClock();
   MyClock & operator=(const MyClock & timeInstance);
 

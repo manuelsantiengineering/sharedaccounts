@@ -36,6 +36,21 @@ MyClock::MyClock(const MyClock & timeInstance){
   this->hours = timeInstance.hours;
   this->AM = timeInstance.AM;
 }
+MyClock::MyClock(const MyTime & timeInstance){
+  if(timeInstance.getHours() >= 12 && timeInstance.getHours() < 24){
+    this->AM = false;
+    this->hours = (timeInstance.getHours() == 12) ? timeInstance.getHours() : (timeInstance.getHours()-12);
+  }else if(timeInstance.getHours() < 12 || timeInstance.getHours() == 24){
+    this->AM = true;
+    this->hours = (timeInstance.getHours() < 12) ? timeInstance.getHours() : 12;
+  }
+  this->seconds = timeInstance.getSeconds();
+  this->minutes = timeInstance.getMinutes();
+  if(!this->isTimeCorrect(this->hours, this->minutes, this->seconds)){
+    MyString e("Please verify the time values.");
+    throw e;
+  }
+}
 MyClock::~MyClock(){
 }
 MyClock & MyClock::operator=(const MyClock & timeInstance){
@@ -84,8 +99,13 @@ void MyClock::setHours(int hours){
 bool MyClock::isAM() const{  return(this->AM); }
 
 int MyClock::getTimeInSeconds() const{
-  int pmSeconds = (this->AM)? 0 : 12*3600;
-  return(pmSeconds + this->seconds + (this->minutes*60) + ((this->hours*3600)));
+  int hr = 0;
+  if(this->AM){
+    hr = (this->hours == 12) ? 0 : this->hours;
+  }else{
+    hr = (this->hours == 12) ? this->hours : (this->hours+12);
+  }
+  return(this->seconds + (this->minutes*60) + ((hr*3600)));
 }
 
 bool MyClock::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
@@ -143,7 +163,12 @@ MyString MyClock::timeToString_Seconds() const{
 MyString MyClock::timeToStringMilitary() const{
   MyString temporal ="";
 
-  int h = (this->AM) ? this->hours : (this->hours+12) ;
+  int h = 0;
+  if(this->AM){
+    h = (this->hours == 12) ? 0 : this->hours;
+  }else{
+    h = (this->hours == 12) ? this->hours : (this->hours+12);
+  }
 
   if(h < 10){
       temporal = temporal + "0" + MyString(h) + ":";
@@ -161,7 +186,12 @@ MyString MyClock::timeToStringMilitary() const{
 MyString MyClock::timeToStringMilitary_Seconds() const{
   MyString temporal ="";
 
-  int h = (this->AM) ? this->hours : (this->hours+12) ;
+  int h = 0;
+  if(this->AM){
+    h = (this->hours == 12) ? 0 : this->hours;
+  }else{
+    h = (this->hours == 12) ? this->hours : (this->hours+12);
+  }
 
   if(h < 10){
       temporal = temporal + "0" + MyString(h) + ":";
