@@ -75,40 +75,40 @@ void TimeAndDate::operator=(const TimeAndDate &td){
   this->MyClock::operator=(td);
 }
 bool TimeAndDate::operator==(const TimeAndDate & td) const{
-  MyDate date1(td);
-  MyDate date2(*this);
-  MyClock clock1(td);
-  MyClock clock2(*this);
+  MyDate date1(*this);
+  MyDate date2(td);
+  MyClock clock1(*this);
+  MyClock clock2(td);
   return(date1 == date2 && clock1 == clock2);
 }
 bool TimeAndDate::operator!=(const TimeAndDate & td) const{ return( !(*this == td) ); }
 
 bool TimeAndDate::operator >=(const TimeAndDate & td) const{
-  MyDate date1(td);
-  MyDate date2(*this);
-  MyClock clock1(td);
-  MyClock clock2(*this);
+  MyDate date1(*this);
+  MyDate date2(td);
+  MyClock clock1(*this);
+  MyClock clock2(td);
   return(date1 > date2 || (date1 == date2 && clock1 >= clock2) );
 }
 bool TimeAndDate::operator >(const TimeAndDate & td) const{
-  MyDate date1(td);
-  MyDate date2(*this);
-  MyClock clock1(td);
-  MyClock clock2(*this);
+  MyDate date1(*this);
+  MyDate date2(td);
+  MyClock clock1(*this);
+  MyClock clock2(td);
   return(date1 > date2 || (date1 == date2 && clock1 > clock2) );
 }
 bool TimeAndDate::operator <=(const TimeAndDate & td) const{
-  MyDate date1(td);
-  MyDate date2(*this);
-  MyClock clock1(td);
-  MyClock clock2(*this);
+  MyDate date1(*this);
+  MyDate date2(td);
+  MyClock clock1(*this);
+  MyClock clock2(td);
   return(date1 < date2 || (date1 == date2 && clock1 <= clock2) );
 }
 bool TimeAndDate::operator <(const TimeAndDate & td) const{
-  MyDate date1(td);
-  MyDate date2(*this);
-  MyClock clock1(td);
-  MyClock clock2(*this);
+  MyDate date1(*this);
+  MyDate date2(td);
+  MyClock clock1(*this);
+  MyClock clock2(td);
   return(date1 < date2 || (date1 == date2 && clock1 < clock2) );
 }
 ostream & operator<<(ostream & out, const TimeAndDate & td){

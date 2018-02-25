@@ -638,5 +638,18 @@ bool Test::testTimeAndDate(){
   if(expected.expect("getDate() ", (datecmp == date), true )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect("getTime() ", (tscmp == ts), true )) {this->passedTests++;}else{this->failedTests++;}
 
+
+  if(expected.expect(" operator==() ", (td4 == td3), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator==() ", (td3 == td2), false )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", (td3 != td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", (td4 != td3), false )) {this->passedTests++;}else{this->failedTests++;}
+
+  if(expected.expect(" operator>=() ", (td3 >= td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", (td3 >= td4), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", (td2 >= td3), false )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", (td3 > td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", (td2 > td3), false )) {this->passedTests++;}else{this->failedTests++;}
+
+
   return(this->failedTests == 0);
 }
