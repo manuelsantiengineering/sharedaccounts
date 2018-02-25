@@ -45,7 +45,7 @@ MyClock & MyClock::operator=(const MyClock & timeInstance){
   this->AM = timeInstance.AM;
   return(*this);
 }
-void MyClock::setTime(int h, int m, int s, bool isAM){
+void MyClock::setTime(int h, int m, int s, bool AM){
   if(this->isTimeCorrect(h, m, s)){
     this->seconds = s;
     this->minutes = m;

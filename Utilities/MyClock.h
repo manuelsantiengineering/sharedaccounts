@@ -5,14 +5,6 @@
 //  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
-// const
-//
-// #ifndef _WIN32
-//
-// #else __linux__
-//
-// #endif
-
 #ifndef __MYCLOCK__
 #define __MYCLOCK__
 

@@ -29,7 +29,7 @@ public:
   void setTime(MyClock td);
   void setDate(MyDate date);
 
-  void setTimeAndDateAtNumberOfSecondsFromDate(const TimeAndDate & td, int seconds);
+  void setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDate & td, int seconds);
 
   void operator=(const TimeAndDate &td);
 

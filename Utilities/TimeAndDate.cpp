@@ -33,7 +33,7 @@ MyDate TimeAndDate::getDate() const{
 void TimeAndDate::setTime(MyClock td){ (*this) = td; }
 void TimeAndDate::setDate(MyDate date){ (*this) = date;  }
 
-void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromDate(const TimeAndDate & td, int seconds){
+void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDate & td, int seconds){
   if(seconds != 0){
     const int SECONDS_IN_DAY = 86400;
     double daysFraction = abs(seconds/SECONDS_IN_DAY);
@@ -112,8 +112,10 @@ bool TimeAndDate::operator <(const TimeAndDate & td) const{
   return(date1 < date2 || (date1 == date2 && clock1 < clock2) );
 }
 ostream & operator<<(ostream & out, const TimeAndDate & td){
-  MyDate date1(td);
-  MyClock clock1(td);
+  MyDate date1;
+  date1 = td.getDate();
+  MyClock clock1;
+  clock1 = td.getTime();
   out << date1.dateToMyString() << " " << clock1.timeToString_Seconds();
   return(out);
 }

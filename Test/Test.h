@@ -12,9 +12,9 @@
 #include <iostream>
 #include <exception>
 #include "../Utilities/MyString.h"
-#include "../Utilities/MyDate.h"
-#include "../Utilities/MyClock.h"
-// #include "../Utilities/TimeAndDate.h"
+// #include "../Utilities/MyDate.h"
+// #include "../Utilities/MyClock.h"
+#include "../Utilities/TimeAndDate.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -25,13 +25,18 @@
 using namespace std;
 
 class Test{
+private:
+  int passedTests;
+  int failedTests;
 
 public:
   Test();
   ~Test();
 
-  bool testMoney();
+  void testAll();
+
   bool testPerson();
+  bool testMoney();
   bool testMyDate();
   bool testMyClock();
   bool testMyString();

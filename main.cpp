@@ -21,15 +21,7 @@
 #include <ctime>
 
 
-#ifndef _WIN32
-  const int os = 1;
-#else
-  const int os = 0;
-#endif
-
-enum OS {LINUX = 0, WIN, MAC, ANDROID, IOS};
-
-// using namespace std;
+using namespace std;
 
 int main(int argc, const char * argv[]) {
 
@@ -40,51 +32,24 @@ int main(int argc, const char * argv[]) {
 //   else if( __cplusplus == 2017701L ) std::cout << "C++17\n" ;
 //   else if( __cplusplus == 199711L ) std::cout << "C++98\n" ;
 //   else std::cout << "pre-standard C++\n" ;
-// //
-// //   switch(os)
-// //   {
-// //     case OS::LINUX : std::cout << "OS: " << "LINUX" << std::endl; break;
-// //     case OS::WIN : std::cout << "OS: " << "WIN" << std::endl; break;
-// //     case OS::MAC : std::cout << "OS: " << "MAC" << std::endl; break;
-// //     case OS::ANDROID : std::cout << "OS: " << "ANDROID" << std::endl; break;
-// //     case OS::IOS : std::cout << "OS: " << "IOS" << std::endl; break;
-// //   }
-// //
-  // Test testing;
 
-  try{
-    //
-    // if(testing.testMyDate()){
-    //   std::cout << "\n\t SUCCESS TESTING: " << "MyDate\n"<< std::endl;
-    // }else{
-    //   std::cout << "\n\t FAILED TESTING: " << "MyDate\n" << std::endl;
-    // }
+  Test testing;
+  testing.testAll();
 
-    // if(testing.testMyClock()){
-    //   std::cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << std::endl;
-    // }else{
-    //   std::cout << "\n\t FAILED TESTING: " << "MyClock\n" << std::endl;
-    // }
+  // Period pd;
+  // pd.setStartTimeNow_UTC();
+  //
+  // TimeAndDate td;
+  // td = pd.getStartTimeAndDate();
+  // MyString str = td.dateToMyString();
+  // std::cout << "Results " << td << std::endl;
 
-    // if(testing.testMyString()){
-    //   std::cout << "\n\t SUCCESS TESTING: " << "MyString\n" << std::endl;
-    // }else{
-    //   std::cout << "\n\t FAILED TESTING: " << "MyString\n" << std::endl;
-    // }
-  }
-  catch (MyString e)
-  {
-    std::cerr << "Error: " << e << std::endl;
-  }
 
-  struct startTimeDates{
-    int age;
-    int number;
-  };
 
-  startTimeDates start = {1, 1};
-
-  std::cout << "Start Test: " << start.age << " Number: " << start.number << std::endl;
+  //
+  // pd.setStartTimeNow_Local();
+  // td = pd.getStartTimeAndDate();
+  // std::cout << "Results " << td.dateToMyString() << std::endl;
 
   return (0);
 }

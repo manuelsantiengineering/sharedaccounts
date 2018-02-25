@@ -185,9 +185,12 @@ void Period::setStartTimeNow_UTC(){
   std::gmtime(&result);
   const long int NOW = static_cast<long int> (result);
   int since20180223 = (int)(1519344000-NOW);
-  MyDate date;
-  date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
-  this->setStartDate(date);
+  TimeAndDate td(23,2,2018,0,0,0,true);
+  // MyDate date;
+  // date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
+  // this->setStartDate(date);
+  td.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td, since20180223);
+  this->setStartTimeAndDate(td);
 }
 void Period::setStartTimeNow_Local(){
   /*
@@ -199,9 +202,12 @@ void Period::setStartTimeNow_Local(){
   std::localtime(&result);
   const long int NOW = static_cast<long int> (result);
   int since20180223 = (int)(1519344000-NOW);
-  MyDate date;
-  date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
-  this->setStartDate(date);
+  TimeAndDate td(23,2,2018,0,0,0,true);
+  // MyDate date;
+  // date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
+  // this->setStartDate(date);
+  td.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td, since20180223);
+  this->setStartTimeAndDate(td);
 }
 
 TimeAndDate Period::getTimeDateToday_UTC() const{
