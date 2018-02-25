@@ -23,28 +23,36 @@ MyTime & MyTime::operator=(const MyTime & timeInstance){
   return(*this);
 }
 void MyTime::setToStandardTime(){
-  if(this->seconds >= 60 || this->seconds <= 60){
-    int divide = this->seconds/60;
-    int rd = floor(abs(divide));
-    if(this->seconds > 0){
+  // std::cout << "\t\t1 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
+  if( this->seconds < 0 || this->minutes < 0 || this->hours < 0 ){
+    MyString e("Time values must be greater or equal to 0.");
+    throw e;
+  }else{
+    // if(this->seconds >= 60 || this->seconds <= 60){
+    if(this->seconds >= 60){
+      double divide = this->seconds/60.0;
+      // std::cout << "\t\t\t2Divide: " << divide << std::endl;
+      int rd = floor(divide);
       this->minutes += rd;
-      this->seconds = 60*(divide-rd);
-    }else{
-      this->minutes -= rd;
-      this->seconds = 60*(divide+rd);
+      divide = (divide-rd)*60.0;
+      // std::cout << "\t\t\t2Divide: " << divide << std::endl;
+      this->seconds = round(divide);
+      // std::cout << "\t\t2 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
     }
-  }
-  if(this->minutes >= 60 || this->minutes <= 60){
-    int divide = this->minutes/60;
-    int rd = floor(abs(divide));
-    if(this->minutes > 0){
+    // if(this->minutes >= 60 || this->minutes <= 60){
+    if(this->minutes >= 60){
+      double divide = this->minutes/60.0;
+      // std::cout << "\t\t\t1Divide: " << divide << std::endl;
+      int rd = floor(divide);
       this->hours += rd;
-      this->minutes = 60*(divide-rd);
-    }else{
-      this->hours -= rd;
-      this->minutes = 60*(divide+rd);
+      divide = (divide-rd)*60.0;
+      // std::cout << "\t\t\t2Divide: " << divide << std::endl;
+      this->minutes = round(divide);
+      // std::cout << "\t\t3 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
     }
+    // std::cout << "\t\t4 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
   }
+  // std::cout << "\t\t5 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
 }
 void MyTime::setTime(int h, int m, int s){
   this->seconds = s;
@@ -61,13 +69,7 @@ int MyTime::getMinutes() const{ return(this->minutes);  }
 int MyTime::getHours() const{ return(this->hours);  }
 
 int MyTime::getTimeInSeconds() const{
-  return(this->seconds + (this->minutes*60) + ((this->hours*3600)));
-}
-double MyTime::getTimeInMinutes() const{
-  return((this->seconds/60) + (this->minutes) + ((this->hours*60)));
-}
-double MyTime::getTimeInHours() const{
-  return((this->seconds/3600) + (this->minutes/60) + ((this->hours)));
+  return(this->seconds + (this->minutes*60.0) + ((this->hours*3600.0)));
 }
 
 MyString MyTime::timeToString() const{
@@ -151,29 +153,6 @@ MyTime & MyTime::operator-=(const MyTime & timeInstance){
 }
 
 ostream & operator<<(ostream & out, const MyTime & timeInstance){
-  out << timeInstance.timeToString();
+  out << timeInstance.timeToString_Seconds();
   return(out);
 }
-
-// long int MyTime::getTimeUTC_Epoch_Long() const{
-//   std::time_t result = std::time(NULL);
-//   std::gmtime(&result);
-//   std::cout << std::asctime(std::gmtime(&result)) << result << " (UTC) seconds since the Epoch\n";
-//   long int t = static_cast<long int> (result);
-//   return(t);
-// }
-// MyString MyTime::getTimeUTC_Epoch_MyString() const{
-//   MyString tstr(this->getTimeUTC_Epoch_Long());
-//   return(tstr);
-// }
-// long int MyTime::getTimeLocaltime_Epoch_Long() const{
-//   std::time_t result = std::time(NULL);
-//   std::localtime(&result);
-//   std::cout << std::asctime(std::localtime(&result)) << result << " (LOCAL) seconds since the Epoch\n";
-//   long int t = static_cast<long int> (result);
-//   return(t);
-// }
-// MyString MyTime::getTimeLocaltime_Epoch_MyString() const{
-//   MyString tstr(this->getTimeLocaltime_Epoch_Long());
-//   return(tstr);
-// }

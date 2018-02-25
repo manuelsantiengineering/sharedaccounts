@@ -3,20 +3,12 @@
 //
 //  Created by Manuel E Santiago on 1/20/15.
 //  Copyright (c) 2015 Manuel. All rights reserved.
-//
 
-// const
-//
-// #ifndef _WIN32
-//
-// #else __linux__
-//
-// #endif
 
 #ifndef __MYTIME__
 #define __MYTIME__
 
-// #include <ctime>
+#include <exception>
 #include <math.h>
 
 #include "MyString.h"
@@ -47,8 +39,6 @@ public:
   int getHours() const;
 
   int getTimeInSeconds() const;
-  double getTimeInMinutes() const;
-  double getTimeInHours() const;
 
   MyString timeToString() const;
   MyString timeToString_Seconds() const;

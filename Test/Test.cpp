@@ -24,6 +24,11 @@ void Test::testAll(){
   }else{
     std::cout << "\n\t FAILED TESTING: " << "MyDate\n" << std::endl;
   }
+  if(this->testMyTime()){
+    std::cout << "\n\t SUCCESS TESTING: " << "MyTime\n" << std::endl;
+  }else{
+    std::cout << "\n\t FAILED TESTING: " << "MyTime\n" << std::endl;
+  }
   if(this->testMyClock()){
     std::cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << std::endl;
   }else{
@@ -329,6 +334,82 @@ bool Test::testMyDate(){
   return(this->failedTests == 0);
 }
 
+
+bool Test::testMyTime(){
+  cout << endl << "Testing MyTime object" << endl;
+
+  MyTime time0;
+  MyTime time1(2,2,2);
+  MyTime time2(3,3,3);
+  MyTime time3(time1);
+
+  Expected expected("MyTime");
+
+  std::cout << "Time 0 :" << time0 << std::endl;
+  std::cout << "Time 1 :" << time1 << std::endl;
+  std::cout << "Time 2 :" << time2 << std::endl;
+  std::cout << "Time 3 :" << time3 << std::endl;
+
+  if(expected.testConstructor(time0, 12,0,0)){this->passedTests++;}else{this->failedTests++;}
+  if(expected.testConstructor(time1, 2,2,2)){this->passedTests++;}else{this->failedTests++;}
+  if(expected.testConstructor(time2, 3,3,3)){this->passedTests++;}else{this->failedTests++;}
+  if(expected.testConstructor(time3, 2,2,2)){this->passedTests++;}else{this->failedTests++;}
+  time0 = time2;
+  if(expected.expect(" operator==() ", (time0 == time2), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator==() ", (time0 == time1), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", (time0 != time1), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", (time0 != time2), false )){this->passedTests++;}else{this->failedTests++;}
+
+  if(expected.expect(" operator>=() ", (time0 >= time2), true )){this->passedTests++;}else{this->failedTests++;}
+
+  time3.setTime(12, 0, 60);
+  time0.setTime(12, 1, 0);
+  // std::cout << "Time 0 :" << time0 << std::endl;
+  // std::cout << "Time 3 :" << time3 << std::endl;
+  if(expected.expect(" setToStandardTime() ", (time0 == time3), true )){this->passedTests++;}else{this->failedTests++;}
+  time3.setTime(12, 59, 60);
+  time0.setTime(13, 0, 0);
+  // std::cout << "Time 0 :" << time0 << std::endl;
+  // std::cout << "Time 3 :" << time3 << std::endl;
+  if(expected.expect(" setToStandardTime() ", (time0 == time3), true )){this->passedTests++;}else{this->failedTests++;}
+  time3.setTime(12, 59, 125);
+  time0.setTime(13, 1, 5);
+  // std::cout << "Time 0 :" << time0 << std::endl;
+  // std::cout << "Time 3 :" << time3 << std::endl;
+  if(expected.expect(" setToStandardTime() ", (time0 == time3), true )){this->passedTests++;}else{this->failedTests++;}
+
+  time3.setTime(3, 2, 36);
+  time0.setTime(12, 0, 0);
+  time1.setTime(1, 0, 0);
+  if(expected.expect(" operator>=() ", (time2 >= time1), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", (time1 >= time3), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", (time2 > time1), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", (time1 > time0), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", (time1 > time2), false )){this->passedTests++;}else{this->failedTests++;}
+
+  time0 = time2;
+
+  if(expected.expect(" operator<=() ", (time0 <= time2), true )){this->passedTests++;}else{this->failedTests++;}
+  time3.setTime(3, 2, 36);
+  time0.setTime(12, 0, 0);
+  if(expected.expect(" operator<=() ", (time1 <= time2), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<=() ", (time3 <= time1), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<() ", (time1 < time2), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<() ", (time0 > time3), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<() ", (time2 < time1), false )){this->passedTests++;}else{this->failedTests++;}
+
+  time3.setTime(3, 2, 36);
+  if(expected.expect(" timeToString() ", time3.timeToString(), "03:02" )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" timeToString_Seconds() ", time3.timeToString_Seconds(), "03:02:36"  )){this->passedTests++;}else{this->failedTests++;}
+
+  time3.setTime(12, 30, 30);
+  if(expected.expect(" getTimeInSeconds() ", time3.getTimeInSeconds(), 45030 )){this->passedTests++;}else{this->failedTests++;}
+
+  cout << endl;
+
+  return(this->failedTests == 0);
+}
+
 bool Test::testMyClock(){
   cout << endl << "Testing MyClock object" << endl;
 
@@ -376,16 +457,24 @@ bool Test::testMyClock(){
   if(expected.expect(" timeToStringMilitary() ", time3.timeToStringMilitary(), "15:02" )){this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" timeToStringMilitary_Seconds() ", time3.timeToStringMilitary_Seconds(), "15:02:36"  )){this->passedTests++;}else{this->failedTests++;}
 
-  time0.setTime(12, 0, 0, true);
-  time3.setTime(12, 0, 0, true);
+  time3.setTime(12, 30, 30, true);
+  if(expected.expect(" getTimeInSeconds() ", time3.getTimeInSeconds(), 45030 )){this->passedTests++;}else{this->failedTests++;}
 
-  if(expected.expect(" getTimeInSeconds() ", time3.getTimeInSeconds(), 43200 )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isSecondsCorrect() ", time3.isSecondsCorrect(34), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isSecondsCorrect() ", time3.isSecondsCorrect(76), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isMinutesCorrect() ", time3.isMinutesCorrect(33), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isMinutesCorrect() ", time3.isMinutesCorrect(88), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isHoursCorrect() ", time3.isHoursCorrect(12), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isHoursCorrect() ", time3.isHoursCorrect(33), false )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isTimeCorrect() ", time3.isTimeCorrect(12,0,0), true )){this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" isTimeCorrect() ", time3.isTimeCorrect(24,77,77), false )){this->passedTests++;}else{this->failedTests++;}
 
   // std::cout << "UTC: " << time0.getTimeUTC_Epoch_MyString() << " Local: " << time0.getTimeLocaltime_Epoch_MyString()  << std::endl;
   cout << endl;
 
   return(this->failedTests == 0);
 }
+
 bool Test::testMyString(){
   cout << endl << "Testing MyString object" << endl;
 

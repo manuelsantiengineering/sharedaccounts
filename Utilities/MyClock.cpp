@@ -87,12 +87,12 @@ int MyClock::getTimeInSeconds() const{
   int pmSeconds = (this->AM)? 0 : 12*3600;
   return(pmSeconds + this->seconds + (this->minutes*60) + ((this->hours*3600)));
 }
-double MyClock::getTimeInMinutes() const{
-  return(this->getTimeInSeconds()/60);
-}
-double MyClock::getTimeInHours() const{
-  return(this->getTimeInMinutes()/60);
-}
+// double MyClock::getTimeInMinutes() const{
+//   return(this->getTimeInSeconds()/60);
+// }
+// double MyClock::getTimeInHours() const{
+//   return(this->getTimeInMinutes()/60);
+// }
 
 bool MyClock::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
 bool MyClock::isMinutesCorrect(int m){ return((m >= 0 && m < 60));  }

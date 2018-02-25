@@ -57,6 +57,7 @@ public:
   bool testConstructor(User user, MyString name, MyString lastName, int age, MyString userId);
   bool testConstructor(Money money, MyString currency, double amount);
   bool testConstructor(MyDate date, int day, int month, int year);
+  bool testConstructor(MyTime time, int h, int m, int s);
   bool testConstructor(MyClock time, int h, int m, int s, bool isAM);
   bool testConstructor(MyString str1, const char *str2);
 

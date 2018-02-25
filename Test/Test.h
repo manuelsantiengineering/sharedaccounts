@@ -38,6 +38,7 @@ public:
   bool testPerson();
   bool testMoney();
   bool testMyDate();
+  bool testMyTime();
   bool testMyClock();
   bool testMyString();
 

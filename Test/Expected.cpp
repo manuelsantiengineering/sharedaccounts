@@ -163,10 +163,21 @@ bool Expected::testConstructor(MyDate date, int day, int month, int year){
   }
   return(passedTest);
 }
-bool Expected::testConstructor(MyClock time, int h, int m, int s, bool isAM){
+bool Expected::testConstructor(MyTime time, int h, int m, int s){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
-  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && isAM == time.isAM() ){
+  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() ){
+    passedTest = true;
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+  return(passedTest);
+}
+bool Expected::testConstructor(MyClock time, int h, int m, int s, bool AM){
+  bool passedTest = false;
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( s == time.getSeconds() && m == time.getMinutes() && h == time.getHours() && AM == time.isAM() ){
     passedTest = true;
     std::cout << "SUCCESS! " << std::endl;
   }else{
