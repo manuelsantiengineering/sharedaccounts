@@ -213,7 +213,7 @@ bool MyClock::operator < (const MyClock & timeInstance) const{
   return(!((*this) == timeInstance) && !((*this) > timeInstance));
 }
 
-ostream & operator<<(ostream & out, const MyClock & timeInstance){
+std::ostream & operator<<(std::ostream & out, const MyClock & timeInstance){
   out << timeInstance.timeToString_Seconds();
   return(out);
 }

@@ -12,8 +12,6 @@
 
 #include "MyString.h"
 
-using namespace std;
-
 class MyDate{
 protected:
   int day, month, year;
@@ -58,7 +56,7 @@ public:
   bool operator <=(const MyDate & dateInstance) const;
   bool operator <(const MyDate & dateInstance) const;
 
-  friend ostream & operator<<(ostream & out, const MyDate dateInstance);
+  friend std::ostream & operator<<(std::ostream & out, const MyDate &dateInstance);
 };
 
 #endif /* defined(__MYDATE__) */

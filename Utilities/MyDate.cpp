@@ -469,7 +469,7 @@ bool MyDate::operator <(const MyDate & dateInstance) const{
 bool MyDate::operator <=(const MyDate & dateInstance) const{
   return( (*this) < dateInstance || (*this) == dateInstance  );
 }
-ostream & operator<<(ostream & out, const MyDate dateInstance){
+std::ostream & operator<<(std::ostream & out, const MyDate &dateInstance){
   out << dateInstance.month << "/" << dateInstance.day << "/" << dateInstance.year;
   return(out);
 }

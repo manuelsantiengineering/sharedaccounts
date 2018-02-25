@@ -51,7 +51,7 @@ public:
   bool operator <= (const MyClock & timeInstance) const;
   bool operator < (const MyClock & timeInstance) const;
 
-  friend ostream & operator<<(ostream & out, const MyClock & timeInstance);
+  friend std::ostream & operator<<(std::ostream & out, const MyClock & timeInstance);
 
 };
 

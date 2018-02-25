@@ -12,7 +12,8 @@
 #include <iostream>
 #include <exception>
 
-#include "../Utilities/Period.h"
+#include "../Utilities/TimeAndDate.h"
+
 #include "../Model/Money.h"
 #include "../Model/User.h"
 #include "../Model/Account.h"

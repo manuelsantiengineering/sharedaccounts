@@ -36,20 +36,9 @@ int main(int argc, const char * argv[]) {
   Test testing;
   testing.testAll();
 
-  // Period pd;
-  // pd.setStartTimeNow_UTC();
-  //
-  // TimeAndDate td;
-  // td = pd.getStartTimeAndDate();
-  // MyString str = td.dateToMyString();
-  // std::cout << "Results " << td << std::endl;
-
-
-
-  //
-  // pd.setStartTimeNow_Local();
-  // td = pd.getStartTimeAndDate();
-  // std::cout << "Results " << td.dateToMyString() << std::endl;
+  // double x = 2.8;
+  // double y = 2.0;
+  // std::cout << "Value1 = " << floor(x) << " ValueY = " << floor(x-y) <<std::endl;
 
   return (0);
 }

@@ -41,7 +41,7 @@ public:
   bool operator <=(const TimeAndDate & td) const;
   bool operator <(const TimeAndDate & td) const;
 
-  friend ostream & operator<<(ostream & out, const TimeAndDate td);
+  friend std::ostream & operator<<(std::ostream & out, const TimeAndDate &td);
 };
 
 #endif /* defined(__TIMEANDDATE__) */

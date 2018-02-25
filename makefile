@@ -33,8 +33,12 @@ DIR_UTILITIES = ./Utilities/
 DIR_CONTROLLER = ./Controller/
 DIR_TEST = ./Test/
 
+UTILS=$(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)TimeAndDate.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_UTILITIES)Period.cpp $(DIR_UTILITIES)MyClock.cpp $(DIR_UTILITIES)MyTime.cpp
+MODELS=$(DIR_MODEL)Account.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp $(DIR_TEST)Expected.cpp
 
-SRCS = main.cpp $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)TimeAndDate.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_UTILITIES)Period.cpp $(DIR_UTILITIES)MyClock.cpp $(DIR_UTILITIES)MyTime.cpp $(DIR_MODEL)Account.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp  $(DIR_TEST)Expected.cpp  $(DIR_TEST)Test.cpp
+SRCS = main.cpp $(DIR_TEST)Test.cpp $(UTILS) $(MODELS)
+
+# SRCS = main.cpp $(DIR_TEST)Test.cpp $(DIR_UTILITIES)MyString.cpp $(DIR_UTILITIES)TimeAndDate.cpp $(DIR_UTILITIES)MyDate.cpp $(DIR_UTILITIES)Period.cpp $(DIR_UTILITIES)MyClock.cpp $(DIR_UTILITIES)MyTime.cpp $(DIR_MODEL)Account.cpp $(DIR_MODEL)Money.cpp $(DIR_MODEL)Person.cpp $(DIR_MODEL)User.cpp  $(DIR_TEST)Expected.cpp
 
 # define the C object files
 #
@@ -58,7 +62,7 @@ MAIN = myprogram
 #.PHONY: depend clean
 
 all:  $(MAIN)
-	@echo  Simple compiler named mycc has been compiled
+	@echo  SUCCESS: Compiler named myprogram has been compiled.
 
 $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS)

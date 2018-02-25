@@ -38,8 +38,8 @@ void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDa
     const int SECONDS_IN_DAY = 86400;
     double daysFraction = abs(seconds/SECONDS_IN_DAY);
     int amountOfDaysToAdd = floor(daysFraction);
-
-    int amountOfSecondsToAdd = (daysFraction - amountOfDaysToAdd)*SECONDS_IN_DAY;
+    daysFraction = (daysFraction - amountOfDaysToAdd)*SECONDS_IN_DAY;
+    int amountOfSecondsToAdd = floor(daysFraction);
 
     MyClock tdTime = td.getTime();
     int tdSeconds = tdTime.getTimeInSeconds();
@@ -111,11 +111,13 @@ bool TimeAndDate::operator <(const TimeAndDate & td) const{
   MyClock clock2(td);
   return(date1 < date2 || (date1 == date2 && clock1 < clock2) );
 }
-ostream & operator<<(ostream & out, const TimeAndDate & td){
+std::ostream & operator<<(std::ostream & out, const TimeAndDate &td){
   MyDate date1;
   date1 = td.getDate();
   MyClock clock1;
   clock1 = td.getTime();
-  out << date1.dateToMyString() << " " << clock1.timeToString_Seconds();
+  out << date1 << " " << clock1;
+  // out << "MANUEL";
+  // out << date1.dateToMyString() << " " << clock1.timeToString_Seconds();
   return(out);
 }
