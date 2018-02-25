@@ -45,11 +45,11 @@ public:
   Money getAccBalance() const;
   double getAccInterest() const;
 
-  void deposit(Money money);
+  void deposit(Money &money);
   void deposit(double money);
   void deposit(int money);
 
-  void retire(Money money);
+  void retire(Money &money);
   void retire(double money);
   void retire(int money);
 

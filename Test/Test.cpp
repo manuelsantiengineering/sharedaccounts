@@ -675,16 +675,16 @@ bool Test::testTimeAndDate(){
   td2.setDate(dateToSet);
   std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
-  dateToSet.setDate(5,1,2010);
+  dateToSet.setDate(1,6,2010);
   td6.setDate(dateToSet);
   td6.setTime(clock1);
-  std::cout << std::endl << "04 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  std::cout << std::endl << "Changed:\n04 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
 
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate() ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate() ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
-  std::cout << std::endl << "05 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  std::cout << std::endl << "Final: \n05 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
   std::cout << std::endl;
 

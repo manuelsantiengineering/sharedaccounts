@@ -29,11 +29,11 @@ MyString Account::getAccType() const  { return(this->accType); }
 Money Account::getAccBalance() const  { return(this->accBalance); }
 double Account::getAccInterest() const  { return(this->interest); }
 
-void Account::deposit(Money money){ this->accBalance += money; }
+void Account::deposit(Money& money){ this->accBalance += money; }
 void Account::deposit(double money){  this->accBalance += money; }
 void Account::deposit(int money){ this->accBalance += money; }
 
-void Account::retire(Money money){
+void Account::retire(Money &money){
   if( (this->accBalance - money) >= 0.0 ){
     this->accBalance -= money;
   }else{

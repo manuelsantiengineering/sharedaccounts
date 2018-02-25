@@ -9,13 +9,13 @@ TimeAndDate::TimeAndDate(int day, int mon, int yr, int hr, int min, int sec) :
 TimeAndDate::TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool isAM) :
     MyDate(day, mon, yr), MyClock(hr, min, sec, isAM)
 {}
-TimeAndDate::TimeAndDate(MyDate date) : MyDate(date), MyClock()
+TimeAndDate::TimeAndDate(MyDate &date) : MyDate(date), MyClock()
 {}
-TimeAndDate::TimeAndDate(MyClock td) : MyDate(), MyClock(td)
+TimeAndDate::TimeAndDate(MyClock &ts) : MyDate(), MyClock(ts)
 {}
-TimeAndDate::TimeAndDate(MyDate date, MyClock td) : MyDate(date), MyClock(td)
+TimeAndDate::TimeAndDate(MyDate &date, MyClock &ts) : MyDate(date), MyClock(ts)
 {}
-TimeAndDate::TimeAndDate(const TimeAndDate &td ){
+TimeAndDate::TimeAndDate(const TimeAndDate &td){
   this->MyDate::operator=(td);
   this->MyClock::operator=(td);
 }
@@ -30,10 +30,10 @@ MyDate TimeAndDate::getDate() const{
   return(date);
 }
 
-void TimeAndDate::setTime(MyClock td){ (*this) = td; }
-void TimeAndDate::setDate(MyDate date){ (*this) = date;  }
+void TimeAndDate::setTime(MyClock &ts){ this->MyClock::operator=(ts); }
+void TimeAndDate::setDate(MyDate &date){ this->MyDate::operator=(date);  }
 
-void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDate & td, int seconds){
+void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDate &td, int seconds){
   if(seconds != 0){
     const int SECONDS_IN_DAY = 86400;
     double daysFraction = abs(seconds/SECONDS_IN_DAY);
@@ -74,7 +74,7 @@ void TimeAndDate::operator=(const TimeAndDate &td){
   this->MyDate::operator=(td);
   this->MyClock::operator=(td);
 }
-bool TimeAndDate::operator==(const TimeAndDate & td) const{
+bool TimeAndDate::operator==(const TimeAndDate &td) const{
   MyDate date1(*this);
   MyDate date2(td);
   MyClock clock1(*this);

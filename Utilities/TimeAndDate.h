@@ -17,17 +17,17 @@ public:
   TimeAndDate();
   TimeAndDate(int day, int mon, int yr, int hr, int min, int sec);
   TimeAndDate(int day, int mon, int yr, int hr, int min, int sec, bool AM);
-  TimeAndDate(MyDate date);
-  TimeAndDate(MyClock time);
-  TimeAndDate(MyDate date, MyClock td);
+  TimeAndDate(MyDate &date);
+  TimeAndDate(MyClock &time);
+  TimeAndDate(MyDate &date, MyClock &ts);
   TimeAndDate(const TimeAndDate &td );
   ~TimeAndDate();
 
   MyClock getTime() const;
   MyDate getDate() const;
 
-  void setTime(MyClock td);
-  void setDate(MyDate date);
+  void setTime(MyClock &ts);
+  void setDate(MyDate &date);
 
   void setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDate & td, int seconds);
 
