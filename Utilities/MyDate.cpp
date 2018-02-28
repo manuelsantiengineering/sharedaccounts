@@ -152,7 +152,8 @@ void MyDate::setDateAtNumberOfDays(int amountOfDays){
   int startYear = this->year;
 
   if(amountOfDays > 0){
-    while(amountOfDays != -1){
+    // while(amountOfDays != -1){
+    while(amountOfDays > -1){
       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
       days_in_month[2] = a;
       for(int i = startMonth; i < 13; i++){
@@ -178,36 +179,55 @@ void MyDate::setDateAtNumberOfDays(int amountOfDays){
       }
     }
   }else if(amountOfDays < 0){
-    while(amountOfDays != 1){
+    // while(amountOfDays != 1){
+    while(amountOfDays < 1){
       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
       days_in_month[2] = a;
-      for(int i = startMonth; i < 13; i++){
+      // for(int i = startMonth; i < 13; i++){
+      std::cout << "\t Start: " << amountOfDays << std::endl;
+      for(int i = startMonth; i > 0; i--){
         if(amountOfDays == 0){
-          this->day = 1;
+          this->day = days_in_month[i];
           this->month = i;
           this->year = startYear - yearsCount;
           amountOfDays = 1;
           break;
         }else if(abs(amountOfDays) >= days_in_month[i]){
           amountOfDays += (days_in_month[i]);
+          std::cout << "\t After: " << amountOfDays << std::endl;
         }else{
-          if(i == 1){ //? 12 : i;
-            this->day = days_in_month[12] + amountOfDays;
-            this->month = 12;
-            this->year = startYear - yearsCount - 1;
+          int diffInDays = this->day+amountOfDays;
+          if(diffInDays <= 0){
+            if(i == 1){ //? 12 : i;
+              this->day = days_in_month[12] + diffInDays;
+              this->month = 12;
+              this->year = startYear - yearsCount - 1;
+              std::cout << "\t After2: " << amountOfDays << " i = " << i << std::endl;
+            // }else if(diffInDays == 0){
+            //   this->day = days_in_month[i];
+            //   this->month = i-1;
+            //   this->year = startYear - yearsCount;
+            //   std::cout << "\t After3: " << amountOfDays << " i = " << i << std::endl;
+            }else {
+              this->day = days_in_month[i-1] + diffInDays;
+              this->month = i-1;
+              this->year = startYear - yearsCount;
+              std::cout << "\t After3: " << amountOfDays << " i = " << i << std::endl;
+            }
           }else{
-            this->day = days_in_month[12] + amountOfDays;
-            this->month = 12;
-            this->year = startYear - yearsCount;
+
           }
+          // amountOfDays = days_in_month[i];
           amountOfDays = 1;
+          std::cout << "\t After4: " << amountOfDays << std::endl;
           break;
         }
       }
       if(amountOfDays != 1){
         yearsCount++;
-        startMonth = 1;
+        startMonth = 12;
       }
+      // std::cout << "\t After4: " << amountOfDays << std::endl;
     }
   }
 }

@@ -30,22 +30,22 @@ void MyTime::setToStandardTime(){
   }else{
     // if(this->seconds >= 60 || this->seconds <= 60){
     if(this->seconds >= 60){
-      double divide = this->seconds/60.0;
+      double divide = (this->seconds*1.0)/60.0;
       // std::cout << "\t\t\t2Divide: " << divide << std::endl;
       int rd = floor(divide);
       this->minutes += rd;
-      divide = (divide-rd)*60.0;
+      divide = (divide-(rd*1.0))*60.0;
       // std::cout << "\t\t\t2Divide: " << divide << std::endl;
       this->seconds = round(divide);
       // std::cout << "\t\t2 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
     }
     // if(this->minutes >= 60 || this->minutes <= 60){
     if(this->minutes >= 60){
-      double divide = this->minutes/60.0;
+      double divide = (this->minutes*1.0)/60.0;
       // std::cout << "\t\t\t1Divide: " << divide << std::endl;
       int rd = floor(divide);
       this->hours += rd;
-      divide = (divide-rd)*60.0;
+      divide = (divide-(rd*1.0))*60.0;
       // std::cout << "\t\t\t2Divide: " << divide << std::endl;
       this->minutes = round(divide);
       // std::cout << "\t\t3 Hr: " << this->hours << " Min: " << this->minutes << " Sec: " << this->seconds << std::endl;
