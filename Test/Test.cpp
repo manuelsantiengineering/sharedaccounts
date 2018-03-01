@@ -664,52 +664,52 @@ bool Test::testTimeAndDate(){
 
   MyClock clock1(12,0,0,false);
   MyDate dateToSet(1,3,2010);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(1,6,2010);
-  // td6.setDate(dateToSet);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+92days) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  //
-  // dateToSet.setDate(31,12,2010);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(30,9,2010);
-  // td6.setDate(dateToSet);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7948800); //92 days before
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-92days) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  //
-  // dateToSet.setDate(31,12,2010);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(30,9,2010);
-  // td6.setDate(dateToSet);
-  // clock1.setTime(8,0,0,true);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7963200); //92 days and 4 hours before
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-92days,4hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  //
-  // dateToSet.setDate(31,12,2010);
-  // clock1.setTime(12,0,0,false);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(30,9,2010);
-  // td6.setDate(dateToSet);
-  // clock1.setTime(4,0,0,false);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7934400); //91 days and 20 hours before
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-91days,20hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  //
-  // dateToSet.setDate(1,8,2010);
-  // clock1.setTime(12,0,0,false);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(1,11,2010);
-  // td6.setDate(dateToSet);
-  // clock1.setTime(8,0,30,true);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7934430); //91 days and 20 hours after
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+91days,20hrs,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(1,6,2010);
+  td6.setDate(dateToSet);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7948800); //92 days after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+92days) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+  dateToSet.setDate(31,12,2010);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(30,9,2010);
+  td6.setDate(dateToSet);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7948800); //92 days before
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-92days) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+  dateToSet.setDate(31,12,2010);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(30,9,2010);
+  td6.setDate(dateToSet);
+  clock1.setTime(8,0,0,true);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7963200); //92 days and 4 hours before
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-92days,4hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+  dateToSet.setDate(31,12,2010);
+  clock1.setTime(12,0,0,false);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(30,9,2010);
+  td6.setDate(dateToSet);
+  clock1.setTime(4,0,0,false);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7934400); //91 days and 20 hours before
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-91days,20hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+  dateToSet.setDate(1,8,2010);
+  clock1.setTime(12,0,0,false);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(1,11,2010);
+  td6.setDate(dateToSet);
+  clock1.setTime(8,0,30,true);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7934430); //91 days and 20 hours after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+91days,20hrs,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   dateToSet.setDate(1,8,2010);
   clock1.setTime(1,0,0,true);
@@ -719,57 +719,56 @@ bool Test::testTimeAndDate(){
   td6.setDate(dateToSet);
   clock1.setTime(11,0,0,false);
   td6.setTime(clock1);
-  std::cout << std::endl << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
   td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7200); //2 hours before
-  std::cout << std::endl << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
   if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-2hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
-  dateToSet.setDate(1,8,2010);
+  dateToSet.setDate(21,8,2010);
   clock1.setTime(11,0,0,false);
   td2.setTime(clock1);
   td2.setDate(dateToSet);
-  dateToSet.setDate(2,8,2010);
+  dateToSet.setDate(22,8,2010);
   td6.setDate(dateToSet);
   clock1.setTime(1,0,0,true);
   td6.setTime(clock1);
-  std::cout << std::endl << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  // std::cout << std::endl << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
   td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 7200); //2 hours after
-  std::cout << std::endl << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  // std::cout << std::endl << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
   if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+2hrs) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-  std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  // std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
-  // dateToSet.setDate(1,8,2010);
-  // clock1.setTime(12,0,0,false);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // td6.setDate(dateToSet);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 0); //91 days and 20 hours after
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+0days,0hrs,0sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  dateToSet.setDate(1,8,2010);
+  clock1.setTime(12,0,0,false);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  td6.setDate(dateToSet);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 0); //91 days and 20 hours after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+0days,0hrs,0sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   // std::cout << std::endl << std::endl << "01 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+
+  dateToSet.setDate(31,12,2010);
+  clock1.setTime(12,0,0,false);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(1,1,2011);
+  clock1.setTime(8,30,30,true);
+  td6.setDate(dateToSet);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 73830); //20 hours after
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+20hr,30min,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   // dateToSet.setDate(31,12,2010);
   // clock1.setTime(12,0,0,false);
   // td2.setTime(clock1);
   // td2.setDate(dateToSet);
-  // std::cout << std::endl << "02 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
   // dateToSet.setDate(30,9,2010);
-  // std::cout << std::endl << "03 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
   // td6.setDate(dateToSet);
   // clock1.setTime(4,0,0,false);
   // td6.setTime(clock1);
-  // std::cout << std::endl << "Changed:\n04 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
+  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -73830); //20 hours before
+  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-20hr,30min,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
-
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -7934400); //91 days and 20 hours before
-  // std::cout << std::endl << "Changed:\n05 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
-
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate() ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
-
-  // std::cout << std::endl << "Final: \n06 Td2: " << td2 << " Td6: " << td6 << std::endl << std::endl;
 
   std::cout << std::endl;
 
