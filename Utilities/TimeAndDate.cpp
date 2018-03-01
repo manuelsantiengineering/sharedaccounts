@@ -76,6 +76,7 @@ void TimeAndDate::setTimeAndDateAtNumberOfSecondsFromTimeAndDate(const TimeAndDa
     MyDate date = td.getDate();
     std::cout << " 03 Time: " << ts << " Date: " << date << std::endl;
     date.setDateAtNumberOfDays(amountOfDaysToAdd);
+    // date.setDateAtNumberOfDaysFromDate(date, amountOfDaysToAdd);
     std::cout << " 04 Time: " << ts << " Date: " << date << std::endl;
     MyClock tc(ts);
     // std::cout << " 05 Clock: " << tc << " Date: " << date << std::endl;

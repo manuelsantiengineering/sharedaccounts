@@ -755,19 +755,19 @@ bool Test::testTimeAndDate(){
   clock1.setTime(8,30,30,true);
   td6.setDate(dateToSet);
   td6.setTime(clock1);
-  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 73830); //20 hours after
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, 73830); //20 hours 30 min 30 sec after
   if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(+20hr,30min,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
-  // dateToSet.setDate(31,12,2010);
-  // clock1.setTime(12,0,0,false);
-  // td2.setTime(clock1);
-  // td2.setDate(dateToSet);
-  // dateToSet.setDate(30,9,2010);
-  // td6.setDate(dateToSet);
-  // clock1.setTime(4,0,0,false);
-  // td6.setTime(clock1);
-  // td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -73830); //20 hours before
-  // if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-20hr,30min,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
+  dateToSet.setDate(1,1,2011);
+  clock1.setTime(8,30,30,true);
+  td2.setTime(clock1);
+  td2.setDate(dateToSet);
+  dateToSet.setDate(31,12,2010);
+  clock1.setTime(12,0,0,false);
+  td6.setDate(dateToSet);
+  td6.setTime(clock1);
+  td2.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td2, -73830); //20 hours 30 min 30 sec before
+  if(expected.expect(" setTimeAndDateAtNumberOfSecondsFromTimeAndDate(-20hr,30min,30sec) ", (td6 == td2), true )) {this->passedTests++;}else{this->failedTests++;}
 
 
   std::cout << std::endl;
