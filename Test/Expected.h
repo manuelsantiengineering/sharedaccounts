@@ -13,7 +13,7 @@
 #include <exception>
 
 #include "../Utilities/MyString.h"
-#include "../Utilities/TimeAndDate.h"
+#include "../Utilities/Period.h"
 #include "../Model/Money.h"
 #include "../Model/Person.h"
 #include "../Model/User.h"
@@ -61,6 +61,7 @@ public:
   bool testConstructor(MyClock time, int h, int m, int s, bool AM);
   bool testConstructor(MyString str1, const char *str2);
   bool testConstructor(TimeAndDate td, int day, int mon, int yr, int h, int m, int s, bool AM);
+  bool testConstructor(Period td, MyDate startDate, MyDate endDate, MyClock startTime, MyClock endTime);
 
   /*
     Exception tests...

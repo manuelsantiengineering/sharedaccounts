@@ -4,33 +4,49 @@ static const int SECONDS_IN_DAY = 86400;
 static const int MINUTES_IN_DAY = 1440;
 
 Period::Period(){
-  this->startTimeInfo = {12,0,0,true,1,1,1990};
-  this->endTimeInfo = {12,0,0,true,1,1,1990};
+  this->startTimeInfo = {0,0,12,true,1,1,1990};
+  this->endTimeInfo = {0,0,12,true,1,1,1990};
 }
 Period::Period(MyDate startDate, MyDate endDate){
-  this->startTimeInfo = {12,0,0,true,startDate.getDay(),startDate.getMonth(),startDate.getYear()};
-  this->endTimeInfo = {12,0,0,true,endDate.getDay(),endDate.getMonth(),endDate.getYear()};
+  this->startTimeInfo = {0,0,12,true,startDate.getDay(),startDate.getMonth(),startDate.getYear()};
+  this->endTimeInfo = {0,0,12,true,endDate.getDay(),endDate.getMonth(),endDate.getYear()};
+  if(!this->periodIsValid()){
+    MyString e("Please verify the period values.\n");
+    throw e;
+  }
 }
 Period::Period(MyClock startTime, MyClock endTime){
   this->startTimeInfo = {startTime.getSeconds(),startTime.getMinutes(),startTime.getHours(),
-    startTime.isAM(),1,1,1};
+    startTime.isAM(),1,1,1990};
   this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
-    endTime.isAM(),1,1,1};
+    endTime.isAM(),1,1,1990};
+  if(!this->periodIsValid()){
+    MyString e("Please verify the period values.\n");
+    throw e;
+  }
 }
 Period::Period(MyDate startDate, MyDate endDate, MyClock startTime, MyClock endTime){
   this->startTimeInfo = {startTime.getSeconds(),startTime.getMinutes(),startTime.getHours(),
     startTime.isAM(),startDate.getDay(),startDate.getMonth(),startDate.getYear()};
   this->endTimeInfo = {endTime.getSeconds(),endTime.getMinutes(),endTime.getHours(),
     endTime.isAM(),endDate.getDay(),endDate.getMonth(),endDate.getYear()};
+  if(!this->periodIsValid()){
+    MyString e("Please verify the period values.\n");
+    throw e;
+  }
 }
 Period::Period(TimeAndDate start, TimeAndDate end){
   this->startTimeInfo = {start.getSeconds(),start.getMinutes(),start.getHours(),
     start.isAM(),start.getDay(),start.getMonth(),start.getYear()};
   this->endTimeInfo = {end.getSeconds(),end.getMinutes(),end.getHours(),
     end.isAM(),end.getDay(),end.getMonth(),end.getYear()};
+  if(!this->periodIsValid()){
+    MyString e("Please verify the period values.\n");
+    throw e;
+  }
 }
 Period::Period(const Period &period){
-  this->startTimeInfo = {period.startTimeInfo.sec,period.startTimeInfo.hr,
+  this->startTimeInfo = {period.startTimeInfo.sec,period.startTimeInfo.min,period.startTimeInfo.hr,
     period.startTimeInfo.AM,period.startTimeInfo.day,period.startTimeInfo.mon,period.startTimeInfo.yr};
   this->endTimeInfo = {period.endTimeInfo.sec,period.endTimeInfo.min,period.endTimeInfo.hr,
     period.endTimeInfo.AM,period.endTimeInfo.day,period.endTimeInfo.mon,period.endTimeInfo.yr};
@@ -40,10 +56,12 @@ Period::~Period(){}
 bool Period::periodIsValid() const{
   MyDate startDate = this->getStartDate();
   const int secondsInPeriod = this->getPeriodInSeconds();
-  const int SecondsNonLeapYear = 31536000;
+  const int SECONDS_NOT_LEAP_YEAR = 31536000;
 
-  return( (secondsInPeriod <= SecondsNonLeapYear) ||
-          (startDate.isLeapYear() && (secondsInPeriod <= (SecondsNonLeapYear+SECONDS_IN_DAY)))
+  // std::cout << "Seconds: " << secondsInPeriod << (secondsInPeriod <= SECONDS_NOT_LEAP_YEAR) << std::endl;
+
+  return( (secondsInPeriod <= SECONDS_NOT_LEAP_YEAR) ||
+          (startDate.isLeapYear() && (secondsInPeriod <= (SECONDS_NOT_LEAP_YEAR+SECONDS_IN_DAY)))
         );
 }
 TimeAndDate Period::getStartTimeAndDate() const{

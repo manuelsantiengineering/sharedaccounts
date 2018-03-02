@@ -13,7 +13,7 @@ MyDate::MyDate(int day, int month, int year){
   this->day = day;
   this->month = month;
   this->year = year;
-  if( !isDateCorrect(day, month, year) ){
+  if( !this->isDateCorrect(day, month, year) ){
     MyString e("Please verify the date values.");
     throw e;
   }
@@ -33,7 +33,7 @@ MyDate & MyDate::operator=(const MyDate & dateInstance){
 }
 
 void MyDate::setDate(int d, int m, int y){
-  if( isDateCorrect(d, m, y) ){
+  if(this->isDateCorrect(d, m, y) ){
       this->day = d;
       this->month = m;
       this->year = y;
@@ -43,7 +43,7 @@ void MyDate::setDate(int d, int m, int y){
   }
 }
 void MyDate::setDay(int d){
-  if( isDateCorrect(d, this->month, this->year) ){
+  if(this->isDateCorrect(d, this->month, this->year) ){
       this->day = d;
   }else{
     MyString e("Please verify the date values.");
@@ -51,7 +51,7 @@ void MyDate::setDay(int d){
   }
 }
 void MyDate::setMonth(int m){
-  if( isDateCorrect(this->day, m, this->year) ){
+  if(this->isDateCorrect(this->day, m, this->year) ){
       this->month = m;
   }else{
     MyString e("Please verify the date values.");
@@ -59,7 +59,7 @@ void MyDate::setMonth(int m){
   }
 }
 void MyDate::setYear(int y){
-  if( isDateCorrect(this->day, this->month, y) ){
+  if(this->isDateCorrect(this->day, this->month, y) ){
       this->year = y;
   }else{
     MyString e("Please verify the date values.");
@@ -401,7 +401,7 @@ void MyDate::setDateAtNumberOfDaysFromStartOfYear(int amountOfDays){
     a = 28;
     maxDays = 364;
   }
-  if( amountOfDays <= maxDays && amountOfDays >= 0 && isDateCorrect(1, 1, this->year) ){
+  if( amountOfDays <= maxDays && amountOfDays >= 0 && this->isDateCorrect(1, 1, this->year) ){
     const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     for(int i = 1; i < 13; i++){
       if(amountOfDays == 0){
@@ -432,7 +432,7 @@ void MyDate::setDateAtNumberOfDaysFromStartOfYear(int amountOfDays, int year){
     a = 28;
     maxDays = 364;
   }
-  if( amountOfDays <= maxDays && amountOfDays >= 0 && isDateCorrect(1, 1, year) ){
+  if( amountOfDays <= maxDays && amountOfDays >= 0 && this->isDateCorrect(1, 1, year) ){
     const int days_in_month[13] = {0, 31, a, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     for(int i = 1; i < 13; i++){
       if(amountOfDays == 0){

@@ -209,6 +209,19 @@ bool Expected::testConstructor(TimeAndDate td, int day, int mon, int yr, int h, 
   }
   return(passedTest);
 }
+bool Expected::testConstructor(Period td, MyDate startDate, MyDate endDate, MyClock startTime, MyClock endTime){
+  bool passedTest = false;
+  std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
+  if( td.getStartDate() == startDate && td.getStartTime() == startTime &&
+      td.getEndDate() == endDate && td.getEndTime() == endTime 
+    ){
+    passedTest = true;
+    std::cout << "SUCCESS! " << std::endl;
+  }else{
+    std::cout << "FAILED! " << std::endl;
+  }
+  return(passedTest);
+}
 bool Expected::testException(MyString functionName, int functionResult, MyString expectedResult){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";

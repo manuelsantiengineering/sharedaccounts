@@ -12,7 +12,7 @@
 #include <iostream>
 #include <exception>
 
-#include "../Utilities/TimeAndDate.h"
+#include "../Utilities/Period.h"
 
 #include "../Model/Money.h"
 #include "../Model/User.h"
@@ -40,6 +40,7 @@ public:
   bool testMyDate();
   bool testMyTime();
   bool testMyString();
+  bool testPeriod();
   bool testPerson();
   bool testUser();
   bool testTimeAndDate();
