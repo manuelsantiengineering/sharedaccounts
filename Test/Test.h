@@ -35,12 +35,13 @@ public:
 
   void testAll();
 
-  bool testPerson();
   bool testMoney();
+  bool testMyClock();
   bool testMyDate();
   bool testMyTime();
-  bool testMyClock();
   bool testMyString();
+  bool testPerson();
+  bool testUser();
   bool testTimeAndDate();
 
 };

@@ -144,94 +144,6 @@ int MyDate::getNumberOfDaysUntilDate(const MyDate & dateInstance) const{
 
   return (amountOfDays);
 }
-// void MyDate::setDateAtNumberOfDays(int amountOfDays){
-//   int a;
-//   int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-//   int yearsCount = 0;
-//   int startMonth = this->month;
-//   int startYear = this->year;
-//
-//   if(amountOfDays > 0){
-//     // while(amountOfDays != -1){
-//     while(amountOfDays > -1){
-//       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
-//       days_in_month[2] = a;
-//       for(int i = startMonth; i < 13; i++){
-//         if(amountOfDays == 0){
-//           this->day = 1;
-//           this->month = i;
-//           this->year = startYear + yearsCount;
-//           amountOfDays = -1;
-//           break;
-//         }else if(amountOfDays >= days_in_month[i]){
-//           amountOfDays -= (days_in_month[i]);
-//         }else{
-//           this->day = amountOfDays+1;
-//           this->month = i;
-//           this->year = startYear + yearsCount;
-//           amountOfDays = -1;
-//           break;
-//         }
-//       }
-//       if(amountOfDays != -1){
-//         yearsCount++;
-//         startMonth = 1;
-//       }
-//     }
-//   }else if(amountOfDays < 0){
-//     // while(amountOfDays != 1){
-//     while(amountOfDays < 1){
-//       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
-//       days_in_month[2] = a;
-//       // for(int i = startMonth; i < 13; i++){
-//       std::cout << "\t Start: " << amountOfDays << std::endl;
-//       for(int i = startMonth; i > 0; i--){
-//         if(amountOfDays == 0){
-//           this->day = days_in_month[i];
-//           this->month = i;
-//           this->year = startYear - yearsCount;
-//           amountOfDays = 1;
-//           break;
-//         }else if(abs(amountOfDays) >= days_in_month[i]){
-//           amountOfDays += (days_in_month[i]);
-//           std::cout << "\t After: " << amountOfDays << std::endl;
-        // }else{
-        //   int diffInDays = this->day+amountOfDays;
-        //   if(diffInDays <= 0){
-        //     if(i == 1){ //? 12 : i;
-        //       this->day = days_in_month[12] + diffInDays;
-        //       this->month = 12;
-        //       this->year = startYear - yearsCount - 1;
-        //       std::cout << "\t After2: " << amountOfDays << " i = " << i << std::endl;
-        //     // }else if(diffInDays == 0){
-        //     //   this->day = days_in_month[i];
-        //     //   this->month = i-1;
-        //     //   this->year = startYear - yearsCount;
-        //     //   std::cout << "\t After3: " << amountOfDays << " i = " << i << std::endl;
-        //     }else {
-        //       this->day = days_in_month[i-1] + diffInDays;
-        //       this->month = i-1;
-        //       this->year = startYear - yearsCount;
-        //       std::cout << "\t After3: " << amountOfDays << " i = " << i << std::endl;
-        //     }
-        //   }else{
-        //
-        //   }
-        //   // amountOfDays = days_in_month[i];
-        //   amountOfDays = 1;
-        //   std::cout << "\t After4: " << amountOfDays << std::endl;
-        //   break;
-        // }
-//       }
-//       if(amountOfDays != 1){
-//         yearsCount++;
-//         startMonth = 12;
-//       }
-//       // std::cout << "\t After4: " << amountOfDays << std::endl;
-//     }
-//   }
-// }
-
 void MyDate::setDateAtNumberOfDays(int amountOfDays){
   int a;
   int days_in_month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -240,13 +152,11 @@ void MyDate::setDateAtNumberOfDays(int amountOfDays){
   int startYear = this->year;
   bool foundDate = false;
 
-  // amountOfDays += (amountOfDays > 0) ? this->day : this->day-1;
-
-  std::cout << "\t Start: " << amountOfDays << std::endl;
+  // std::cout << "\t Start: " << amountOfDays << std::endl;
 
   if(amountOfDays > 0){
     amountOfDays += this->day;
-    std::cout << "\t 02: " << amountOfDays << std::endl;
+    // std::cout << "\t 02: " << amountOfDays << std::endl;
     while(!foundDate){
       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
       days_in_month[2] = a;
@@ -275,7 +185,7 @@ void MyDate::setDateAtNumberOfDays(int amountOfDays){
   }else if(amountOfDays < 0){
     // bool isFirstIteration = true;
     amountOfDays += this->day-1;
-    std::cout << "\t -00Days: " << amountOfDays << std::endl;
+    // std::cout << "\t -00Days: " << amountOfDays << std::endl;
     if(amountOfDays > 0){
       this->day = amountOfDays+1;
     }else if(amountOfDays == 0){
@@ -292,23 +202,23 @@ void MyDate::setDateAtNumberOfDays(int amountOfDays){
       while(!foundDate){
         a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
         days_in_month[2] = a;
-        std::cout << "\t -01Days: " << amountOfDays << std::endl;
+        // std::cout << "\t -01Days: " << amountOfDays << std::endl;
         for(int i = startMonth; i > 0; i--){
           if(amountOfDays == 0){
             this->day = days_in_month[i];
             this->month = i;
             this->year = startYear - yearsCount;
             foundDate = true;
-            std::cout << "\t -03Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -03Days: " << amountOfDays << std::endl;
             break;
           }else if(abs(amountOfDays) >= days_in_month[i]){
             amountOfDays += (days_in_month[i]);
-            std::cout << "\t -02Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -02Days: " << amountOfDays << std::endl;
           }else{
             this->day = days_in_month[i] + amountOfDays + 1;
             this->month = i;
             this->year = startYear - yearsCount;
-            std::cout << "\t -04Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -04Days: " << amountOfDays << std::endl;
             foundDate = true;
             break;
           }
@@ -331,11 +241,9 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
   int startYear = dateInstance.year;
   bool foundDate = false;
 
-  std::cout << "\t Start: " << amountOfDays << std::endl;
-
   if(amountOfDays > 0){
     amountOfDays += dateInstance.day;
-    std::cout << "\t 02: " << amountOfDays << std::endl;
+    // std::cout << "\t 02: " << amountOfDays << std::endl;
     while(!foundDate){
       a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
       days_in_month[2] = a;
@@ -364,7 +272,7 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
   }else if(amountOfDays < 0){
     // bool isFirstIteration = true;
     amountOfDays += dateInstance.day-1;
-    std::cout << "\t -00Days: " << amountOfDays << std::endl;
+    // std::cout << "\t -00Days: " << amountOfDays << std::endl;
     if(amountOfDays > 0){
       this->day = amountOfDays+1;
     }else if(amountOfDays == 0){
@@ -381,23 +289,23 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
       while(!foundDate){
         a = (this->isLeapYear(startYear + yearsCount)) ? 29 : 28;
         days_in_month[2] = a;
-        std::cout << "\t -01Days: " << amountOfDays << std::endl;
+        // std::cout << "\t -01Days: " << amountOfDays << std::endl;
         for(int i = startMonth; i > 0; i--){
           if(amountOfDays == 0){
             this->day = days_in_month[i];
             this->month = i;
             this->year = startYear - yearsCount;
             foundDate = true;
-            std::cout << "\t -03Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -03Days: " << amountOfDays << std::endl;
             break;
           }else if(abs(amountOfDays) >= days_in_month[i]){
             amountOfDays += (days_in_month[i]);
-            std::cout << "\t -02Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -02Days: " << amountOfDays << std::endl;
           }else{
             this->day = days_in_month[i] + amountOfDays + 1;
             this->month = i;
             this->year = startYear - yearsCount;
-            std::cout << "\t -04Days: " << amountOfDays << std::endl;
+            // std::cout << "\t -04Days: " << amountOfDays << std::endl;
             foundDate = true;
             break;
           }

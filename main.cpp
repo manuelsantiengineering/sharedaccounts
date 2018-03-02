@@ -10,9 +10,7 @@
 
 #include "./Model/Money.h"
 #include "./Model/User.h"
-#include "./Utilities/MyString.h"
-#include "./Utilities/MyDate.h"
-#include "./Utilities/MyTime.h"
+#include "./Utilities/TimeAndDate.h"
 #include "./Utilities/Period.h"
 
 #include "./Test/Test.h"
