@@ -136,6 +136,12 @@ void Period::setStartDate(MyDate date){
 void Period::setStartDay(int d){ this->startTimeInfo.day = d; }
 void Period::setStartMonth(int m){ this->startTimeInfo.mon = m;  }
 void Period::setStartYear(int y){ this->startTimeInfo.yr = y;  }
+void Period::setStartTime(MyClock ts){
+  this->endTimeInfo.sec = ts.getSeconds();
+  this->endTimeInfo.min = ts.getMinutes();
+  this->endTimeInfo.hr = ts.getHours();
+  this->endTimeInfo.AM = ts.isAM();
+}
 void Period::setStartSecond(int s){ this->startTimeInfo.sec = s; }
 void Period::setStartMinute(int m){ this->startTimeInfo.min = m; }
 void Period::setStartHour(int h){ this->startTimeInfo.hr = h;  }
@@ -158,6 +164,12 @@ void Period::setEndDate(MyDate date){
 void Period::setEndDay(int d){ this->endTimeInfo.day = d; }
 void Period::setEndMonth(int m){ this->endTimeInfo.mon = m;  }
 void Period::setEndYear(int y){ this->endTimeInfo.yr = y;  }
+void Period::setEndTime(MyClock ts){
+  this->endTimeInfo.sec = ts.getSeconds();
+  this->endTimeInfo.min = ts.getMinutes();
+  this->endTimeInfo.hr = ts.getHours();
+  this->endTimeInfo.AM = ts.isAM();
+}
 void Period::setEndSecond(int s){ this->endTimeInfo.sec = s; }
 void Period::setEndMinute(int m){ this->endTimeInfo.min = m; }
 void Period::setEndHour(int h){ this->endTimeInfo.hr = h;  }

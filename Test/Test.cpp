@@ -902,16 +902,22 @@ bool Test::testPeriod(){
     TimeAndDate std(1,1,2010,1,0,0,false);
     TimeAndDate etd(1,1,2010,2,0,0,false);
     MyDate sdate(1,1,2011);
-    MyDate edate(1,1,2012);
+    MyDate edate(31,12,2011);
     MyClock stime(12,0,0,true);
     MyClock etime(1,0,0,true);
 
     Period p1;
+    std::cout << "Working00" << std::endl;
     Period p2(sdate,edate);
+    std::cout << "Working01" << std::endl;
     Period p3(sdate,edate,stime,etime);
+    std::cout << "Working02" << std::endl;
     Period p4(stime,etime);
+    std::cout << "Working03" << std::endl;
     Period p5(std,etd);
+    std::cout << "Working04" << std::endl;
     Period p6(p3);
+    std::cout << "Working05" << std::endl;
     MyClock testStime(12,0,0,true);
     MyClock testEtime(12,0,0,true);
     if(expected.testConstructor(p2,sdate,edate,testStime,testEtime)) {this->passedTests++;}else{this->failedTests++;}
@@ -927,6 +933,24 @@ bool Test::testPeriod(){
     testEdate.setDate(1,1,1990);
     if(expected.testConstructor(p1,testSdate,testEdate,testStime,testEtime)) {this->passedTests++;}else{this->failedTests++;}
 
+    TimeAndDate testStd(1,1,2010,12,0,0,true);
+    TimeAndDate testEtd(1,2,2010,12,0,0,true);
+    p1.setPeriod(testStd,testEtd);
+  if(expected.expect(" getStartTimeAndDate() ", p1.getStartTimeAndDate(), testStd )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" getEndTimeAndDate() ", p1.getEndTimeAndDate(), testEtd )) {this->passedTests++;}else{this->failedTests++;}
+
+  testSdate.setDate(11,1,2010);
+  testEdate.setDate(22,2,2010);
+  p1.setStartDate(testSdate);
+  p1.setEndDate(testEdate);
+  if(expected.expect(" getStartDate() ", p1.getStartDate(), testSdate )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" getEndDate() ", p1.getEndDate(), testEdate )) {this->passedTests++;}else{this->failedTests++;}
+  testStime.setTime(12,0,0,true);
+  testEtime.setTime(4,0,0,false);
+  p1.setStartTime(testStime);
+  p1.setEndTime(testEtime);
+  if(expected.expect(" getStartTime() ", p1.getStartTime(), testStime )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" getEndTime() ", p1.getEndTime(), testEtime )) {this->passedTests++;}else{this->failedTests++;}
 
 
   }catch(MyString e){

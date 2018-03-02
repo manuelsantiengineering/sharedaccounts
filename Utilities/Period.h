@@ -74,6 +74,7 @@ public:
   void setStartDay(int d);
   void setStartMonth(int m);
   void setStartYear(int y);
+  void setStartTime(MyClock ts);
   void setStartSecond(int s);
   void setStartMinute(int m);
   void setStartHour(int h);
@@ -84,6 +85,7 @@ public:
   void setEndDay(int d);
   void setEndMonth(int m);
   void setEndYear(int y);
+  void setEndTime(MyClock ts);
   void setEndSecond(int s);
   void setEndMinute(int m);
   void setEndHour(int h);

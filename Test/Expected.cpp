@@ -118,7 +118,7 @@ bool Expected::expect(MyString functionName, MyClock functionResult, MyClock exp
   }
   return(passedTest);
 }
-bool expect(MyString functionName, TimeAndDate functionResult, TimeAndDate expectedResult){
+bool Expected::expect(MyString functionName, TimeAndDate functionResult, TimeAndDate expectedResult){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
   if(functionResult == expectedResult){
@@ -128,16 +128,16 @@ bool expect(MyString functionName, TimeAndDate functionResult, TimeAndDate expec
     std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
   }
 }
-bool expect(MyString functionName, Period functionResult, Period expectedResult){
-  bool passedTest = false;
-  std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
-  if(functionResult == expectedResult){
-    passedTest = true;
-    std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
-  }else{
-    std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
-  }
-}
+// bool Expected::expect(MyString functionName, Period functionResult, Period expectedResult){
+//   bool passedTest = false;
+//   std::cout << "Testing Class: " << this->className << " , Function: " << functionName << " Results: ";
+//   if(functionResult == expectedResult){
+//     passedTest = true;
+//     std::cout << "\tSUCCESS: " << functionResult << " == " << expectedResult  << std::endl;
+//   }else{
+//     std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
+//   }
+// }
 bool Expected::testConstructor(Person person, MyString name, MyString lastName, int age){
   bool passedTest = false;
   std::cout << "Testing Class: " << this->className << " , Function: Constructor() " << " Results: ";
