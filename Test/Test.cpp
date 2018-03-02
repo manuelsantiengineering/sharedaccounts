@@ -14,7 +14,8 @@ void Test::testAll(){
   if(this->testPerson()){
     std::cout << "\n\t SUCCESS TESTING: " << "Person\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "Person\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "Person" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -23,7 +24,8 @@ void Test::testAll(){
   if(this->testMoney()){
     std::cout << "\n\t SUCCESS TESTING: " << "Money\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "Money\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "Money" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -32,7 +34,8 @@ void Test::testAll(){
   if(this->testMyDate()){
     std::cout << "\n\t SUCCESS TESTING: " << "MyDate\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "MyDate\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "MyDate" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -41,7 +44,8 @@ void Test::testAll(){
   if(this->testMyTime()){
     std::cout << "\n\t SUCCESS TESTING: " << "MyTime\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "MyTime\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "MyTime" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -50,7 +54,8 @@ void Test::testAll(){
   if(this->testMyClock()){
     std::cout << "\n\t SUCCESS TESTING: " << "MyClock\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "MyClock\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "MyClock" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -59,7 +64,8 @@ void Test::testAll(){
   if(this->testMyString()){
     std::cout << "\n\t SUCCESS TESTING: " << "MyString\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "MyString\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "MyString" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -68,7 +74,8 @@ void Test::testAll(){
   if(this->testTimeAndDate()){
     std::cout << "\n\t SUCCESS TESTING: " << "TimeAndDate\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "TimeAndDate\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "TimeAndDate" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -77,7 +84,8 @@ void Test::testAll(){
   if(this->testUser()){
     std::cout << "\n\t SUCCESS TESTING: " << "User\n" << std::endl;
   }else{
-    std::cout << "\n\t FAILED TESTING: " << "User\n" << std::endl;
+    std::cout << "\n\t FAILED TESTING: " << "User" << std::endl;
+    std::cout << "\n\t failed tests: " << this->failedTests << std::endl << std::endl;
   }
   this->totalPassedTests+= this->passedTests;
   this->passedTests = 0;
@@ -271,6 +279,7 @@ bool Test::testMyDate(){
   if(expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date3), true )) {this->passedTests++;}else{this->failedTests++;}
   date2.setDate(1,3,1993);
   date4.setDateAtNumberOfDaysFromDate(date2, 0);
+  std::cout << "Resulting Date must be 1/3/1993, result: " << date2 << " Amount of days: " << 0 << std::endl;
   if(expected.expect(" setDateAtNumberOfDaysFromDate() ", (date4 == date2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   date2.setDate(1,1,1991);
@@ -279,7 +288,7 @@ bool Test::testMyDate(){
   date4.setDateAtNumberOfDaysFromStartOfYear(31);
   // std::cout << "Date 4 " << date4 << " Date 3 " << date3 << std::endl;
   if(expected.expect(" setDateAtNumberOfDaysFromStartOfYear(int) ", (date4 == date3), true )) {this->passedTests++;}else{this->failedTests++;}
-  if(expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date2.getNumberOfDaysUntilDate(date4) == 31), true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date2.getNumberOfDaysUntilDate(date3) == 31), true )) {this->passedTests++;}else{this->failedTests++;}
 
   date4.setDate(1,1,1991);
   date3.setDate(4,3,1991);
@@ -336,17 +345,25 @@ bool Test::testMyDate(){
 
 
   date4.setDate(1,1,2018);
+  days = (int) -10;
+  date2.setDateAtNumberOfDaysFromDate(date4, days);
+  date3.setDate(22,12,2017);
+  std::cout << "Resulting Date must be 12/12/2017, result: " << date2 << " Amount of days: " << days << std::endl;
+  if(expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true )) {this->passedTests++;}else{this->failedTests++;}
+
+
+  date4.setDate(1,1,2018);
   days = (int) (-1.0)*1514764800/86400;
   date2.setDateAtNumberOfDaysFromDate(date4, days);
-  date3.setDate(1,1,1970);
-  std::cout << "Resulting Date must be 1/1/1970, result: " << date2 << std::endl;
+  date3.setDate(31,12,1969);
+  std::cout << "Resulting Date must be 1/31/1969, result: " << date2 << " Amount of days: " << days << std::endl;
   if(expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   date4.setDate(1,1,1970);
   days = (int) 928497600/86400;
   date2.setDateAtNumberOfDaysFromDate(date4, days);
   date3.setDate(4,6,1999);
-  std::cout << "Resulting Date must be 6/4/1999, result: " << date2 << std::endl;
+  std::cout << "Resulting Date must be 6/4/1999, result: " << date2 << " Amount of days: " << days << std::endl;
   if(expected.expect(" getNumberOfDaysUntilDate(MyDate) ", (date3 == date2), true )) {this->passedTests++;}else{this->failedTests++;}
 
   std::cout << std::endl;
@@ -364,10 +381,10 @@ bool Test::testMyTime(){
 
   Expected expected("MyTime");
 
-  std::cout << "Time 0 :" << time0 << std::endl;
-  std::cout << "Time 1 :" << time1 << std::endl;
-  std::cout << "Time 2 :" << time2 << std::endl;
-  std::cout << "Time 3 :" << time3 << std::endl;
+  std::cout << "Time 0: " << time0 << std::endl;
+  std::cout << "Time 1: " << time1 << std::endl;
+  std::cout << "Time 2: " << time2 << std::endl;
+  std::cout << "Time 3: " << time3 << std::endl;
 
   if(expected.testConstructor(time0, 12,0,0)) {this->passedTests++;}else{this->failedTests++;}
   if(expected.testConstructor(time1, 2,2,2)) {this->passedTests++;}else{this->failedTests++;}
@@ -476,7 +493,7 @@ bool Test::testMyClock(){
   if(expected.expect(" timeToStringMilitary() ", time3.timeToStringMilitary(), "15:02" )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" timeToStringMilitary_Seconds() ", time3.timeToStringMilitary_Seconds(), "15:02:36"  )) {this->passedTests++;}else{this->failedTests++;}
 
-  time3.setTime(12, 30, 30, true);
+  time3.setTime(12, 30, 30, false);
   if(expected.expect(" getTimeInSeconds() ", time3.getTimeInSeconds(), 45030 )) {this->passedTests++;}else{this->failedTests++;}
 
   if(expected.expect(" isSecondsCorrect() ", time3.isSecondsCorrect(34), true )) {this->passedTests++;}else{this->failedTests++;}

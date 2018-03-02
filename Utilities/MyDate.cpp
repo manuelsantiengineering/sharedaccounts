@@ -1,7 +1,7 @@
 //
 //  MyDate.cpp
 //
-//  Created by Manuel E Santiago on 1/20/15.
+//  Created by Manuel E Santiago on 1/20/2018
 //  Copyright (c) 2015 Manuel. All rights reserved.
 //
 
@@ -316,6 +316,10 @@ void MyDate::setDateAtNumberOfDaysFromDate(const MyDate & dateInstance, int amou
         }
       }
     }
+  }else if(amountOfDays == 0){
+    this->month = dateInstance.month;
+    this->year = dateInstance.year;
+    this->day = dateInstance.day;
   }
 }
 void MyDate::setDateAtNumberOfDaysFromDate(const int d, const int m, const int y, int amountOfDays){
