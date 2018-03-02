@@ -902,7 +902,7 @@ bool Test::testPeriod(){
     TimeAndDate std(1,1,2010,1,0,0,false);
     TimeAndDate etd(1,1,2010,2,0,0,false);
     MyDate sdate(1,1,2011);
-    MyDate edate(1,12,2011);
+    MyDate edate(1,1,2012);
     MyClock stime(12,0,0,true);
     MyClock etime(1,0,0,true);
 

@@ -47,6 +47,8 @@ public:
   bool expect(MyString functionName, Money functionResult, Money expectedResult);
   bool expect(MyString functionName, MyDate functionResult, MyDate expectedResult);
   bool expect(MyString functionName, MyClock functionResult, MyClock expectedResult);
+  bool expect(MyString functionName, TimeAndDate functionResult, TimeAndDate expectedResult);
+  bool expect(MyString functionName, Period functionResult, Period expectedResult);
   /*
     Constructor tests...
     expect function arguments explanation:
