@@ -64,6 +64,16 @@ bool Period::periodIsValid() const{
           (startDate.isLeapYear() && (secondsInPeriod <= (SECONDS_NOT_LEAP_YEAR+SECONDS_IN_DAY)))
         );
 }
+bool Period::isPeriodStart() const{
+  TimeAndDate starttd = this->getStartTimeAndDate();
+  TimeAndDate nowtd = this->getTimeDateToday_UTC();
+  return(starttd <= nowtd);
+}
+bool Period::isPeriodEnd() const{
+  TimeAndDate endtd = this->getEndTimeAndDate();
+  TimeAndDate nowtd = this->getTimeDateToday_UTC();
+  return(endtd <= nowtd);
+}
 TimeAndDate Period::getStartTimeAndDate() const{
   return( TimeAndDate(this->startTimeInfo.day, this->startTimeInfo.mon, this->startTimeInfo.yr,
             this->startTimeInfo.hr, this->startTimeInfo.min, this->startTimeInfo.sec,
@@ -347,7 +357,12 @@ bool Period::operator==(const Period & period) const{
   return(this->startTimeInfo.sec == period.startTimeInfo.sec && this->startTimeInfo.min == period.startTimeInfo.min &&
         this->startTimeInfo.hr == period.startTimeInfo.hr && this->startTimeInfo.AM == period.startTimeInfo.AM &&
         this->startTimeInfo.day == period.startTimeInfo.day && this->startTimeInfo.mon == period.startTimeInfo.mon &&
-        this->startTimeInfo.yr == period.startTimeInfo.yr );
+        this->startTimeInfo.yr == period.startTimeInfo.yr &&
+        this->endTimeInfo.sec == period.endTimeInfo.sec && this->endTimeInfo.min == period.endTimeInfo.min &&
+        this->endTimeInfo.hr == period.endTimeInfo.hr && this->endTimeInfo.AM == period.endTimeInfo.AM &&
+        this->endTimeInfo.day == period.endTimeInfo.day && this->endTimeInfo.mon == period.endTimeInfo.mon &&
+        this->endTimeInfo.yr == period.endTimeInfo.yr
+      );
 }
 bool Period::operator!=(const Period & period) const{
   return( !(*this == period) );
@@ -363,4 +378,8 @@ bool Period::operator<(const Period & period) const{
 }
 bool Period::operator<=(const Period & period) const{
   return(this->getPeriodInSeconds() <= period.getPeriodInSeconds());
+}
+std::ostream & operator<<(std::ostream & out, const Period &period){
+  out << period.getStartTimeAndDate() << " - " << period.getEndTimeAndDate();
+  return(out);
 }

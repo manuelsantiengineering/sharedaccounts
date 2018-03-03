@@ -34,8 +34,8 @@ public:
   ~Period();
 
   bool periodIsValid() const; //Period must be no more than a year
-  // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
-  // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
+  bool isPeriodStart() const;
+  bool isPeriodEnd() const;
 
   TimeAndDate getStartTimeAndDate() const;
   TimeAndDate getEndTimeAndDate() const;
@@ -142,6 +142,7 @@ public:
   bool operator<(const Period & period) const;
   bool operator<=(const Period & period) const;
 
+  friend std::ostream & operator<<(std::ostream & out, const Period &period);
 };
 
 #endif

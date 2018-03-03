@@ -975,6 +975,38 @@ bool Test::testPeriod(){
   p1.setEndTimeAndDate(testEdate,testEtime);
   if(expected.expect(" getDaysBetweenStartDateAndEndDate() ", p1.getDaysBetweenStartDateAndEndDate(), 0 )) {this->passedTests++;}else{this->failedTests++;}
 
+  testStime.setTime(12,0,0,true);
+  testEtime.setTime(12,0,0,true);
+  testSdate.setDate(1,3,2018);
+  testEdate.setDate(1,4,2018);
+  p1.setStartTimeAndDate(testSdate,testStime);
+  p1.setEndTimeAndDate(testEdate,testEtime);
+  std::cout << "Start date = " << testSdate << "  Start time = " << testStime << std::endl;
+  std::cout << "End date = " << testEdate << "  End time = " << testEtime << std::endl;
+  testStime.setTime(12,0,0,true);
+  testEtime.setTime(12,0,0,false);
+  testSdate.setDate(1,3,2018);
+  testEdate.setDate(1,4,2018);
+  p2.setStartTimeAndDate(testSdate,testStime);
+  p2.setEndTimeAndDate(testEdate,testEtime);
+  std::cout << "Start date = " << testSdate << "  Start time = " << testStime << std::endl;
+  std::cout << "End date = " << testEdate << "  End time = " << testEtime << std::endl;
+  if(expected.expect(" operator>() ", p2 > p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>() ", p1 > p2, false )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<() ", p1 < p2, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<() ", p2 < p1, false )) {this->passedTests++;}else{this->failedTests++;}
+  p3 = p1;
+  if(expected.expect(" operator>=() ", p2 >= p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", p3 >= p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", p1 >= p2, false )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<=() ", p1 <= p2, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator<=() ", p3 <= p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator>=() ", p2 <= p1, false )) {this->passedTests++;}else{this->failedTests++;}
+  std::cout << "P1 = " << p1 << " \nP2 = " << p2 << " \nP3 = " << p3 << std::endl;
+  if(expected.expect(" operator==() ", p3 == p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator==() ", p2 == p1, false )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", p2 != p1, true )) {this->passedTests++;}else{this->failedTests++;}
+  if(expected.expect(" operator!=() ", p3 != p1, false )) {this->passedTests++;}else{this->failedTests++;}
   }catch(MyString e){
     std::cout << "Error: " << e << std::endl;
     exit(0);
