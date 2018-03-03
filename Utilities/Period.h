@@ -37,8 +37,6 @@ public:
   // bool isPeriodStart() const; /* TRY PASSING EPOCH TIME */
   // bool isPeriodEnd() const; /* TRY PASSING EPOCH TIME */
 
-
-
   TimeAndDate getStartTimeAndDate() const;
   TimeAndDate getEndTimeAndDate() const;
   MyDate getStartDate() const;
@@ -70,6 +68,7 @@ public:
   double getPeriodInDays() const;
 
   void setStartTimeAndDate(TimeAndDate start);
+  void setStartTimeAndDate(MyDate date, MyClock ts);
   void setStartDate(MyDate date);
   void setStartDay(int d);
   void setStartMonth(int m);
@@ -81,6 +80,7 @@ public:
   void setStartMeridiem(bool AM);
 
   void setEndTimeAndDate(TimeAndDate end);
+  void setEndTimeAndDate(MyDate date, MyClock ts);
   void setEndDate(MyDate date);
   void setEndDay(int d);
   void setEndMonth(int m);

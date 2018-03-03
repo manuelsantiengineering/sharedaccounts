@@ -964,6 +964,17 @@ bool Test::testPeriod(){
   p1 = p2;
   if(expected.expect(" operator=() ", p1 == p2, true )) {this->passedTests++;}else{this->failedTests++;}
 
+  testStime.setTime(12,0,0,true);
+  testEtime.setTime(12,0,0,true);
+  testSdate.setDate(1,3,2018);
+  testEdate.setDate(1,4,2018);
+  p1.setStartTimeAndDate(testSdate,testStime);
+  p1.setEndTimeAndDate(testEdate,testEtime);
+  if(expected.expect(" getDaysBetweenStartDateAndEndDate() ", p1.getDaysBetweenStartDateAndEndDate(), 31 )) {this->passedTests++;}else{this->failedTests++;}
+  p1.setStartTimeAndDate(testEdate,testEtime);
+  p1.setEndTimeAndDate(testEdate,testEtime);
+  if(expected.expect(" getDaysBetweenStartDateAndEndDate() ", p1.getDaysBetweenStartDateAndEndDate(), 0 )) {this->passedTests++;}else{this->failedTests++;}
+
   }catch(MyString e){
     std::cout << "Error: " << e << std::endl;
     exit(0);

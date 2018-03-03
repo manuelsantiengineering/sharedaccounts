@@ -128,6 +128,14 @@ void Period::setStartTimeAndDate(TimeAndDate start){
   this->startTimeInfo.hr = start.getHours();
   this->startTimeInfo.AM =  start.isAM();
 }
+void Period::setStartTimeAndDate(MyDate date, MyClock ts){
+  this->startTimeInfo.day = date.getDay();
+  this->startTimeInfo.mon = date.getMonth();
+  this->startTimeInfo.yr = date.getYear();
+  this->startTimeInfo.sec = ts.getSeconds();
+  this->startTimeInfo.hr = ts.getHours();
+  this->startTimeInfo.AM =  ts.isAM();
+}
 void Period::setStartDate(MyDate date){
   this->startTimeInfo.day = date.getDay();
   this->startTimeInfo.mon = date.getMonth();
@@ -155,6 +163,15 @@ void Period::setEndTimeAndDate(TimeAndDate start){
   this->endTimeInfo.min = start.getMinutes();
   this->endTimeInfo.hr = start.getHours();
   this->endTimeInfo.AM =  start.isAM();
+}
+void Period::setEndTimeAndDate(MyDate date, MyClock ts){
+  this->endTimeInfo.day = date.getDay();
+  this->endTimeInfo.mon = date.getMonth();
+  this->endTimeInfo.yr = date.getYear();
+  this->endTimeInfo.sec = ts.getSeconds();
+  this->endTimeInfo.min = ts.getMinutes();
+  this->endTimeInfo.hr = ts.getHours();
+  this->endTimeInfo.AM =  ts.isAM();
 }
 void Period::setEndDate(MyDate date){
   this->endTimeInfo.day = date.getDay();
@@ -335,3 +352,14 @@ bool Period::operator==(const Period & period) const{
 bool Period::operator!=(const Period & period) const{
   return( !(*this == period) );
 }
+// bool Period::operator>(const Period & period) const{
+// }
+// bool Period::operator>=(const Period & period) const{
+//
+// }
+// bool Period::operator<(const Period & period) const{
+//
+// }
+// bool Period::operator<=(const Period & period) const{
+//
+// }
