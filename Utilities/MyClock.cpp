@@ -15,7 +15,7 @@ MyClock::MyClock(int hours, int minutes, int seconds){
     this->minutes = minutes;
     this->hours = hours;
   }else{
-    MyString e("Please verify the time values.");
+    MyString e("Please verify the clock time values.");
     throw e;
   }
 }
@@ -26,7 +26,7 @@ MyClock::MyClock(int hours, int minutes, int seconds, bool AM){
     this->hours = hours;
     this->AM = AM;
   }else{
-    MyString e("Please verify the time values.");
+    MyString e("Please verify the clock time values.");
     throw e;
   }
 }
@@ -42,12 +42,12 @@ MyClock::MyClock(const MyTime & timeInstance){
     this->hours = (timeInstance.getHours() == 12) ? timeInstance.getHours() : (timeInstance.getHours()-12);
   }else if(timeInstance.getHours() < 12 || timeInstance.getHours() == 24){
     this->AM = true;
-    this->hours = (timeInstance.getHours() < 12) ? timeInstance.getHours() : 12;
+    this->hours = (timeInstance.getHours() == 0 || timeInstance.getHours() == 24) ? 12 : timeInstance.getHours();
   }
   this->seconds = timeInstance.getSeconds();
   this->minutes = timeInstance.getMinutes();
   if(!this->isTimeCorrect(this->hours, this->minutes, this->seconds)){
-    MyString e("Please verify the time values.");
+    MyString e("Please verify the clock time values.");
     throw e;
   }
 }
@@ -67,7 +67,7 @@ void MyClock::setTime(int h, int m, int s, bool AM){
     this->hours = h;
     this->AM = AM;
   }else{
-    MyString e("Please verify the time values.");
+    MyString e("Please verify the clock time values.");
     throw e;
   }
 }
