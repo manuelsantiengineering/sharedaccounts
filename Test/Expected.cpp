@@ -127,6 +127,7 @@ bool Expected::expect(MyString functionName, TimeAndDate functionResult, TimeAnd
   }else{
     std::cout << "\tFAILED: " << functionResult << " != " << expectedResult  << std::endl;
   }
+  return(passedTest);
 }
 // bool Expected::expect(MyString functionName, Period functionResult, Period expectedResult){
 //   bool passedTest = false;

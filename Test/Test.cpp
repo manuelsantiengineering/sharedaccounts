@@ -957,6 +957,12 @@ bool Test::testPeriod(){
   p1.setPeriodDateFromNow_UTC(testEdate);
   if(expected.expect(" setPeriodDateFromNow_UTC() ", p1.getStartDate(), testSdate )) {this->passedTests++;}else{this->failedTests++;}
 
+  testEtime.setTime(4,0,0,true);
+  p1.setPeriodTimeFromNow_UTC(testEtime);
+  if(expected.expect(" setPeriodTimeFromNow_UTC() ", p1.getStartTime(), p1.getStartTime() )) {this->passedTests++;}else{this->failedTests++;}
+
+  p1 = p2;
+  if(expected.expect(" operator=() ", p1 == p2, true )) {this->passedTests++;}else{this->failedTests++;}
 
   }catch(MyString e){
     std::cout << "Error: " << e << std::endl;

@@ -320,8 +320,18 @@ void Period::setPeriodTimeFromNow_UTC(int h, int m, int s, bool AM){
 }
 
 void Period::operator=(const Period &period){
-  this->startTimeInfo = {period.startTimeInfo.sec,period.startTimeInfo.hr,
+  this->startTimeInfo = {period.startTimeInfo.sec,period.startTimeInfo.min,period.startTimeInfo.hr,
     period.startTimeInfo.AM,period.startTimeInfo.day,period.startTimeInfo.mon,period.startTimeInfo.yr};
   this->endTimeInfo = {period.endTimeInfo.sec,period.endTimeInfo.min,period.endTimeInfo.hr,
     period.endTimeInfo.AM,period.endTimeInfo.day,period.endTimeInfo.mon,period.endTimeInfo.yr};
+}
+
+bool Period::operator==(const Period & period) const{
+  return(this->startTimeInfo.sec == period.startTimeInfo.sec && this->startTimeInfo.min == period.startTimeInfo.min &&
+        this->startTimeInfo.hr == period.startTimeInfo.hr && this->startTimeInfo.AM == period.startTimeInfo.AM &&
+        this->startTimeInfo.day == period.startTimeInfo.day && this->startTimeInfo.mon == period.startTimeInfo.mon &&
+        this->startTimeInfo.yr == period.startTimeInfo.yr );
+}
+bool Period::operator!=(const Period & period) const{
+  return( !(*this == period) );
 }
