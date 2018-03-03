@@ -352,14 +352,15 @@ bool Period::operator==(const Period & period) const{
 bool Period::operator!=(const Period & period) const{
   return( !(*this == period) );
 }
-// bool Period::operator>(const Period & period) const{
-// }
-// bool Period::operator>=(const Period & period) const{
-//
-// }
-// bool Period::operator<(const Period & period) const{
-//
-// }
-// bool Period::operator<=(const Period & period) const{
-//
-// }
+bool Period::operator>(const Period & period) const{
+  return(this->getPeriodInSeconds() > period.getPeriodInSeconds());
+}
+bool Period::operator>=(const Period & period) const{
+  return(this->getPeriodInSeconds() >= period.getPeriodInSeconds());
+}
+bool Period::operator<(const Period & period) const{
+  return(this->getPeriodInSeconds() < period.getPeriodInSeconds());
+}
+bool Period::operator<=(const Period & period) const{
+  return(this->getPeriodInSeconds() <= period.getPeriodInSeconds());
+}

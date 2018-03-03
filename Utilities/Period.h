@@ -118,29 +118,22 @@ public:
 
   void operator=(const Period &period);
 
-  Period operator+(const Period & period) const;
-  Period operator+(const MyClock &time);
+  // Period operator+(const MyTime &time);
+  // Period operator-(const MyTime &time);
+  // Period & operator+=(const MyTime &time);
+  // Period & operator-=(const MyTime &time);
 
-  Period operator-(const Period & period) const;
-  Period operator-(const MyClock &time);
-
-  Period & operator+=(const Period & period);
-  Period & operator+=(const MyClock &time);
-
-  Period & operator-=(const Period & period);
-  Period & operator-=(const MyClock &time);
-
-  Period operator*(const int) const;
-  Period operator*(const double) const;
-
-  Period operator/(const int) const;
-  Period operator/(const double) const;
-
-  Period operator*=(const int);
-  Period operator*=(const double);
-
-  Period operator/=(const int);
-  Period operator/=(const double);
+  // Period operator*(const int) const;
+  // Period operator*(const double) const;
+  //
+  // Period operator/(const int) const;
+  // Period operator/(const double) const;
+  //
+  // Period operator*=(const int);
+  // Period operator*=(const double);
+  //
+  // Period operator/=(const int);
+  // Period operator/=(const double);
 
   bool operator==(const Period & period) const;
   bool operator!=(const Period & period) const;
