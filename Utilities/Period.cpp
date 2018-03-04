@@ -243,12 +243,12 @@ void Period::setStartTimeNow_UTC(){
   const long int NOW = static_cast<long int> (result);
   int since20180223 = (int)(NOW-1519344000);
   TimeAndDate td(23,2,2018,12,0,0,true);
-  std::cout << "TD = " << td << "  Seconds = " << since20180223 << "  NOW =  " << NOW << std::endl;
+  // std::cout << "TD = " << td << "  Seconds = " << since20180223 << "  NOW =  " << NOW << std::endl;
   // MyDate date;
   // date.setDateAtNumberOfDaysFromDate(23,2,2018,since20180223);
   // this->setStartDate(date);
   td.setTimeAndDateAtNumberOfSecondsFromTimeAndDate(td, since20180223);
-  std::cout << "TD = " << td << std::endl;
+  // std::cout << "TD = " << td << std::endl;
   this->setStartTimeAndDate(td);
 }
 void Period::setStartTimeNow_Local(){
@@ -276,9 +276,9 @@ TimeAndDate Period::getTimeDateToday_UTC() const{
   timeInfo = gmtime ( &rawtime );
   timeInfo->tm_year += 1900;
   timeInfo->tm_mon += 1;
-  bool tmpIsAm = false;
+  bool tmpIsAm = true;
   if(timeInfo->tm_hour > 12){
-    tmpIsAm = true;
+    tmpIsAm = false;
     timeInfo->tm_hour -= 12;
   }
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
@@ -291,9 +291,9 @@ TimeAndDate Period::getTimeDateToday_Local() const{
   timeInfo = localtime ( &rawtime );
   timeInfo->tm_year += 1900;
   timeInfo->tm_mon += 1;
-  bool tmpIsAm = false;
+  bool tmpIsAm = true;
   if(timeInfo->tm_hour > 12){
-    tmpIsAm = true;
+    tmpIsAm = false;
     timeInfo->tm_hour -= 12;
   }
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,

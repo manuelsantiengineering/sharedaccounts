@@ -45,7 +45,7 @@ public:
   MyString dateToMyStringNumbers() const;
   MyString dateToMyString() const;
 
-  bool isDateCorrect(const int, const int, const int) const;
+  bool isDateCorrect(const int d, const int m, const int y) const;
   bool isLeapYear() const;
   bool isLeapYear(int year) const;
 
