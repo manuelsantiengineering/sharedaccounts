@@ -110,7 +110,7 @@ int MyClock::getTimeInSeconds() const{
 
 bool MyClock::isSecondsCorrect(int s){ return((s >= 0 && s < 60));  }
 bool MyClock::isMinutesCorrect(int m){ return((m >= 0 && m < 60));  }
-bool MyClock::isHoursCorrect(int h){ return(h > 0 && h <= 12);  }
+bool MyClock::isHoursCorrect(int h){ return(h >= 0 && h <= 12);  }
 bool MyClock::isTimeCorrect(int h, int m, int s){
   return( this->isSecondsCorrect(s) && this->isMinutesCorrect(m) && this->isHoursCorrect(h) );
 }

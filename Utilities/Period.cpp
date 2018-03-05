@@ -280,7 +280,12 @@ TimeAndDate Period::getTimeDateToday_UTC() const{
   if(timeInfo->tm_hour > 12){
     tmpIsAm = false;
     timeInfo->tm_hour -= 12;
+  }else if(timeInfo->tm_hour == 0){
+    timeInfo->tm_hour = 12;
   }
+  // std::cout << " timeInfo->tm_hour = " << timeInfo->tm_hour
+  //           << " timeInfo->tm_min = " << timeInfo->tm_min
+  //           << " timeInfo->tm_sec = " << timeInfo->tm_sec << std::endl;
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
             timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec, tmpIsAm ) );
 }
@@ -295,6 +300,8 @@ TimeAndDate Period::getTimeDateToday_Local() const{
   if(timeInfo->tm_hour > 12){
     tmpIsAm = false;
     timeInfo->tm_hour -= 12;
+  }else if(timeInfo->tm_hour == 0){
+    timeInfo->tm_hour = 12;
   }
   return( TimeAndDate(timeInfo->tm_mday, timeInfo->tm_mon, timeInfo->tm_year,
             timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec, tmpIsAm ) );

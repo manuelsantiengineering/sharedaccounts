@@ -952,8 +952,8 @@ bool Test::testPeriod(){
   if(expected.expect(" getStartTime() ", p1.getStartTime(), testStime )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" getEndTime() ", p1.getEndTime(), testEtime )) {this->passedTests++;}else{this->failedTests++;}
 
-  testSdate.setDate(4,3,2018);
-  testEdate.setDate(4,3,2018);
+  testSdate.setDate(5,3,2018);
+  testEdate.setDate(5,3,2018);
   p1.setPeriodDateFromNow_UTC(testEdate);
   if(expected.expect(" setPeriodDateFromNow_UTC() ", p1.getStartDate(), testSdate )) {this->passedTests++;}else{this->failedTests++;}
 
@@ -1015,19 +1015,20 @@ bool Test::testPeriod(){
   p2.setStartTimeAndDate(testSdate,testStime);
   p2.setEndTimeAndDate(testEdate,testEtime);
 
+  // std::cout << "P1 = " << p1 << " \nP2 = " << p2 << " \nP3 = " << p3 << std::endl;
   testStime.setTime(12,0,0,true);
   testEtime.setTime(12,0,0,true);
   testSdate.setDate(4,4,2018);
   testEdate.setDate(6,4,2018);
   p3.setStartTimeAndDate(testSdate,testStime);
   p3.setEndTimeAndDate(testEdate,testEtime);
-
+  // std::cout << "01P1 = " << p1 << " \nP2 = " << p2 << " \nP3 = " << p3 << std::endl;
   if(expected.expect(" isPeriodStart() ", p2.isPeriodStart(), true )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" isPeriodStart() ", p3.isPeriodStart(), false )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" isPeriodEnd() ", p2.isPeriodEnd(), true )) {this->passedTests++;}else{this->failedTests++;}
   if(expected.expect(" isPeriodEnd() ", p3.isPeriodEnd(), false )) {this->passedTests++;}else{this->failedTests++;}
 
-  std::cout << "Now: " << p1.getTimeDateToday_UTC() << " P2 end: " <<  p2.getEndTimeAndDate() << std::endl;
+  // std::cout << "02Now: " << p1.getTimeDateToday_UTC() << " P2 end: " <<  p2.getEndTimeAndDate() << std::endl;
 
   }catch(MyString e){
     std::cout << "Error: " << e << std::endl;

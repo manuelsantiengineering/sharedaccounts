@@ -5,8 +5,8 @@
 //  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
-#ifndef PERIOD_H
-#define PERIOD_H
+#ifndef __PERIOD_H__
+#define __PERIOD_H__
 
 #include <ctime>
 

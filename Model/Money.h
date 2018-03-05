@@ -5,8 +5,8 @@
 //  Copyright (c) 2018 Manuel. All rights reserved.
 //
 
-#ifndef MONEY_H
-#define MONEY_H
+#ifndef __MONEY_H__
+#define __MONEY_H__
 
 #include <exception>
 #include <iomanip>
